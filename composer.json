@@ -10,7 +10,7 @@
         "test": "php phpunit --testdox"
     },
     "autoload": {
-        "psr-4": {"FP\\Larmo\\": "src/"}
+        "psr-4": {"FP\\Larmo\\": "hub/src/"}
     },
     "require": {
         "phpunit/phpunit": "4.7"
