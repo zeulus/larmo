@@ -1,7 +1,6 @@
 <?php
 
-use FP\Larmo\Metadata;
-use FP\Larmo\CheckSumInterface;
+use FP\Larmo\Domain\Entity\Metadata;
 
 class MetadataTest extends PHPUnit_Framework_TestCase {
 
@@ -11,8 +10,8 @@ class MetadataTest extends PHPUnit_Framework_TestCase {
     private $authInfoValidator;
 
     public function setup() {
-        $this->checkSumValidator = $this->getMockBuilder('\FP\Larmo\CheckSumInterface')->setMethods(array('validate','__construct'))->getMock();
-        $this->authInfoValidator = $this->getMockBuilder('\FP\Larmo\AuthInfoInterface')->setMethods(array('validate','__construct'))->getMock();
+        $this->checkSumValidator = $this->getMockBuilder('\FP\Larmo\Infrastructure\Adapter\CheckSumInterface')->setMethods(array('validate','__construct'))->getMock();
+        $this->authInfoValidator = $this->getMockBuilder('\FP\Larmo\Infrastructure\Adapter\AuthInfoInterface')->setMethods(array('validate','__construct'))->getMock();
         $this->metadata = new Metadata($this->checkSumValidator, $this->authInfoValidator, $this->checksum, time(), 'AUTH_INFO', 'SOME_SOURCE');
     }
 
@@ -68,25 +67,7 @@ class MetadataTest extends PHPUnit_Framework_TestCase {
     public function metadataHasCorrectTimestamp() {
         $time = time();
         $this->metadata->setTimestamp($time);
-
         $this->assertEquals($time, $this->metadata->getTimestamp());
-    }
-
-    /**
-     * @test
-     */
-    public function unixTimestampIsInteger() {
-        $this->setExpectedException('InvalidArgumentException');
-        $this->metadata->setTimestamp('qwerty');
-    }
-
-    /**
-     * @test
-     * @depends unixTimestampIsInteger
-     */
-    public function unixTimestampIsPositiveNumber() {
-        $this->setExpectedException('InvalidArgumentException');
-        $this->metadata->setTimestamp(-1);
     }
 
     /**

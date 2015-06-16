@@ -1,8 +1,9 @@
 <?php
 
-namespace FP\Larmo;
+namespace FP\Larmo\Domain\Entity;
 
-use Symfony\Component\Yaml\Tests\A;
+use FP\Larmo\Infrastructure\Adapter\CheckSumInterface;
+use FP\Larmo\Infrastructure\Adapter\AuthInfoInterface;
 
 class Metadata {
 
@@ -37,11 +38,7 @@ class Metadata {
     }
 
     public function setTimestamp($timestamp) {
-        if(is_int($timestamp) && $timestamp >= 0) {
-            $this->timestamp = $timestamp;
-        } else {
-            throw new \InvalidArgumentException;
-        }
+        $this->timestamp = $timestamp;
     }
 
     public function setAuthInfo($authInfo) {
