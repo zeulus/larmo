@@ -1,26 +1,22 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: zeulus
- * Date: 15.06.15
- * Time: 15:21
- */
 
-namespace FP\Larmo;
-
-
-use Prophecy\Exception\InvalidArgumentException;
+namespace FP\Larmo\Domain\Entity;
+use FP\Larmo\Application\Service\UniqueIdGenerator;
+use FP\Larmo\Domain\ValueObject\Author;
 
 class Message {
 
+    private $messageId;
     private $type;
     private $timestamp;
     private $author;
 
-    public function __construct($type, $timestamp, $author) {
+    public function __construct($type, $timestamp, Author $author, UniqueIdGenerator $generator) {
         $this->type = $type;
         $this->timestamp = $timestamp;
         $this->author = $author;
+
+        $this->messageId = $generator->generate();
     }
 
     public function getType() {
@@ -32,15 +28,14 @@ class Message {
     }
 
     public function setTimestamp($timestamp) {
-        if(is_int($timestamp) && $timestamp >= 0) {
             $this->timestamp = $timestamp;
-        } else {
-            throw new \InvalidArgumentException;
-        }
-
     }
 
     public function getAuthor() {
         return $this->author;
+    }
+
+    public function getMessageId() {
+        return $this->messageId;
     }
 }

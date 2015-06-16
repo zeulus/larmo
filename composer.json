@@ -6,13 +6,14 @@
             "email": "apietka@future-processing.com"
         }
     ],
-    "script": {
-        "test": "php phpunit --testdox"
+    "scripts": {
+        "test": "phpunit --testdox --configuration hub/tests/phpunit.xml"
     },
     "autoload": {
         "psr-4": {"FP\\Larmo\\": "hub/src/"}
     },
     "require": {
-        "phpunit/phpunit": "4.7"
+        "phpunit/phpunit": "4.7",
+        "php": ">=5.3.0"
     }
 }

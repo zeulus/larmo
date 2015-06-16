@@ -1,6 +1,6 @@
 <?php
 
-namespace FP\Larmo;
+namespace FP\Larmo\Domain\ValueObject;
 
 class Author {
 
@@ -19,8 +19,8 @@ class Author {
     public function getDisplayName() {
         if ($this->getFullName()) {
             return $this->getFullName();
-        } else if ($this->nickName) {
-            return $this->nickName;
+        } else if ($this->getNickName()) {
+            return $this->getNickName();
         } else if ($this->getEmail()) {
             return $this->getEmail();
         }
@@ -30,6 +30,10 @@ class Author {
 
     public function getFullName() {
         return $this->fullName;
+    }
+
+    public function getNickName() {
+        return $this->nickName;
     }
 
     public function getEmail() {
