@@ -19,5 +19,9 @@ matrix:
   fast_finish: true
 
 notifications:
-    on_success: never
+  email:
+    recipients:
+      - apietka@future-processing.com
+      - mwojcik@future-processing.com
+    on_success: change
     on_failure: always
