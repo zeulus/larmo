@@ -1,19 +1,13 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: zeulus
- * Date: 15.06.15
- * Time: 16:23
- */
 
-use FP\Larmo\Author;
+use FP\Larmo\Domain\ValueObject\Author;
 
 class AuthorTest  extends PHPUnit_Framework_TestCase {
 
     private $author;
-    private $authorFullName = 'Mateusz';
-    private $authorNickName = 'maat';
-    private $authorEmail = 'dhfj@future-processing.com';
+    private $authorFullName = 'Somebody\'s Name';
+    private $authorNickName = 'testname';
+    private $authorEmail = 'testname@future-processing.com';
 
     public function setup()
     {
@@ -23,24 +17,28 @@ class AuthorTest  extends PHPUnit_Framework_TestCase {
     /**
      * @test
      */
-    public function getNameReturnsSetName() {
+    public function checkIfFullNameIsSet() {
         $this->assertEquals($this->authorFullName, $this->author->getDisplayName());
     }
 
     /**
      * @test
      */
-    public function getEmailReturnsSetEmail() {
+    public function checkIfEmailIsSet() {
         $this->assertEquals($this->authorEmail, $this->author->getEmail());
     }
 
 
     public function displayNameProvider() {
         return [
-            ["Adrian", "apietka", "apietka@future-processing.com", "Adrian"],
+            ["Adrian", "adddi", "", "Adrian"],
             ["", "mwojcik", "mwojcik@future-processing.com", "mwojcik"],
+            ["Mateusz", "", "mksiazek@future-processing.com", "Mateusz"],
+            ["Adrian", "", "", "Adrian"],
+            ["", "mateo", "", "mateo"],
             ["", "", "mksiazek@future-processing.com", "mksiazek@future-processing.com"],
-            ["", "", "", Author::DEFAULT_DISPLAY_NAME]
+            ["Adrian", "apietka", "apietka@future-processing.com", "Adrian"],
+            ["", "", "", Author::DEFAULT_DISPLAY_NAME],
         ];
     }
 
@@ -48,7 +46,7 @@ class AuthorTest  extends PHPUnit_Framework_TestCase {
      * @test
      * @dataProvider displayNameProvider
      */
-    public function getDisplayNameOrderIsWellDefined($fullName, $nickName, $email, $expected) {
+    public function displayNamePriorityOrder($fullName, $nickName, $email, $expected) {
         $author = new Author($fullName, $nickName, $email);
         $this->assertEquals($expected, $author->getDisplayName());
     }
