@@ -10,8 +10,8 @@ class MetadataTest extends PHPUnit_Framework_TestCase {
     private $authInfoValidator;
 
     public function setup() {
-        $this->checkSumValidator = $this->getMockBuilder('\FP\Larmo\Infrastructure\Adapter\CheckSumInterface')->setMethods(array('validate','__construct'))->getMock();
-        $this->authInfoValidator = $this->getMockBuilder('\FP\Larmo\Infrastructure\Adapter\AuthInfoInterface')->setMethods(array('validate','__construct'))->getMock();
+        $this->checkSumValidator = $this->getMockBuilder('\FP\Larmo\Domain\Service\CheckSumInterface')->setMethods(array('validate'))->getMock();
+        $this->authInfoValidator = $this->getMockBuilder('\FP\Larmo\Domain\Service\AuthInfoInterface')->setMethods(array('validate'))->getMock();
         $this->metadata = new Metadata($this->checkSumValidator, $this->authInfoValidator, $this->checksum, time(), 'AUTH_INFO', 'SOME_SOURCE');
     }
 
@@ -34,7 +34,7 @@ class MetadataTest extends PHPUnit_Framework_TestCase {
      */
     public function checkSumIsNotValidating() {
         $this->checkSumValidator->method('validate')->willReturn(false);
-        $this->setExpectedException('Exception');
+        $this->setExpectedException('InvalidArgumentException');
         $this->metadata->setChecksum("CHECKSUM");
     }
 
@@ -91,7 +91,7 @@ class MetadataTest extends PHPUnit_Framework_TestCase {
      */
     public function authInfoIsNotValidating() {
         $this->authInfoValidator->method('validate')->willReturn(false);
-        $this->setExpectedException('Exception');
+        $this->setExpectedException('InvalidArgumentException');
         $this->metadata->setAuthInfo("NEW AUTH INFO");
     }
 
