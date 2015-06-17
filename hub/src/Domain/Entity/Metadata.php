@@ -14,10 +14,9 @@ class Metadata {
     private $checksumValidator;
     private $authInfoValidator;
 
-    public function __construct(ChecksumInterface $checksumValidator, AuthInfoInterface $authInfoValidator, $checksum, $timestamp, $authInfo, $source) {
+    public function __construct(ChecksumInterface $checksumValidator, AuthInfoInterface $authInfoValidator, $timestamp, $authInfo, $source) {
         $this->checksumValidator = $checksumValidator;
         $this->authInfoValidator = $authInfoValidator;
-        $this->checksum = $checksum;
         $this->timestamp = $timestamp;
         $this->authInfo = $authInfo;
         $this->source = $source;
