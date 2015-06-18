@@ -7,13 +7,17 @@
         }
     ],
     "scripts": {
-        "test": "phpunit --testdox --configuration hub/tests/phpunit.xml"
+        "test": "php vendor/phpunit/phpunit/phpunit --testdox --configuration hub/tests/phpunit.xml",
+        "phplint": "php vendor/phplint/phplint/bin/phplint hub/",
+        "phpmd": "php vendor/phpmd/phpmd/src/bin/phpmd hub/ text codesize,controversial,naming,unusedcode,design"
     },
     "autoload": {
         "psr-4": {"FP\\Larmo\\": "hub/src/"}
     },
     "require": {
         "phpunit/phpunit": "4.7",
-        "php": ">=5.3.0"
+        "php": ">=5.4.0",
+        "phplint/phplint": "^0.0.1",
+        "phpmd/phpmd": "2.2.*"
     }
 }

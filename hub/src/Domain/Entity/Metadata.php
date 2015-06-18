@@ -2,8 +2,8 @@
 
 namespace FP\Larmo\Domain\Entity;
 
-use FP\Larmo\Infrastructure\Adapter\CheckSumInterface;
-use FP\Larmo\Infrastructure\Adapter\AuthInfoInterface;
+use FP\Larmo\Domain\Service\ChecksumInterface;
+use FP\Larmo\Domain\Service\AuthInfoInterface;
 
 class Metadata {
 
@@ -11,11 +11,12 @@ class Metadata {
     private $timestamp;
     private $authInfo;
     private $source;
+    private $checksumValidator;
+    private $authInfoValidator;
 
-    public function __construct(CheckSumInterface $csv, AuthInfoInterface $aiv, $checksum, $timestamp, $authInfo, $source) {
-        $this->csv = $csv;
-        $this->aiv = $aiv;
-        $this->checksum = $checksum;
+    public function __construct(ChecksumInterface $checksumValidator, AuthInfoInterface $authInfoValidator, $timestamp, $authInfo, $source) {
+        $this->checksumValidator = $checksumValidator;
+        $this->authInfoValidator = $authInfoValidator;
         $this->timestamp = $timestamp;
         $this->authInfo = $authInfo;
         $this->source = $source;
@@ -26,10 +27,10 @@ class Metadata {
     }
 
     public function setChecksum($checksum) {
-        if ($this->csv->validate($checksum)) {
+        if ($this->checksumValidator->validate($checksum)) {
             $this->checksum = $checksum;
         } else {
-            throw new \Exception("Checksum is incorrect");
+            throw new \InvalidArgumentException("Checksum is incorrect");
         }
     }
 
@@ -42,10 +43,10 @@ class Metadata {
     }
 
     public function setAuthInfo($authInfo) {
-        if ($this->aiv->validate($authInfo)) {
+        if ($this->authInfoValidator->validate($authInfo)) {
             $this->authInfo = $authInfo;
         } else {
-            throw new \Exception("AuthInfo is not valid");
+            throw new \InvalidArgumentException("AuthInfo is not valid");
         }
     }
 
