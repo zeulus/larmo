@@ -1,7 +1,7 @@
 <?php
 
 namespace FP\Larmo\Domain\Entity;
-use FP\Larmo\Application\Service\UniqueIdGenerator;
+use FP\Larmo\Domain\Service\UniqueIdGenerator;
 use FP\Larmo\Domain\ValueObject\Author;
 
 class Message {

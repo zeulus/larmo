@@ -2,36 +2,20 @@
 
 namespace FP\Larmo\Domain\Entity;
 
-use FP\Larmo\Domain\Service\ChecksumInterface;
 use FP\Larmo\Domain\Service\AuthInfoInterface;
 
 class Metadata {
 
-    private $checksum;
     private $timestamp;
     private $authInfo;
     private $source;
-    private $checksumValidator;
     private $authInfoValidator;
 
-    public function __construct(ChecksumInterface $checksumValidator, AuthInfoInterface $authInfoValidator, $timestamp, $authInfo, $source) {
-        $this->checksumValidator = $checksumValidator;
+    public function __construct(AuthInfoInterface $authInfoValidator, $timestamp, $authInfo, $source) {
         $this->authInfoValidator = $authInfoValidator;
         $this->timestamp = $timestamp;
         $this->authInfo = $authInfo;
         $this->source = $source;
-    }
-
-    public function getChecksum() {
-        return $this->checksum;
-    }
-
-    public function setChecksum($checksum) {
-        if ($this->checksumValidator->validate($checksum)) {
-            $this->checksum = $checksum;
-        } else {
-            throw new \InvalidArgumentException("Checksum is incorrect");
-        }
     }
 
     public function getTimestamp() {

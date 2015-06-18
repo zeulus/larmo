@@ -2,7 +2,6 @@
 
 namespace FP\Larmo\Domain\Service;
 
-
 class Packet {
 
     private $messages;
