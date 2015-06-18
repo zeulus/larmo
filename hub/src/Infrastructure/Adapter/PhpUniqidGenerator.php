@@ -2,8 +2,7 @@
 
 namespace FP\Larmo\Infrastructure\Adapter;
 
-
-use FP\Larmo\Application\Service\UniqueIdGenerator;
+use FP\Larmo\Domain\Service\UniqueIdGenerator;
 
 class PhpUniqidGenerator implements UniqueIdGenerator {
 

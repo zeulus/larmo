@@ -1,6 +1,6 @@
 <?php
 
-namespace FP\Larmo\Application\Service;
+namespace FP\Larmo\Domain\Service;
 
 
 interface UniqueIdGenerator  {
