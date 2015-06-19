@@ -8,6 +8,7 @@
     ],
     "scripts": {
         "test": "php vendor/phpunit/phpunit/phpunit --testdox --configuration hub/tests/phpunit.xml",
+        "test-clover": "php vendor/phpunit/phpunit/phpunit --testdox --configuration hub/tests/phpunit.xml --coverage-clover build/logs/clover.xml",
         "phplint": "php vendor/phplint/phplint/bin/phplint hub/",
         "phpmd": "php vendor/phpmd/phpmd/src/bin/phpmd hub/ text codesize,controversial,naming,unusedcode,design"
     },
@@ -15,9 +16,12 @@
         "psr-4": {"FP\\Larmo\\": "hub/src/"}
     },
     "require": {
+        "php": ">=5.4.0"
+    },
+    "require-dev": {
         "phpunit/phpunit": "4.7",
-        "php": ">=5.4.0",
         "phplint/phplint": "^0.0.1",
-        "phpmd/phpmd": "2.2.*"
+        "phpmd/phpmd": "2.2.*",
+        "codeclimate/php-test-reporter": "dev-master"
     }
 }
