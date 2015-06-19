@@ -8,7 +8,7 @@
     ],
     "scripts": {
         "test": "php vendor/phpunit/phpunit/phpunit --testdox --configuration hub/tests/phpunit.xml",
-        "test-clover": "php vendor/phpunit/phpunit/phpunit --testdox --configuration hub/tests/phpunit.xml --coverage-clover clover.xml",
+        "test-clover": "php vendor/phpunit/phpunit/phpunit --testdox --configuration hub/tests/phpunit.xml --coverage-clover build/logs/clover.xml",
         "test-codeclimate": "CODECLIMATE_REPO_TOKEN=a7a5144310e22363bc8314482209e3478e2d55b85cea9a6fcf3fb2b24df091f8 php vendor/codeclimate/php-test-reporter/composer/bin/test-reporter",
         "phplint": "php vendor/phplint/phplint/bin/phplint hub/",
         "phpmd": "php vendor/phpmd/phpmd/src/bin/phpmd hub/ text codesize,controversial,naming,unusedcode,design"
