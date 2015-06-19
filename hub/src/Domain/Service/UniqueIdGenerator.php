@@ -2,8 +2,8 @@
 
 namespace FP\Larmo\Domain\Service;
 
-
-interface UniqueIdGenerator  {
+interface UniqueIdGenerator
+{
 
     public function generate();
 
