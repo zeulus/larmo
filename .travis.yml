@@ -9,7 +9,9 @@ before_script:
   - composer self-update
   - composer install --prefer-source --no-interaction --dev
 
-script: composer test
+script:
+  - composer test-clover
+  - composer test-codeclimate
 
 matrix:
   allow_failures:
@@ -22,6 +24,6 @@ notifications:
   email:
     recipients:
       - apietka@future-processing.com
-      - mwojcik@future-processing.com
+      - team.mvp@future-processing.com
     on_success: change
     on_failure: always
