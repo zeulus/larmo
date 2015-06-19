@@ -11,7 +11,7 @@ before_script:
 
 script:
   - composer test-clover
-  - composer test-codeclimate
+  - CODECLIMATE_REPO_TOKEN=a7a5144310e22363bc8314482209e3478e2d55b85cea9a6fcf3fb2b24df091f8 php vendor/codeclimate/php-test-reporter/composer/bin/test-reporter
 
 matrix:
   allow_failures:
