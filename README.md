@@ -11,6 +11,7 @@ This project is a PoC of a central hub that stores information from many data fe
 
 ```bash
 $: composer test
+$: composer test-clover
 $: composer phplint
 $: composer phpmd
 ```
