@@ -2,35 +2,20 @@
 
 namespace FP\Larmo\Domain\Entity;
 
-use FP\Larmo\Infrastructure\Adapter\CheckSumInterface;
-use FP\Larmo\Infrastructure\Adapter\AuthInfoInterface;
+use FP\Larmo\Domain\Service\AuthInfoInterface;
 
 class Metadata {
 
-    private $checksum;
     private $timestamp;
     private $authInfo;
     private $source;
+    private $authInfoValidator;
 
-    public function __construct(CheckSumInterface $csv, AuthInfoInterface $aiv, $checksum, $timestamp, $authInfo, $source) {
-        $this->csv = $csv;
-        $this->aiv = $aiv;
-        $this->checksum = $checksum;
+    public function __construct(AuthInfoInterface $authInfoValidator, $timestamp, $authInfo, $source) {
+        $this->authInfoValidator = $authInfoValidator;
         $this->timestamp = $timestamp;
         $this->authInfo = $authInfo;
         $this->source = $source;
-    }
-
-    public function getChecksum() {
-        return $this->checksum;
-    }
-
-    public function setChecksum($checksum) {
-        if ($this->csv->validate($checksum)) {
-            $this->checksum = $checksum;
-        } else {
-            throw new \Exception("Checksum is incorrect");
-        }
     }
 
     public function getTimestamp() {
@@ -42,10 +27,10 @@ class Metadata {
     }
 
     public function setAuthInfo($authInfo) {
-        if ($this->aiv->validate($authInfo)) {
+        if ($this->authInfoValidator->validate($authInfo)) {
             $this->authInfo = $authInfo;
         } else {
-            throw new \Exception("AuthInfo is not valid");
+            throw new \InvalidArgumentException("AuthInfo is not valid");
         }
     }
 
