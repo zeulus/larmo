@@ -1,0 +1,19 @@
+{
+    "name": "FP/Larmo/GithubAgent",
+    "authors": [
+      {
+        "name": "Mateusz Książek",
+        "email": "ksiazek.mate@gmail.com"
+      }
+    ],
+    "scripts": {
+      "test": "php vendor/phpunit/phpunit/phpunit --testdox --configuration tests/phpunit.xml"
+    },
+    "autoload": {
+      "psr-4": {"FP\\Larmo\\GHAgent\\": "src/"}
+    },
+    "require": {
+      "phpunit/phpunit": "4.7",
+      "php": ">=5.6.0"
+    }
+}
