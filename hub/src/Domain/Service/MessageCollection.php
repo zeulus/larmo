@@ -2,7 +2,8 @@
 
 namespace FP\Larmo\Domain\Service;
 
-class MessageCollection extends \ArrayObject {
+class MessageCollection extends \ArrayObject
+{
 
 
 }
