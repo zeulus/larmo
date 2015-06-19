@@ -1,6 +1,7 @@
 # Larmo Hub
 
 [![Build Status](https://travis-ci.org/adrianpietka/larmo.svg?branch=master)](https://travis-ci.org/adrianpietka/larmo)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/adrianpietka/larmo/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/adrianpietka/larmo/?branch=master)
 [![Code Climate](https://codeclimate.com/github/adrianpietka/larmo/badges/gpa.svg)](https://codeclimate.com/github/adrianpietka/larmo)
 [![Test Coverage](https://codeclimate.com/github/adrianpietka/larmo/badges/coverage.svg)](https://codeclimate.com/github/adrianpietka/larmo/coverage)
 
@@ -11,6 +12,7 @@ This project is a PoC of a central hub that stores information from many data fe
 
 ```bash
 $: composer test
+$: composer test-clover
 $: composer phplint
 $: composer phpmd
 ```

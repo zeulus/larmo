@@ -9,7 +9,9 @@ before_script:
   - composer self-update
   - composer install --prefer-source --no-interaction --dev
 
-script: composer test
+script:
+  - composer test-clover
+  - CODECLIMATE_REPO_TOKEN=a7a5144310e22363bc8314482209e3478e2d55b85cea9a6fcf3fb2b24df091f8 php vendor/codeclimate/php-test-reporter/composer/bin/test-reporter
 
 matrix:
   allow_failures:
@@ -22,6 +24,6 @@ notifications:
   email:
     recipients:
       - apietka@future-processing.com
-      - mwojcik@future-processing.com
+      - team.mvp@future-processing.com
     on_success: change
     on_failure: always
