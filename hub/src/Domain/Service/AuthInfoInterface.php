@@ -2,6 +2,7 @@
 
 namespace FP\Larmo\Domain\Service;
 
-interface AuthInfoInterface {
+interface AuthInfoInterface
+{
     public function validate($authInfo);
 }
