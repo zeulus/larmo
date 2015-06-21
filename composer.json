@@ -1,23 +1,44 @@
 {
-    "name": "FP/Larmo",
-    "authors": [
-        {
-            "name": "Adrian Piętka",
-            "email": "apietka@future-processing.com"
-        }
-    ],
-    "scripts": {
-        "test": "php vendor/phpunit/phpunit/phpunit --testdox --configuration hub/tests/phpunit.xml",
-        "phplint": "php vendor/phplint/phplint/bin/phplint hub/",
-        "phpmd": "php vendor/phpmd/phpmd/src/bin/phpmd hub/ text codesize,controversial,naming,unusedcode,design"
+  "name": "FP/Larmo",
+  "authors": [
+    {
+      "name": "Adrian Piętka",
+      "email": "apietka@future-processing.com"
     },
-    "autoload": {
-        "psr-4": {"FP\\Larmo\\": "hub/src/"}
+    {
+      "name": "Marcin Wójcik",
+      "email": "mwojcik@future-processing.com"
     },
-    "require": {
-        "phpunit/phpunit": "4.7",
-        "php": ">=5.4.0",
-        "phplint/phplint": "^0.0.1",
-        "phpmd/phpmd": "2.2.*"
+    {
+      "name": "Mateusz Książek",
+      "email": "mksiazek@future-processing.com"
+    },
+    {
+      "name": "Michał Łabędowicz",
+      "email": "mlabedowicz@future-processing.com"
+    },
+    {
+      "name": "Pedro Sanchez",
+      "email": "psanchez@future-processing.com"
     }
+  ],
+  "scripts": {
+    "test": "php vendor/phpunit/phpunit/phpunit --testdox --configuration hub/tests/unit/phpunit.xml",
+    "test-clover": "php vendor/phpunit/phpunit/phpunit --testdox --configuration hub/tests/unit/phpunit.xml --coverage-clover build/logs/clover.xml",
+    "phplint": "php vendor/phplint/phplint/bin/phplint hub/",
+    "phpmd": "php vendor/phpmd/phpmd/src/bin/phpmd hub/ text codesize,controversial,naming,unusedcode,design"
+  },
+  "autoload": {
+    "psr-4": {"FP\\Larmo\\": "hub/src/"}
+  },
+  "require": {
+    "php": ">=5.4.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "4.7",
+    "phplint/phplint": "^0.0.1",
+    "phpmd/phpmd": "2.2.*",
+    "codeclimate/php-test-reporter": "dev-master",
+    "behat/behat": "~2.5"
+  }
 }

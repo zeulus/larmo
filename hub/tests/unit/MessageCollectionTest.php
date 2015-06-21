@@ -5,17 +5,19 @@ use FP\Larmo\Domain\Service\MessageCollection;
 use FP\Larmo\Domain\ValueObject\Author;
 use FP\Larmo\Infrastructure\Adapter\PhpUniqidGenerator;
 
-class MessageCollectionTest extends PHPUnit_Framework_TestCase {
+class MessageCollectionTest extends PHPUnit_Framework_TestCase
+{
 
     /**
      * @test
      */
-    public function canAddMessagesToCollection() {
+    public function canAddMessagesToCollection()
+    {
 
         $collection = new MessageCollection();
         $generator = new PhpUniqidGenerator();
-        for ($i=1; $i<=5; $i++) {
-            $message = new Message('skype.new_message', time()+$i, new Author('User '+$i), $generator);
+        for ($i = 1; $i <= 5; $i++) {
+            $message = new Message('skype.new_message', time() + $i, new Author('User ' + $i), $generator);
             $collection->append($message);
         }
 
