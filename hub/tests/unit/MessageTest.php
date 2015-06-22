@@ -32,6 +32,11 @@ class MessageTest extends PHPUnit_Framework_TestCase
     public function messageTimestampIsSet()
     {
         $this->assertEquals($this->timestamp, $this->message->getTimestamp());
+
+        $currentTime = time();
+        $this->message->setTimestamp($currentTime);
+
+        $this->assertEquals($currentTime, $this->message->getTimestamp());
     }
 
     /**
