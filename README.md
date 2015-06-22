@@ -15,4 +15,5 @@ $: composer test
 $: composer test-clover
 $: composer phplint
 $: composer phpmd
+$: composer behat
 ```
