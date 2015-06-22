@@ -1,6 +1,6 @@
 <?php
 
-namespace FP\larmo\Domain\Exception;
+namespace FP\Larmo\Domain\Exception;
 
 class AuthInitException extends \Exception
 {

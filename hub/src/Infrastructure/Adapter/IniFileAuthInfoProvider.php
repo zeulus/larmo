@@ -37,6 +37,11 @@ class IniFileAuthInfoProvider implements AuthInfoInterface
      */
     private $vault;
 
+    public function errorHandler($errno, $errstr, $errfile, $errline)
+    {
+        throw new \ErrorException($errstr, 0, $errno, $errfile, $errline);
+    }
+
     /**
      * Reads users auth info db from ini file.
      *
@@ -46,7 +51,16 @@ class IniFileAuthInfoProvider implements AuthInfoInterface
     public function __construct($file_path)
     {
         if (is_readable($file_path)) {
-            $config = @parse_ini_file($file_path, true);
+            set_error_handler(array($this, 'errorHandler'));
+            try {
+                $config = parse_ini_file($file_path, true);
+            }
+            catch (\ErrorException $e) {
+                throw new AuthInitException('Cannot parse auth file');
+            }
+            finally {
+                restore_error_handler();
+            }
         }
 
         if ($config === false) {
