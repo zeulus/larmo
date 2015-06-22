@@ -1,6 +1,6 @@
 <?php
 
-namespace FP\Larmo\GHAgent;
+namespace FP\Larmo\Agents\WebHookAgent;
 
 class Metadata {
     private $timestamp;

@@ -1,34 +1,16 @@
 <?php
 
-namespace FP\Larmo\GHAgent;
+namespace FP\Larmo\Agents\WebHookAgent;
 
 class Packet {
     private $messages;
     private $metadata;
     private $packetArray;
 
-    public function __construct($eventType, $data) {
+    public function __construct($messages) {
         $this->metadata = new Metadata();
-        $this->messages = $this->prepareMessages($eventType, $data);
+        $this->messages = $messages;
         $this->packetArray = $this->preparePacket();
-    }
-
-    private function prepareMessages($eventType, $data) {
-        if($eventType) {
-            switch($eventType) {
-                case "push":
-                    $event = new Events\Push($data);
-                    $messages = $event->getMessages();
-                    break;
-                default:
-                    throw new \InvalidArgumentException;
-                    break;
-            }
-
-            return $messages;
-        }
-
-        throw new \InvalidArgumentException;
     }
 
     private function preparePacket() {
@@ -41,6 +23,7 @@ class Packet {
     public function send() {
         $packetJson = json_encode($this->packetArray);
         $this->saveDataToFile($packetJson);
+        $this->saveDataAsLog($packetJson);
 
         return $packetJson;
     }
@@ -49,5 +32,9 @@ class Packet {
         $myFile = fopen("output.json", "w+");
         fwrite($myFile, $packet);
         fclose($myFile);
+    }
+
+    private function saveDataAsLog($packet) {
+        file_put_contents("php://stderr", $packet);
     }
 }

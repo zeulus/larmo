@@ -10,10 +10,10 @@
       "test": "php vendor/phpunit/phpunit/phpunit --testdox --configuration tests/phpunit.xml"
     },
     "autoload": {
-      "psr-4": {"FP\\Larmo\\GHAgent\\": "src/"}
+      "psr-4": {"FP\\Larmo\\Agents\\WebHookAgent\\": "src/"}
     },
     "require": {
       "phpunit/phpunit": "4.7",
-      "php": ">=5.6.0"
+      "php": ">=5.5.0"
     }
 }
