@@ -1,85 +1,16 @@
 <div ng-include="'templates/common/filters.html'"></div>
 
-<div class="row message source-skype">
-    <div class="col-sm-1 col-xs-12 text-right message-source">
-        <i class="fa fa-skype fa-2x"></i>
+<div ng-repeat="message in messages" class="{{'row message source-' + message.source.id}}">
+    <div class="col-sm-1 col-xs-12 text-right source">
+        <i class="{{'fa fa-2x fa-' + message.source.id}}" title="{{message.source.label}}"></i>
     </div>
-    <div class="col-sm-11 col-xs-12">
-        <p class="message-author"><strong>John Doe</strong> on 8 November 2014 at 12:34:12</p>
-        <div class="well well-sm message-body">
-            <span>Hi there!</span>
+    <div class="col-sm-11 col-xs-12 content">
+        <div class="metadata">
+            <span class="metadata-author" ng-bind-html="message.author | author"></span>
+            <span class="metadata-date">on 8 November 2014 at 12:34:12</span>
         </div>
-    </div>
-</div>
-
-<div class="row message source-skype">
-    <div class="col-sm-1 col-xs-12 text-right message-source">
-        <i class="fa fa-skype fa-2x"></i>
-    </div>
-    <div class="col-sm-11 col-xs-12">
-        <p class="message-author"><strong>James Sunderland</strong> on 8 November 2014 at 12:34:23</p>
-        <div class="well well-sm message-body">
-            <span>Hello John :)</span>
-        </div>
-    </div>
-</div>
-
-<div class="row message source-github">
-    <div class="col-sm-1 col-xs-12 text-right message-source">
-        <i class="fa fa-github fa-2x"></i>
-    </div>
-    <div class="col-sm-11 col-xs-12">
-        <p class="message-author"><strong>jack23</strong> on 8 November 2014 at 12:35:13</p>
-        <div class="well well-sm message-body">
-            <span>Some message body coming from github</span>
-        </div>
-    </div>
-</div>
-
-<div class="row message source-github">
-    <div class="col-sm-1 col-xs-12 text-right message-source">
-        <i class="fa fa-github fa-2x"></i>
-    </div>
-    <div class="col-sm-11 col-xs-12">
-        <p class="message-author"><strong>jack23</strong> on 8 November 2014 at 12:35:13</p>
-        <div class="well well-sm message-body">
-            <span>Some message body coming from github</span>
-        </div>
-    </div>
-</div>
-
-<div class="row message source-skype">
-    <div class="col-sm-1 col-xs-12 text-right message-source">
-        <i class="fa fa-skype fa-2x"></i>
-    </div>
-    <div class="col-sm-11 col-xs-12">
-        <p class="message-author"><strong>John Doe</strong> on 8 November 2014 at 12:35:15</p>
-        <div class="well well-sm message-body">
-            <span>I am fine thank you :D</span>
-        </div>
-    </div>
-</div>
-
-<div class="row message source-irc">
-    <div class="col-sm-1 col-xs-12 text-right message-source">
-        <i class="fa fa-terminal fa-2x"></i>
-    </div>
-    <div class="col-sm-11 col-xs-12">
-        <p class="message-author"><strong>alan parsons</strong> on 8 November 2014 at 12:35:43</p>
-        <div class="well well-sm message-body">
-            <span>Some message body coming from IRC</span>
-        </div>
-    </div>
-</div>
-
-<div class="row message source-irc">
-    <div class="col-sm-1 col-xs-12 text-right message-source">
-        <i class="fa fa-terminal fa-2x"></i>
-    </div>
-    <div class="col-sm-11 col-xs-12">
-        <p class="message-author"><strong>alan parsons</strong> on 8 November 2014 at 12:36:16</p>
-        <div class="well well-sm message-body">
-            <span>Some message body coming from IRC</span>
+        <div class="well well-sm body">
+            {{message.body}}
         </div>
     </div>
 </div>

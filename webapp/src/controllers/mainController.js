@@ -7,10 +7,10 @@ MainController.$inject = ["$scope", "APIService"];
 function MainController($scope, APIService) {
     $scope.messages = [];
     $scope.filters = {source: ""};
-    $scope.getLatestMessages = getLatestMessages;
+    $scope.setupLatestMessages = setupLatestMessages;
 
     setupAvailableSources();
-    getLatestMessages();
+    setupLatestMessages();
 
     function setupAvailableSources() {
         APIService.getAvailableSources().then(function(response) {
@@ -18,7 +18,12 @@ function MainController($scope, APIService) {
         });
     }
 
-    function getLatestMessages() {
-        return [];
+    function setupLatestMessages() {
+        var filters = angular.copy($scope.filters);
+        var limit = 10;
+
+        APIService.getLatestMessages(filters, limit).then(function(response) {
+            $scope.messages = response.data;
+        });
     }
 }

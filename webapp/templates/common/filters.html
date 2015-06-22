@@ -6,7 +6,7 @@
             name="filters[source]"
             ng-options="source.id as source.label for source in sources"
             ng-model="filters.source"
-            ng-change="getLatestMessages()">
+            ng-change="setupLatestMessages()">
             <option value="">{{_.filters.allSources}}</option>
         </select>
     </div>
