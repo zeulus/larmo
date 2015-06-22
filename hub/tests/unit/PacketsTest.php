@@ -33,7 +33,10 @@ class PacketsTest extends PHPUnit_Framework_TestCase
      */
     public function packageCanHaveMetadata()
     {
-        $this->packet = new Packet($this->messages, $this->metadata);
+        $packet = new Packet($this->messages, $this->metadata);
+        $metadata = $packet->getMetadata();
+
+        $this->assertEquals($metadata, $this->metadata);
     }
 
     /**
@@ -42,10 +45,10 @@ class PacketsTest extends PHPUnit_Framework_TestCase
     public function packageCanHaveMultipleMessages()
     {
 
-        $this->packet = new Packet($this->messages, $this->metadata);
+        $packet = new Packet($this->messages, $this->metadata);
 
-        $this->assertEquals($this->packet->getMessages()->count(), count($this->messages));
-        $this->assertEquals(2, $this->packet->getMessages()->count());
+        $this->assertEquals($packet->getMessages()->count(), count($this->messages));
+        $this->assertEquals(2, $packet->getMessages()->count());
     }
 
 }
