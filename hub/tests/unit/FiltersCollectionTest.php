@@ -60,11 +60,16 @@ class FiltersCollectionTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @text
+     * @test
      */
     public function filtersCollectionCanRunFiltersOnMessages()
     {
+        $testFilter = $this->prophesize('FP\Larmo\Domain\Service\MessageFilter');
+        $this->filters[] = $testFilter->reveal();
+
         $filters = new FiltersCollection($this->filters);
         $filters->execute($this->messages);
+
+        $testFilter->execute($this->messages)->shouldHaveBeenCalled();
     }
 }
