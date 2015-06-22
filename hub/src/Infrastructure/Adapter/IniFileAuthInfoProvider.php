@@ -37,6 +37,16 @@ class IniFileAuthInfoProvider implements AuthInfoInterface
      */
     private $vault;
 
+    /**
+     * Interceptor for PHP warnings.
+     *
+     * @param $errno
+     * @param $errstr
+     * @param $errfile
+     * @param $errline
+     *
+     * @throws \ErrorException
+     */
     public function errorHandler($errno, $errstr, $errfile, $errline)
     {
         throw new \ErrorException($errstr, 0, $errno, $errfile, $errline);

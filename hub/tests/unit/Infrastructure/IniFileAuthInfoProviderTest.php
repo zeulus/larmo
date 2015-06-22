@@ -23,6 +23,9 @@ EOD;
 EOD;
 
 
+    /**
+     * Mocked with vfsStream, requires "mikey179/vfsStream": "~1"
+     */
     public function setup()
     {
         $this->vfsRoot = vfsStream::setup();
@@ -35,6 +38,7 @@ EOD;
 
     /**
      * @test
+     * @covers FP\Larmo\Infrastructure\Adapter\IniFileAuthInfoProvider::errorHandler
      */
     public function requireValidIniFile()
     {
