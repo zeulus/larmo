@@ -19,7 +19,8 @@ class FiltersCollection
         $this->filters[] = $filter;
     }
 
-    public function execute(MessageCollection $messages) {
+    public function execute(MessageCollection $messages)
+    {
 
         foreach ($this->filters as $filter) {
             $filter->execute($messages);

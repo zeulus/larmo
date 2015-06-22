@@ -3,9 +3,12 @@
 namespace FP\Larmo\Domain\Service;
 
 
-interface MessageFilter {
+interface MessageFilter
+{
 
     public function setConstraints();
+
     public function execute();
+
     public function filterQuery();
 }

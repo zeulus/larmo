@@ -16,7 +16,7 @@ class PHPUniqidGeneratorTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf('FP\Larmo\Domain\Service\UniqueIdGenerator', $generator);
 
         $ids = array();
-        for ($i = 0; $i<1000; $i++) {
+        for ($i = 0; $i < 1000; $i++) {
             $ids[] = $generator->generate();
         }
 

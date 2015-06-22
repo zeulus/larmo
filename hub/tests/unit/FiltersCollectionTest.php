@@ -8,10 +8,11 @@ class FiltersCollectionTest extends PHPUnit_Framework_TestCase
     private $filters;
     private $messages;
 
-    public function setup() {
+    public function setup()
+    {
         $this->filters = array();
 
-        for ($i = 1; $i <=2; $i++) {
+        for ($i = 1; $i <= 2; $i++) {
             $filterMock = $this->getMockBuilder('FP\Larmo\Domain\Service\MessageFilter')
                 ->getMock();
 
