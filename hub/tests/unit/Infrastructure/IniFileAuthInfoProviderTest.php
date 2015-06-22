@@ -23,6 +23,9 @@ EOD;
 EOD;
 
 
+    /**
+     * Mocked with vfsStream, requires "mikey179/vfsStream": "~1"
+     */
     public function setup()
     {
         $this->vfsRoot = vfsStream::setup();
@@ -35,10 +38,11 @@ EOD;
 
     /**
      * @test
+     * @covers FP\Larmo\Infrastructure\Adapter\IniFileAuthInfoProvider::errorHandler
      */
     public function requireValidIniFile()
     {
-        $this->setExpectedException('FP\larmo\Domain\Exception\AuthInitException', 'Cannot parse auth file');
+        $this->setExpectedException('FP\Larmo\Domain\Exception\AuthInitException', 'Cannot parse auth file');
         $authProvider = new IniFileAuthInfoProvider($this->fileBad->url());
     }
 
@@ -50,7 +54,7 @@ EOD;
         // close the bracket so ini file is valid
         $this->iniBad .= ']';
         $this->fileBad->setContent($this->iniBad);
-        $this->setExpectedException('FP\larmo\Domain\Exception\AuthInitException', 'Cannot find authInfo section');
+        $this->setExpectedException('FP\Larmo\Domain\Exception\AuthInitException', 'Cannot find authInfo section');
         $authProvider = new IniFileAuthInfoProvider($this->fileBad->url());
     }
 

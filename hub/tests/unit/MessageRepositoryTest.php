@@ -1,6 +1,5 @@
 <?php
 
-use Doctrine\Instantiator\Exception\InvalidArgumentException;
 use FP\Larmo\Domain\Service\FiltersCollection;
 use FP\Larmo\Domain\Service\MessageCollection;
 use FP\Larmo\Infrastructure\Repository\MessageRepository;
