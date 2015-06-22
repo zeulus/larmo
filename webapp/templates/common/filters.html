@@ -1,17 +1,13 @@
-<div class="bg-info">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-1 text-right">
-                <h4>{{_.filters.mainLabel}}</h4>
-            </div>
-            <div class="col-sm-11">
-                <ul class="nav nav-pills">
-                    <li class="filter-button active"><a id="source-all" href="#">All sources</a></li>
-                    <li class="filter-button"><a id="source-skype" href="#"><i class="fa fa-skype"></i> Skype</a></li>
-                    <li class="filter-button"><a id="source-irc" href="#"><i class="fa fa-terminal"></i> Irc</a></li>
-                    <li class="filter-button"><a id="source-github" href="#"><i class="fa fa-github"></i> GitHub</a></li>
-                </ul>
-            </div>
-        </div>
+<form class="form-inline bg-info" id="filters-form">
+    <div class="form-group">
+        <label for="filters-source-element">{{_.filters.sourceLabel}}</label>
+        <select class="form-control"
+            id="filters-source-element"
+            name="filters[source]"
+            ng-options="source.id as source.label for source in sources"
+            ng-model="filters.source"
+            ng-change="setupLatestMessages()">
+            <option value="">{{_.filters.allSources}}</option>
+        </select>
     </div>
-</div>
+</form>

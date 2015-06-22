@@ -1,0 +1,30 @@
+[
+  {
+    "source": {
+      "id": "skype",
+      "label": "Skype"
+    },
+    "type": "skype.message.new",
+    "time": 1434723489,
+    "author": {
+      "email": "adrian@pietka.me",
+      "fullName": "Adrian Pietka",
+      "nickName": "pietka.adrian"
+    },
+    "body": "Hello Larmo! It's test message from Skype."
+  },
+  {
+    "source": {
+      "id": "irc",
+      "label": "IRC"
+    },
+    "type": "irc.message.new",
+    "time": 1434721689,
+    "author": {
+      "email": "adrian@pietka.me",
+      "fullName": "",
+      "nickName": "apietka"
+    },
+    "body": "Hello Larmo! It's test message from IRC."
+  }
+]

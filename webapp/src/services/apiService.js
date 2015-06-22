@@ -9,15 +9,29 @@ function apiService(AjaxService) {
 
     var self = {
         getLatestMessages: getLatestMessages,
+        getAvailableSources: getAvailableSources
     };
 
     return self;
 
-    function getLatestMessages(limit) {
-        var url = useMocksData
-            ? "/data/getLatestMessages?limit=" + limit + "&t="
-            : "/api/messages?limit=" + limit + "&t=";
+    function getLatestMessages(filters, limit) {
+        var queryString = angular.extend(filters, {
+            limit: limit,
+            t: new Date().getTime()
+        });
 
-        return AjaxService.get(url + new Date().getTime());
-    };
+        var url = useMocksData
+            ? "data/getLatestMessages.json"
+            : "api/messages";
+
+        return AjaxService.get(url, queryString);
+    }
+
+    function getAvailableSources() {
+        var url = useMocksData
+            ? "data/getAvailableSources.json"
+            : "api/getAvailableSources";
+
+        return AjaxService.get(url, {t : new Date().getTime()});
+    }
 }
