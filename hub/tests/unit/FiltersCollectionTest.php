@@ -28,7 +28,8 @@ class FiltersCollectionTest extends PHPUnit_Framework_TestCase
     public function canCreateCollectionWithFilters()
     {
         $filters = new FiltersCollection($this->filters);
-        $this->assertInstanceOf('FP\Larmo\Domain\Service\FiltersCollection', $filters);
+        $returnedFilters = $filters->asArray();
+        $this->assertEquals($returnedFilters, $this->filters);
     }
 
     /**
@@ -61,7 +62,7 @@ class FiltersCollectionTest extends PHPUnit_Framework_TestCase
     /**
      * @text
      */
-    public function filtersCollectionCanFilterMessages()
+    public function filtersCollectionCanRunFiltersOnMessages()
     {
         $filters = new FiltersCollection($this->filters);
         $filters->execute($this->messages);

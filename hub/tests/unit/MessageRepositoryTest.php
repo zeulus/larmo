@@ -10,7 +10,6 @@ class MessageRepositoryTest extends PHPUnit_Framework_TestCase
 
     private $messages;
     private $storageProvider;
-    private $repo;
     private $filters;
 
     public function setup()
@@ -29,8 +28,8 @@ class MessageRepositoryTest extends PHPUnit_Framework_TestCase
      */
     public function messageRepositoryRequiresStorageProvider()
     {
-        $repo = new MessageRepository($this->storageProvider);
-        $this->assertTrue($repo instanceof MessageRepository);
+        $this->setExpectedException('PHPUnit_Framework_Error');
+        $repo = new MessageRepository(new \stdClass());
     }
 
     /**
@@ -39,7 +38,7 @@ class MessageRepositoryTest extends PHPUnit_Framework_TestCase
     public function messageRepositoryRequiresDataToBeStored()
     {
         $repo = new MessageRepository($this->storageProvider);
-        $repo->setMessages($this->messages);
+        $this->setExpectedException('PHPUnit_Framework_Error');
         $repo->store();
     }
 

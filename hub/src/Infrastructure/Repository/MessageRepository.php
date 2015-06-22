@@ -13,10 +13,6 @@ class MessageRepository
      * @var MessageStorageProvider
      */
     private $storage;
-    /**
-     * @var MessageCollection
-     */
-    private $messages;
 
     /**
      * @param MessageStorageProvider $storage
@@ -29,15 +25,10 @@ class MessageRepository
     /**
      * @param MessageCollection $messages
      */
-    public function setMessages(MessageCollection $messages)
-    {
-        $this->messages = $messages;
-    }
-
-    public function store()
+    public function store(MessageCollection $messages)
     {
 
-        $this->storage->store($this->messages);
+        $this->storage->store($messages);
     }
 
     /**
