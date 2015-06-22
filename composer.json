@@ -26,7 +26,8 @@
     "test": "php vendor/phpunit/phpunit/phpunit --testdox --configuration hub/tests/unit/phpunit.xml",
     "test-clover": "php vendor/phpunit/phpunit/phpunit --testdox --configuration hub/tests/unit/phpunit.xml --coverage-clover build/logs/clover.xml",
     "phplint": "php vendor/phplint/phplint/bin/phplint hub/",
-    "phpmd": "php vendor/phpmd/phpmd/src/bin/phpmd hub/ text codesize,controversial,naming,unusedcode,design"
+    "phpmd": "php vendor/phpmd/phpmd/src/bin/phpmd hub/ text codesize,controversial,naming,unusedcode,design",
+    "behat": "php vendor/behat/behat/bin/behat --config hub/tests/features/behat.yml"
   },
   "autoload": {
     "psr-4": {"FP\\Larmo\\": "hub/src/"}
@@ -39,6 +40,7 @@
     "phplint/phplint": "^0.0.1",
     "phpmd/phpmd": "2.2.*",
     "codeclimate/php-test-reporter": "dev-master",
-    "behat/behat": "~2.5"
+    "behat/behat": "~2.5",
+    "mikey179/vfsStream": "~1"
   }
 }
