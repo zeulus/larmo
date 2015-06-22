@@ -34,11 +34,9 @@ Feature:
   Scenario: Verify sender auth info
     Given a packet metadata created from decoded string
     When auth info fails to validate
-    Then I drop that packet
+    Then I drop the packet
 
   Scenario: Verify packet can be handled by system
     Given a plugin identifier provided by "source" metadata field
     When that plugin is not registered in system
     Then I drop the packet
-
-
