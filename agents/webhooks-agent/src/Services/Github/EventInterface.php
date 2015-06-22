@@ -2,7 +2,8 @@
 
 namespace FP\Larmo\Agents\WebHookAgent\Services\Github;
 
-interface EventInterface {
+interface EventInterface
+{
     /**
      * @param $data
      */

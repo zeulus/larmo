@@ -2,9 +2,11 @@
 
 namespace FP\Larmo\Agents\WebHookAgent\Services\Github\Events;
 
-class CommitComment extends EventAbstract {
+class CommitComment extends EventAbstract
+{
 
-    protected function prepareMessages($dataObject) {
+    protected function prepareMessages($dataObject)
+    {
         $comment = $dataObject->comment;
 
         $message = array(

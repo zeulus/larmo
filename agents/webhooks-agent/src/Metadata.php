@@ -2,18 +2,21 @@
 
 namespace FP\Larmo\Agents\WebHookAgent;
 
-class Metadata {
+class Metadata
+{
     private $timestamp;
     private $source;
     private $authinfo;
 
-    public function __construct($timestamp = null) {
+    public function __construct($source, $timestamp = null)
+    {
         $this->timestamp = $timestamp ? $timestamp : time();
-        $this->source = "github";
+        $this->source = $source;
         $this->authinfo = "AUTH";
     }
 
-    public function getMetadata() {
+    public function getMetadata()
+    {
         return array(
             'timestamp' => $this->timestamp,
             'source' => $this->source,

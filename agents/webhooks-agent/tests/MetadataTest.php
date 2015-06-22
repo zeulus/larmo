@@ -1,12 +1,14 @@
 <?php
 
-use \FP\Larmo\GHAgent\Metadata;
+use FP\Larmo\Agents\WebHookAgent\Metadata;
 
-class MetadataTest extends PHPUnit_Framework_TestCase {
+class MetadataTest extends PHPUnit_Framework_TestCase
+{
     private $timestamp;
     private $metadata;
 
-    public function setup() {
+    public function setup()
+    {
         $this->timestamp = time();
         $this->metadata = new Metadata($this->timestamp);
     }
@@ -14,7 +16,8 @@ class MetadataTest extends PHPUnit_Framework_TestCase {
     /**
      * @test
      */
-    public function metadataHasCorrectKeys() {
+    public function metadataHasCorrectKeys()
+    {
         $data = $this->metadata->getMetadata();
 
         $this->assertArrayHasKey('timestamp', $data);

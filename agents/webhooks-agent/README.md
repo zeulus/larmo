@@ -1,13 +1,17 @@
-# Larmo Github Agent
+# Larmo WebHooks Agent
 It is a WebHooks Agent for open source project *Larmo*.
 
 ## Supported services
 - Github (events: push, commit comment)
+- Bitbucket (events: push)
 
 ## To do
 - Connect with *Larmo*
 - Add more supported events from Github
-- Add support to other services like Bitbucket, Gitlab etc.
+- Add support to more services:
+    - Jira
+    - Gitlab
+    - Trello
 - Add more security
 
 ## Installation guide
