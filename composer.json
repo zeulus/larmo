@@ -39,6 +39,7 @@
     "phplint/phplint": "^0.0.1",
     "phpmd/phpmd": "2.2.*",
     "codeclimate/php-test-reporter": "dev-master",
-    "behat/behat": "~2.5"
+    "behat/behat": "~2.5",
+    "mikey179/vfsStream": "~1"
   }
 }
