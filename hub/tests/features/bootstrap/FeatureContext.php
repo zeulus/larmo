@@ -8,9 +8,9 @@ use Behat\Gherkin\Node\PyStringNode;
  */
 class FeatureContext extends BehatContext
 {
-	public $string;
-	public $decodedString;
-	
+    public $string;
+    public $decodedString;
+    
     /**
      * Initializes context.
      * Every scenario gets its own context object.
@@ -19,38 +19,38 @@ class FeatureContext extends BehatContext
      */
     public function __construct(array $parameters)
     {
-		$this->useContext('create_packet', new CreatePacketContext);
+        $this->useContext('create_packet', new CreatePacketContext);
     }
 
-	/**
-	 * @Given /^I have received string:$/
-	 */
-	public function iHaveReceivedString(PyStringNode $string)
-	{
-		$this->string = $string;
-	}
+    /**
+     * @Given /^I have received string:$/
+     */
+    public function iHaveReceivedString(PyStringNode $string)
+    {
+        $this->string = $string;
+    }
 
-	/**
-	 * @Given /^it is valid JSON string$/
-	 */
-	public function itIsValidJsonString()
-	{
-		json_decode($this->string);
-		
-		if (json_last_error() !== JSON_ERROR_NONE) {
-			throw new Exception('The provided string is not a valid JSON');			
-		}
-	}
+    /**
+     * @Given /^it is valid JSON string$/
+     */
+    public function itIsValidJsonString()
+    {
+        json_decode($this->string);
+        
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            throw new Exception('The provided string is not a valid JSON');			
+        }
+    }
 
-	/**
-	 * @Given /^can be decoded to array$/
-	 */
-	public function canBeDecodedToArray()
-	{
-		$this->decodedString = json_decode($this->string, true);
-		if (!is_array($this->decodedString)) {
-			throw new Exception('The provided string could not be decoded to an array');
-		}		
-	}
+    /**
+     * @Given /^can be decoded to array$/
+     */
+    public function canBeDecodedToArray()
+    {
+        $this->decodedString = json_decode($this->string, true);
+        if (!is_array($this->decodedString)) {
+            throw new Exception('The provided string could not be decoded to an array');
+        }
+    }
 
 }
