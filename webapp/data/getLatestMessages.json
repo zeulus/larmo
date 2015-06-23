@@ -4,6 +4,7 @@
       "id": "skype",
       "label": "Skype"
     },
+    "id": 2,
     "type": "skype.message.new",
     "time": 1434723489,
     "author": {
@@ -18,6 +19,7 @@
       "id": "irc",
       "label": "IRC"
     },
+    "id": 1,
     "type": "irc.message.new",
     "time": 1434721689,
     "author": {

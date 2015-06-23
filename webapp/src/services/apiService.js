@@ -2,11 +2,9 @@
 
 app.service("APIService", apiService);
 
-apiService.$inject = ["AjaxService"];
+apiService.$inject = ["AjaxService", "config"];
 
-function apiService(AjaxService) {
-    var useMocksData = true;
-
+function apiService(AjaxService, config) {
     var self = {
         getLatestMessages: getLatestMessages,
         getAvailableSources: getAvailableSources
@@ -20,17 +18,17 @@ function apiService(AjaxService) {
             t: new Date().getTime()
         });
 
-        var url = useMocksData
+        var url = config.api.useMock
             ? "data/getLatestMessages.json"
-            : "api/messages";
+            : config.api.url + "/messages";
 
         return AjaxService.get(url, queryString);
     }
 
     function getAvailableSources() {
-        var url = useMocksData
+        var url = config.api.useMock
             ? "data/getAvailableSources.json"
-            : "api/getAvailableSources";
+            : config.api.url + "/sources";
 
         return AjaxService.get(url, {t : new Date().getTime()});
     }
