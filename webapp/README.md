@@ -1,6 +1,6 @@
 # Larmo - Web Application
 
-It is a web application for open source project *Larmo*.
+Web application for presenting stored messages from *Larmo Hub*.
 
 ## Supported features
 
