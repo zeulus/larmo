@@ -1,0 +1,17 @@
+[
+  {
+    "type": "pull_request_opened",
+    "timestamp": 1434970146,
+    "author": {
+      "login": "test"
+    },
+    "message": "test opened pull request",
+    "extras": {
+      "id": 0,
+      "number": 3,
+      "title": "Elo",
+      "message": "",
+      "url": "https://github.com/test/test-hooks-repo/pull/3"
+    }
+  }
+]
