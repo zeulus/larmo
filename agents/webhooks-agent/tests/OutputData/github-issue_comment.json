@@ -1,0 +1,17 @@
+[
+  {
+    "type": "issue_comment_created",
+    "timestamp": 1434981410,
+    "author": {
+      "login": "test"
+    },
+    "message": "test created issue comment",
+    "extras": {
+      "id": 114112195,
+      "issue_id": 0,
+      "issue_title": "sasa",
+      "message": "aaaaaaaaaaaasasa",
+      "url": "https://github.com/test/test-hooks-repo/issues/2#issuecomment-114112195"
+    }
+  }
+]

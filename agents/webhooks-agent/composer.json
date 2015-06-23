@@ -1,0 +1,22 @@
+{
+    "name": "larmo/web-hooks-agent",
+    "description": "Web Hooks Agent for Larmo",
+    "license": "MIT",
+    "authors": [
+      {
+        "name": "Mateusz Książek",
+        "email": "ksiazek.mate@gmail.com"
+      }
+    ],
+    "scripts": {
+      "test": "php vendor/phpunit/phpunit/phpunit --testdox --configuration tests/phpunit.xml"
+    },
+    "autoload": {
+      "psr-4": {"FP\\Larmo\\Agents\\WebHookAgent\\": "src/"}
+    },
+    "require": {
+      "phpunit/phpunit": "4.7",
+      "php": ">=5.5.0",
+      "ext-mbstring": "*"
+    }
+}

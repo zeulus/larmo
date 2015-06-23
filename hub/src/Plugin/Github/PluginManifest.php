@@ -2,6 +2,7 @@
 
 namespace FP\Larmo\Plugin\Github;
 
+use FP\Larmo\Application\PluginService;
 use FP\Larmo\Domain\Service\PluginManifestInterface;
 
 class PluginManifest implements PluginManifestInterface
@@ -16,7 +17,7 @@ class PluginManifest implements PluginManifestInterface
 
     public function getCapabilities()
     {
-        // TODO: Implement getCapabilities() method.
+        return PluginService::IS_INPUT;
     }
 
     public function registerValidators()
