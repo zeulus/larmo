@@ -2,6 +2,7 @@
 
 var translation = {
     filters: {
-        mainLabel: "Filters:"
+        sourceLabel: "Messages from source:",
+        allSources: "- all sources -"
     }
 };

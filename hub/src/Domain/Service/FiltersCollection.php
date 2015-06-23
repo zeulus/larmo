@@ -27,7 +27,8 @@ class FiltersCollection
         }
     }
 
-    public function asArray() {
+    public function asArray()
+    {
         return $this->filters;
     }
 }
