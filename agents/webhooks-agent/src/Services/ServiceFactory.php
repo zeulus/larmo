@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: mlabedowicz
- * Date: 2015-06-22
- * Time: 14:23
- */
 
 namespace FP\Larmo\Agents\WebHookAgent\Services;
 
@@ -13,24 +7,24 @@ use FP\Larmo\Agents\WebHookAgent\Exceptions\ServiceNotFoundException;
 
 class ServiceFactory
 {
-    static public function create($serviceName, $data)
+    static public function create($serviceName, $request)
     {
         try {
             /* Caution: full namespace path is necessary for class_exists() to work correctly */
-            $serviceClass = "\\FP\\Larmo\\Agents\\WebHookAgent\\Services\\" . ucfirst($serviceName) . "\\" . ucfirst($serviceName) . "Data";
+            $serviceClass = '\\FP\\Larmo\\Agents\\WebHookAgent\\Services\\' . ucfirst($serviceName) . '\\' . ucfirst($serviceName) . 'Data';
 
             if (!class_exists($serviceClass)) {
                 throw new ServiceNotFoundException;
-            } else {
-                return new $serviceClass($data);
             }
+
+            return new $serviceClass($request->getDecodedPayload(), $request->getHeaders());
         } catch (EventTypeNotFoundException $e) {
-            throw new EventTypeNotFoundException;
+            throw $e;
         } catch (ServiceNotFoundException $e) {
-            throw new ServiceNotFoundException;
+            throw $e;
         } catch (Exception $e) {
-            file_put_contents("php://stderr", $e->getMessage());
-            throw new Exception("Service could not be created for unknown reason");
+            file_put_contents('php://stderr', $e->getMessage());
+            throw new Exception('Service could not be created for unknown reason', $e->getCode(), $e);
         }
     }
 }

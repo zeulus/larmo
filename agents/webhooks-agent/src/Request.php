@@ -2,35 +2,47 @@
 
 namespace FP\Larmo\Agents\WebHookAgent;
 
+use FP\Larmo\Agents\WebHookAgent\Exceptions\InvalidIncomingDataException;
+
 class Request
 {
-    public static function isPostMethod()
+    private $server;
+    private $payload;
+
+    public function __construct(array $server, $payload = "")
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            return true;
+        $this->server = $server;
+        $this->payload = $payload;
+    }
+
+    public function isPostMethod()
+    {
+        return $this->server['REQUEST_METHOD'] === 'POST';
+    }
+
+    public function getUri()
+    {
+        return $this->server['REQUEST_URI'];
+    }
+
+    public function getPayload()
+    {
+        return $this->payload;
+    }
+
+    public function getDecodedPayload()
+    {
+        $decodedData = json_decode($this->payload);
+
+        if ($decodedData === null) {
+            throw new InvalidIncomingDataException;
+        } else {
+            return $decodedData;
         }
-
-        return false;
     }
 
-    public static function getUri()
+    public function getHeaders()
     {
-        return $_SERVER["REQUEST_URI"];
-    }
-
-    public static function getPostData()
-    {
-        return file_get_contents('php://input');
-    }
-
-    public static function getValueFromHeaderByKey($key)
-    {
-        foreach ($_SERVER as $headerKey => $headerValue) {
-            if ($key === $headerKey) {
-                return $headerValue;
-            }
-        }
-
-        return true;
+        return $this->server;
     }
 }

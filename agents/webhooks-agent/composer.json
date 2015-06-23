@@ -1,5 +1,7 @@
 {
-    "name": "FP/Larmo/GithubAgent",
+    "name": "larmo/web-hooks-agent",
+    "description": "Web Hooks Agent for Larmo",
+    "license": "MIT",
     "authors": [
       {
         "name": "Mateusz Książek",

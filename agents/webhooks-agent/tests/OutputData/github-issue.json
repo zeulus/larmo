@@ -1,0 +1,17 @@
+[
+  {
+    "type": "issue_opened",
+    "timestamp": 1434969845,
+    "author": {
+      "login": "test"
+    },
+    "message": "test opened issue",
+    "extras": {
+      "id": 90066421,
+      "number": 2,
+      "title": "sasa",
+      "message": "dddd",
+      "url": "https://github.com/test/test-hooks-repo/issues/2"
+    }
+  }
+]

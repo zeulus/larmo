@@ -1,18 +1,19 @@
 <?php
 
 use FP\Larmo\Agents\WebHookAgent\Packet;
+use FP\Larmo\Agents\WebHookAgent\Metadata;
 use FP\Larmo\Agents\WebHookAgent\Services\Github\GithubData;
 
 class PacketTest extends PHPUnit_Framework_TestCase
 {
-    private $service;
     private $packet;
 
     public function setup()
     {
         $_SERVER['HTTP_X_GITHUB_EVENT'] = 'push';
-        $this->service = new GithubData($this->getDataObjectFromJson());
-        $this->packet = new Packet($this->service);
+        $service = new GithubData($this->getDataObjectFromJson(), $_SERVER);
+        $metadata = new Metadata($service->getServiceName());
+        $this->packet = new Packet($metadata, $service);
     }
 
 
