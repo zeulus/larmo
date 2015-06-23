@@ -10,6 +10,6 @@ This project is a PoC of a central hub that stores information from many data fe
 
 ## Directory structure
 
-* agents/ - small independent applications that collect messages, normalize them and send it to the Larmo Hub,
-* hub/ - central point to receive and storage messages,
-* webapp/ - web application for presenting stored messages.
+* [agents/](https://github.com/adrianpietka/larmo/tree/master/agents) - small independent applications that collect messages, normalize them and send it to the Larmo Hub,
+* [hub/](https://github.com/adrianpietka/larmo/tree/master/hub) - central point to receive and storage messages,
+* [webapp/](https://github.com/adrianpietka/larmo/tree/master/webapp) - web application for presenting stored messages.
