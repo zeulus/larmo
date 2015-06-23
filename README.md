@@ -10,15 +10,6 @@ This project is a PoC of a central hub that stores information from many data fe
 
 ## Directory structure
 
-* agents/ -
-* hub/ -
-* webapp/ -
-
-## Composer scripts for Larmo Hub
-
-```bash
-$: cd hub/
-$: composer phplint
-$: composer test
-$: composer behat
-```
+* agents/ - small independent applications that collect messages, normalize them and send it to the Larmo Hub,
+* hub/ - central point to receive and storage messages,
+* webapp/ - web application for presenting stored messages.
