@@ -2,6 +2,7 @@
 
 namespace FP\Larmo\Domain\Service;
 
-interface ChecksumInterface {
+interface ChecksumInterface
+{
     public function validate($checksum);
 }

@@ -1,0 +1,45 @@
+{
+  "name": "fp/larmo",
+  "license": "MIT",
+  "description": "Central hub that stores information from many data feeds.",
+  "authors": [
+    {
+      "name": "Adrian Piętka",
+      "email": "apietka@future-processing.com"
+    },
+    {
+      "name": "Marcin Wójcik",
+      "email": "mwojcik@future-processing.com"
+    },
+    {
+      "name": "Mateusz Książek",
+      "email": "mksiazek@future-processing.com"
+    },
+    {
+      "name": "Michał Łabędowicz",
+      "email": "mlabedowicz@future-processing.com"
+    },
+    {
+      "name": "Pedro Sanchez",
+      "email": "psanchez@future-processing.com"
+    }
+  ],
+  "scripts": {
+    "phplint": "php vendor/phplint/phplint/bin/phplint --exclude vendor/ --extensions php ./",
+    "test": "php vendor/phpunit/phpunit/phpunit --testdox --configuration tests/unit/phpunit.xml --coverage-clover build/logs/clover.xml",
+    "behat": "php vendor/behat/behat/bin/behat --config tests/features/behat.yml"
+  },
+  "autoload": {
+    "psr-4": {"FP\\Larmo\\": "src/"}
+  },
+  "require": {
+    "php": ">=5.5.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "4.7",
+    "phplint/phplint": "^0.0.1",
+    "codeclimate/php-test-reporter": "dev-master",
+    "behat/behat": "~2.5",
+    "mikey179/vfsStream": "~1"
+  }
+}

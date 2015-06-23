@@ -2,7 +2,14 @@
 
 namespace FP\Larmo\Domain\Service;
 
-class MessageCollection extends \ArrayObject {
+/**
+ * Class MessageCollection
+ * @package FP\Larmo\Domain\Service
+ *
+ * @codeCoverageIgnore
+ */
+class MessageCollection extends \ArrayObject
+{
 
 
 }
