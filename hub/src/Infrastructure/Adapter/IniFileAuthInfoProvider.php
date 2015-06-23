@@ -67,7 +67,7 @@ class IniFileAuthInfoProvider implements AuthInfoInterface
             try {
                 $config = parse_ini_file($file_path, true);
             } catch (\ErrorException $e) {
-                throw new AuthInitException('Cannot parse auth file');
+                throw new AuthInitException('Cannot parse auth file', $e->getCode(), $e);
             } finally {
                 restore_error_handler();
             }
@@ -100,7 +100,7 @@ class IniFileAuthInfoProvider implements AuthInfoInterface
         }
 
         if (array_key_exists($authInfo['agent'],
-            $this->vault) && $this->vault[$authInfo['agent']] === $authInfo['auth']
+                $this->vault) && $this->vault[$authInfo['agent']] === $authInfo['auth']
         ) {
             return true;
         }
