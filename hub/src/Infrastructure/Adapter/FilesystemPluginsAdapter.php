@@ -1,0 +1,58 @@
+<?php
+
+namespace FP\Larmo\Infrastructure\Adapter;
+
+
+use FP\Larmo\Domain\Service\PluginsCollection;
+use FP\Larmo\Infrastructure\Service\PluginsAdapterInterface;
+
+/**
+ * Class PluginsFilesystemAdapter
+ *
+ * Simple implementation of PluginsAdapterInterface
+ * for filesystem based plugins system.
+ *
+ * Requires all plugins to reside in FP\Larmo\Plugin namespace.
+ * Plugin directory name should be lowercase and first letter
+ * should be capitalized. Each plugin should have PluginManifest
+ * class that will implement PluginManifestInterface.
+ *
+ * @package FP\Larmo\Infrastructure\Adapter
+ */
+class FilesystemPluginsAdapter implements PluginsAdapterInterface
+{
+
+    /**
+     * @var \DirectoryIterator
+     */
+    private $iterator;
+
+    /**
+     * @param $path Path to Plugins directory
+     */
+    public function __construct($path)
+    {
+        $this->iterator = new \DirectoryIterator($path);
+    }
+
+    /**
+     * @param PluginsCollection $plugins
+     */
+    public function loadPlugins(PluginsCollection $plugins)
+    {
+        $namespace = '\\FP\\Larmo\\Plugin\\';
+        $pluginManifest = '\\PluginManifest';
+
+        foreach ($this->iterator as $fileInfo) {
+            if (!$fileInfo->isDot() && $fileInfo->isDir()) {
+                $normalizeDir = ucfirst(strtolower($fileInfo->getFileName()));
+                $pluginClass = $namespace . $normalizeDir . $pluginManifest;
+
+                if (class_exists($pluginClass)) {
+                    $plugin = new $pluginClass();
+                    $plugins[] = $plugin;
+                }
+            }
+        }
+    }
+}
