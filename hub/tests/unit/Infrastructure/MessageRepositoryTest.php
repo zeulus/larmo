@@ -8,7 +8,7 @@ class MessageRepositoryTest extends PHPUnit_Framework_TestCase
 {
 
     /**
-     * @var MessagesCollection
+     * @var \FP\Larmo\Domain\Service\MessageCollection
      */
     private $messages;
     private $storageProvider;

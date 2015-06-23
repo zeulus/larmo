@@ -67,7 +67,7 @@ class IniFileAuthInfoProvider implements AuthInfoInterface
             try {
                 $config = parse_ini_file($file_path, true);
             } catch (\ErrorException $e) {
-                throw new AuthInitException('Cannot parse auth file');
+                throw new AuthInitException('Cannot parse auth file', $e->getCode(), $e);
             } finally {
                 restore_error_handler();
             }
