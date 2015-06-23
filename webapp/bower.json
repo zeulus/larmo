@@ -1,11 +1,12 @@
 {
-  "name": "larmo-webapp",
+  "name": "fp/larmo-webapp",
   "version": "0.0.1",
   "homepage": "https://github.com/adrianpietka/larmo",
   "authors": [
     "Adrian Piętka <apietka@future-processing.com>"
   ],
   "description": "Web application for open source project Larmo.",
+  "license": "MIT",
   "ignore": [
     "**/.*",
     "vendor"

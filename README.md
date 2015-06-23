@@ -1,4 +1,4 @@
-# Larmo Hub
+# Larmo
 
 [![Build Status](https://travis-ci.org/adrianpietka/larmo.svg?branch=master)](https://travis-ci.org/adrianpietka/larmo)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/adrianpietka/larmo/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/adrianpietka/larmo/?branch=master)
@@ -8,12 +8,17 @@
 ## What is it?
 This project is a PoC of a central hub that stores information from many data feeds - control version systems, Skype, IRC, etc. - in order to have a clear project history with ability to search and analyse and sending out aggregated information to different media: email, IRC, Skype, etc.
 
-## Composer scripts
+## Directory structure
+
+* agents/ -
+* hub/ -
+* webapp/ -
+
+## Composer scripts for Larmo Hub
 
 ```bash
-$: composer test
-$: composer test-clover
+$: cd hub/
 $: composer phplint
-$: composer phpmd
+$: composer test
 $: composer behat
 ```

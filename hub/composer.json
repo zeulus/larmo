@@ -1,5 +1,7 @@
 {
-  "name": "FP/Larmo",
+  "name": "fp/larmo",
+  "license": "MIT",
+  "description": "Central hub that stores information from many data feeds.",
   "authors": [
     {
       "name": "Adrian Piętka",
@@ -23,22 +25,19 @@
     }
   ],
   "scripts": {
-    "test": "php vendor/phpunit/phpunit/phpunit --testdox --configuration hub/tests/unit/phpunit.xml",
-    "test-clover": "php vendor/phpunit/phpunit/phpunit --testdox --configuration hub/tests/unit/phpunit.xml --coverage-clover build/logs/clover.xml",
-    "phplint": "php vendor/phplint/phplint/bin/phplint hub/",
-    "phpmd": "php vendor/phpmd/phpmd/src/bin/phpmd hub/ text codesize,controversial,naming,unusedcode,design",
-    "behat": "php vendor/behat/behat/bin/behat --config hub/tests/features/behat.yml"
+    "phplint": "php vendor/phplint/phplint/bin/phplint --exclude vendor/ --extensions php ./",
+    "test": "php vendor/phpunit/phpunit/phpunit --testdox --configuration tests/unit/phpunit.xml --coverage-clover build/logs/clover.xml",
+    "behat": "php vendor/behat/behat/bin/behat --config tests/features/behat.yml"
   },
   "autoload": {
-    "psr-4": {"FP\\Larmo\\": "hub/src/"}
+    "psr-4": {"FP\\Larmo\\": "src/"}
   },
   "require": {
-    "php": ">=5.4.0"
+    "php": ">=5.5.0"
   },
   "require-dev": {
     "phpunit/phpunit": "4.7",
     "phplint/phplint": "^0.0.1",
-    "phpmd/phpmd": "2.2.*",
     "codeclimate/php-test-reporter": "dev-master",
     "behat/behat": "~2.5",
     "mikey179/vfsStream": "~1"
