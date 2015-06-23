@@ -33,7 +33,8 @@
     "psr-4": {"FP\\Larmo\\": "src/"}
   },
   "require": {
-    "php": ">=5.5.0"
+    "php": ">=5.5.0",
+    "silex/silex": "~1.3"
   },
   "require-dev": {
     "phpunit/phpunit": "4.7",
