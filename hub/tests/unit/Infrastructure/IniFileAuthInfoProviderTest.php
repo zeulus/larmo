@@ -28,6 +28,12 @@ EOD;
      */
     public function setup()
     {
+        if (!class_exists('org\bovigo\vfs\vfsStream')) {
+            $this->markTestSkipped('vfsStream filesystem mock is not available. '
+                .'Please make sure your composer.json requires "mikey179/vfsStream": "~1" '
+                .'and you have done "composer update" in your project root.');
+        }
+
         $this->vfsRoot = vfsStream::setup();
         $this->fileCorrect = vfsStream::newFile('good_auth.ini')->at($this->vfsRoot);
         $this->fileCorrect->setContent($this->iniGood);
