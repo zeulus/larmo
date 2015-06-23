@@ -7,6 +7,9 @@ use FP\Larmo\Infrastructure\Repository\MessageRepository;
 class MessageRepositoryTest extends PHPUnit_Framework_TestCase
 {
 
+    /**
+     * @var MessagesCollection
+     */
     private $messages;
     private $storageProvider;
     private $filters;
@@ -64,7 +67,7 @@ class MessageRepositoryTest extends PHPUnit_Framework_TestCase
                 }
             ));
 
-        $this->storageProvider->store($this->messages);
+        $repo->store($this->messages);
 
         $this->assertEquals(2, count($storedData));
 
