@@ -60,15 +60,15 @@ class IniFileAuthInfoProvider implements AuthInfoInterface
      */
     public function __construct($file_path)
     {
+        $config = false;
+
         if (is_readable($file_path)) {
             set_error_handler(array($this, 'errorHandler'));
             try {
                 $config = parse_ini_file($file_path, true);
-            }
-            catch (\ErrorException $e) {
+            } catch (\ErrorException $e) {
                 throw new AuthInitException('Cannot parse auth file');
-            }
-            finally {
+            } finally {
                 restore_error_handler();
             }
         }

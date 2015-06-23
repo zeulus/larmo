@@ -1,6 +1,6 @@
 "use strict";
 
-var app = angular.module("LarmoApp", ["ngRoute"]);
+var app = angular.module("LarmoApp", ["ngRoute", "ngSanitize"]);
 
 app.config(["$routeProvider", function ($routeProvider) {
     $routeProvider.when("/", {

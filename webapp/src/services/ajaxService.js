@@ -12,13 +12,39 @@ function ajaxService($http) {
 
     return self;
 
+    function parseObjectToQueryString(data) {
+        var queryString = "";
+
+        for (var dataKey in data) {
+            var dataValue = data[dataKey];
+
+            if (dataValue) {
+                queryString += "&" + dataKey + "=" + dataValue;
+            }
+        }
+
+        return queryString;
+    }
+
+    function prepareUrl(url, queryStringData) {
+        var queryString = queryStringData ? parseObjectToQueryString(queryStringData) : "";
+
+        if (url.indexOf("?") === -1) {
+            queryString = queryString.replace("&", "?");
+        }
+
+        return url + queryString;
+    }
+
     function executeCallback(callback, data) {
         if (callback) {
             callback(data);
         }
     }
 
-    function get(url, successCallback, errorCallback) {
+    function get(url, queryStringData, successCallback, errorCallback) {
+        var url = prepareUrl(url, queryStringData);
+
         console.log("[AjaxService] Sent request GET " + url);
 
         return $http.get(url).success(function (response) {
