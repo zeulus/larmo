@@ -46,9 +46,9 @@ class PacketTest extends PHPUnit_Framework_TestCase
      */
     public function packetHasCorrectMessages()
     {
-        $exprectedResult = json_decode($this->loadFile(dirname(__FILE__).'/OutputData/github-push.json'), true);
+        $expectedResult = json_decode($this->loadFile(dirname(__FILE__).'/OutputData/github-push.json'), true);
         $result = json_decode($this->packet->send(), true);
 
-        $this->assertEquals($exprectedResult, $result['data']);
+        $this->assertEquals($expectedResult, $result['data']);
     }
 }
