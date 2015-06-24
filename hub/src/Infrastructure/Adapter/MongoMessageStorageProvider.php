@@ -23,7 +23,7 @@ class MongoMessageStorageProvider implements MessageStorageProvider {
 
     public function store(MessageCollection $messages)
     {
-        $this->db->messages->batchInsert($messages);
+        return $this->db->messages->batchInsert($messages);
     }
 
     public function setFilters(FiltersCollection $filters)

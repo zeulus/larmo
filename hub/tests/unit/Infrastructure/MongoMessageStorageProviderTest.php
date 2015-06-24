@@ -1,7 +1,10 @@
 <?php
 
+use FP\Larmo\Domain\Entity\Message;
 use FP\Larmo\Domain\Service\MessageCollection;
 use FP\Larmo\Infrastructure\Adapter\MongoMessageStorageProvider;
+use FP\Larmo\Domain\ValueObject\Author;
+use FP\Larmo\Infrastructure\Adapter\PhpUniqidGenerator;
 
 class MongoMessageStorageProviderTest extends PHPUnit_Framework_TestCase
 {
@@ -10,31 +13,24 @@ class MongoMessageStorageProviderTest extends PHPUnit_Framework_TestCase
     public function setup()
     {
         $app = array();
-        require_once __DIR__ . '/../../../config/mongo_config.php';
+        require __DIR__ . '/../../../config/mongo_config.php';
 
-        try {
-            $this->mongo = new MongoMessageStorageProvider($app['mongo_db']);
-        } catch(\MongoConnectionException $e) {
-
-        }
+        $this->mongo = new MongoMessageStorageProvider($app['mongo_db']);
     }
 
     /**
      * @test
      */
-    public function messagesAreStoreInDatabase()
+    public function messagesAreStoringInDatabase()
     {
-        $messages = new MessageCollection();
-        $this->assertEquals(true, $this->mongo->store($messages));
-    }
+        $collection = new MessageCollection();
+        $generator = new PhpUniqidGenerator();
+        for ($i = 1; $i <= 5; $i++) {
+            $message = new Message('skype.new_message', time() + $i, new Author('User ' + $i), $generator);
+            $collection->append($message);
+        }
 
-    /**
-     *
-     */
-    public function checkThatRetrieveWorks()
-    {
-        $messages = new MessageCollection();
-        $this->assertEquals($messages, $this->mongo->retrieve($messages));
+        $this->assertArraySubset(array('ok' => 1), $this->mongo->store($collection));
     }
 
 

@@ -1,0 +1,11 @@
+<?php
+
+$configParameters = [
+    'mongo_db' => [
+        'db_user' => '',
+        'db_password' => '',
+        'db_name' => '',
+        'db_url' => '',
+        'db_port' => ''
+    ]
+];
