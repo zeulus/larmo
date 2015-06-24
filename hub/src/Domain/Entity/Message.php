@@ -12,12 +12,16 @@ class Message
     private $type;
     private $timestamp;
     private $author;
+    private $body;
+    private $extras;
 
-    public function __construct($type, $timestamp, Author $author, UniqueIdGenerator $generator)
+    public function __construct($type, $timestamp, Author $author, UniqueIdGenerator $generator, $body = '', $extras = array())
     {
         $this->type = $type;
         $this->timestamp = $timestamp;
         $this->author = $author;
+        $this->body = $body;
+        $this->extras = $extras;
 
         $this->messageId = $generator->generate();
     }
@@ -45,5 +49,15 @@ class Message
     public function getMessageId()
     {
         return $this->messageId;
+    }
+
+    public function getBody()
+    {
+        return $this->body;
+    }
+
+    public function getExtras()
+    {
+        return $this->extras;
     }
 }

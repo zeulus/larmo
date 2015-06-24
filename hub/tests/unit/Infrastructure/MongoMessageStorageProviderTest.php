@@ -33,5 +33,4 @@ class MongoMessageStorageProviderTest extends PHPUnit_Framework_TestCase
         $this->assertArraySubset(array('ok' => 1), $this->mongo->store($collection));
     }
 
-
 }
