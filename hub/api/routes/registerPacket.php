@@ -26,5 +26,8 @@ $app->post('/registerPacket', function (Request $request) use ($app) {
         return $app->json(['message' => 'Invalid source']);
     }
 
+    $messages = $app['messages.factory']->fromArray($packet['data']);
+    $app['messages.repository']->store($messages);
+
     return $app->json(['message' => 'OK']);
 });
