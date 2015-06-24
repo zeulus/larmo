@@ -1,6 +1,6 @@
 [
   {
-    "type": "issue_opened",
+    "type": "github.issue_opened",
     "timestamp": 1434969845,
     "author": {
       "login": "test"

@@ -19,7 +19,7 @@ class Push extends EventAbstract
     protected function getArrayFromCommit($commit)
     {
         return array(
-            'type' => 'commit',
+            'type' => 'github.commit',
             'timestamp' => $commit->timestamp,
             'author' => array(
                 'name' => $commit->author->name,

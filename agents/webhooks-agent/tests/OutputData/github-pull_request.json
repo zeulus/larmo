@@ -1,6 +1,6 @@
 [
   {
-    "type": "pull_request_opened",
+    "type": "github.pull_request_opened",
     "timestamp": 1434970146,
     "author": {
       "login": "test"

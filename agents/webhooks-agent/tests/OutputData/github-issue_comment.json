@@ -1,6 +1,6 @@
 [
   {
-    "type": "issue_comment_created",
+    "type": "github.issue_comment_created",
     "timestamp": 1434981410,
     "author": {
       "login": "test"

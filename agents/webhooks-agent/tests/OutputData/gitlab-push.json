@@ -1,6 +1,6 @@
 [
   {
-    "type": "commit",
+    "type": "gitlab.commit",
     "timestamp": 1323692851,
     "author": {
       "name": "Jordi Mallach",
@@ -14,7 +14,7 @@
     }
   },
   {
-    "type": "commit",
+    "type": "gitlab.commit",
     "timestamp": 1325626589,
     "author": {
       "name": "GitLab dev user",

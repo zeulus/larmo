@@ -10,7 +10,7 @@ class IssueComment extends EventAbstract
         $comment = $dataObject->comment;
 
         $message = array(
-            'type' => 'issue_comment_' . $dataObject->action,
+            'type' => 'github.issue_comment_' . $dataObject->action,
             'timestamp' => strtotime($comment->updated_at),
             'author' => array(
                 'login' => $comment->user->login
