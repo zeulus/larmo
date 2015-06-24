@@ -2,7 +2,7 @@
 
 use FP\Larmo\Agents\WebHookAgent\Metadata;
 
-class MetadataTest extends PHPUnit_Framework_TestCase
+class MetadataWebHookTest extends PHPUnit_Framework_TestCase
 {
     private $timestamp;
     private $metadata;
