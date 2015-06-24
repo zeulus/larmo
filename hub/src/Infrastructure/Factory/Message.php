@@ -19,6 +19,8 @@ class Message
     {
         $type = isset($message['type']) ? $message['type'] : '';
         $timestamp = isset($message['type']) ? $message['type'] : '';
+        $body = isset($message['body']) ? $message['body'] : '';
+        $extras = isset($message['extras']) ? $message['extras'] : '';
 
         if (isset($message['author'])) {
             $authorFullName = isset($message['author']['name']) ? $message['author']['name'] : '';
@@ -30,6 +32,6 @@ class Message
             $author = new Author();
         }
 
-        return new Entity\Message($type, $timestamp, $author, $this->generator);
+        return new Entity\Message($type, $timestamp, $author, $this->generator, $body, $extras);
     }
 }
