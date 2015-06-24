@@ -1,4 +1,5 @@
 <?php
 
 $app['debug'] = false;
-$app['pluginDirectory'] = __DIR__ . '/../src/Plugin';
+$app['plugins_directory'] = __DIR__ . '/../src/Plugin';
+$app['authinfo_config'] =  __DIR__ . '/authinfo.ini';
