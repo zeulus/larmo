@@ -1,13 +1,13 @@
 {
   "action": "created",
   "comment": {
-    "url": "https://api.github.com/repos/test/test-hooks-repo/comments/00000000",
-    "html_url": "https://github.com/test/test-hooks-repo/commit/23c85aa2a6bfed4f08c0029e1796d186ec680d2d#commitcomment-00000000",
-    "id": 00000000,
+    "url": "https://api.github.com/repos/test/test-hooks-repo/comments/10000000",
+    "html_url": "https://github.com/test/test-hooks-repo/commit/23c85aa2a6bfed4f08c0029e1796d186ec680d2d#commitcomment-10000000",
+    "id": 10000000,
     "user": {
       "login": "test",
-      "id": 0000000,
-      "avatar_url": "https://avatars.githubusercontent.com/u/0000000?v=3",
+      "id": 1000000,
+      "avatar_url": "https://avatars.githubusercontent.com/u/1000000?v=3",
       "gravatar_id": "",
       "url": "https://api.github.com/users/test",
       "html_url": "https://github.com/test",
@@ -32,13 +32,13 @@
     "body": "asa"
   },
   "repository": {
-    "id": 00000000,
+    "id": 10000000,
     "name": "test-hooks-repo",
     "full_name": "test/test-hooks-repo",
     "owner": {
       "login": "test",
-      "id": 0000000,
-      "avatar_url": "https://avatars.githubusercontent.com/u/0000000?v=3",
+      "id": 1000000,
+      "avatar_url": "https://avatars.githubusercontent.com/u/1000000?v=3",
       "gravatar_id": "",
       "url": "https://api.github.com/users/test",
       "html_url": "https://github.com/test",
@@ -120,8 +120,8 @@
   },
   "sender": {
     "login": "test",
-    "id": 0000000,
-    "avatar_url": "https://avatars.githubusercontent.com/u/0000000?v=3",
+    "id": 1000000,
+    "avatar_url": "https://avatars.githubusercontent.com/u/1000000?v=3",
     "gravatar_id": "",
     "url": "https://api.github.com/users/test",
     "html_url": "https://github.com/test",
