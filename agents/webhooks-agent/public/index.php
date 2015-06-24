@@ -8,6 +8,7 @@ use FP\Larmo\Agents\WebHookAgent\Routing;
 use FP\Larmo\Agents\WebHookAgent\Metadata;
 use FP\Larmo\Agents\WebHookAgent\Services;
 use FP\Larmo\Agents\WebHookAgent\Services\ServiceFactory;
+use FP\Larmo\Agents\WebHookAgent\Exceptions\InvalidIncomingDataException;
 use FP\Larmo\Agents\WebHookAgent\Exceptions\MethodNotAllowedHttpException;
 use FP\Larmo\Agents\WebHookAgent\Exceptions\ServiceNotFoundException;
 use FP\Larmo\Agents\WebHookAgent\Exceptions\EventTypeNotFoundException;

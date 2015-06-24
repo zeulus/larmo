@@ -1,0 +1,27 @@
+[
+  {
+    "type": "bitbucket.issue_created",
+    "timestamp": 1435061128,
+    "author": {
+      "login": "username",
+      "name": "User Name"
+    },
+    "message": "User Name has created \"Message Title\" issue",
+    "extras": {
+      "id": 1,
+      "priority": "critical",
+      "title": "Message Title",
+      "message": "Content message.",
+      "html": "<p>Content message.</p>",
+      "url": "https://bitbucket.org/username/projectname/issue/1/message-title",
+      "attachments": "https://bitbucket.org/api/2.0/repositories/username/projectname/issues/1/attachments",
+      "votes": 0,
+      "watches": 1,
+      "type": "bug",
+      "assignee": {
+        "login": "username",
+        "name": "User Name"
+      }
+    }
+  }
+]
