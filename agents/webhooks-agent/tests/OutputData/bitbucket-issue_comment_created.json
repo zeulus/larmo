@@ -1,0 +1,18 @@
+[
+  {
+    "type": "bitbucket.issue_comment_created",
+    "timestamp": 1435061128,
+    "author": {
+      "login": "username",
+      "name": "User Name"
+    },
+    "message": "User Name has commented on issue \"Issue Title\"",
+    "extras": {
+      "issue_id": 1,
+      "comment_id": 19231156,
+      "message": "Comment content",
+      "html": "<p>Comment content</p>",
+      "url": "https://bitbucket.org/username/projectname/issue/1#comment-19231156"
+    }
+  }
+]

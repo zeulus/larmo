@@ -2,11 +2,8 @@
 
 namespace FP\Larmo\Agents\WebHookAgent\Services\Bitbucket;
 
-use FP\Larmo\Agents\WebHookAgent\Request;
 use FP\Larmo\Agents\WebHookAgent\Services\ServiceAbstract;
-use FP\Larmo\Agents\WebHookAgent\Services\ServiceDataInterface;
 use FP\Larmo\Agents\WebHookAgent\Services\Bitbucket\Events;
-use FP\Larmo\Agents\WebHookAgent\Exceptions\EventTypeNotFoundException;
 
 class BitbucketData extends ServiceAbstract
 {
@@ -18,22 +15,11 @@ class BitbucketData extends ServiceAbstract
         $this->data = $this->prepareData($data);
     }
 
-    protected function prepareData($data)
+    protected function getEventClass()
     {
-        if (!empty($this->eventType)) {
-            switch ($this->eventType) {
-                case "repo:push":
-                    $event = new Events\Push($data);
-                    $messages = $event->getMessages();
-                    break;
-                default:
-                    throw new EventTypeNotFoundException;
-                    break;
-            }
-
-            return $messages;
-        } else {
-            throw new \InvalidArgumentException;
-        }
+        $eventType = str_replace(':','_',$this->eventType);
+        $eventTypeArray = explode('_', $eventType);
+        $eventClassPath = '\\FP\\Larmo\\Agents\\WebHookAgent\\Services\\' . ucfirst($this->serviceName) . '\\Events\\';
+        return $eventClassPath . implode('', array_map('ucfirst', $eventTypeArray));
     }
 }

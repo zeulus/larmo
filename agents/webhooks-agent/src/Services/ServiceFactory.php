@@ -22,9 +22,9 @@ class ServiceFactory
             throw $e;
         } catch (ServiceNotFoundException $e) {
             throw $e;
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             file_put_contents('php://stderr', $e->getMessage());
-            throw new Exception('Service could not be created for unknown reason', $e->getCode(), $e);
+            throw new \Exception('Service could not be created for unknown reason', $e->getCode(), $e);
         }
     }
 }

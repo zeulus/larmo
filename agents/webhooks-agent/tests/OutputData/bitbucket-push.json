@@ -1,0 +1,17 @@
+[
+  {
+    "type": "bitbucket.commit",
+    "timestamp": 1435056097,
+    "author": {
+      "name": "User Name",
+      "email": "User <email@domain.com>",
+      "login": "username"
+    },
+    "message": "User Name added commit: \"New Commit Message\"",
+    "extras": {
+      "message": "New Commit Message",
+      "url": "https://bitbucket.org/username/projectname/commits/d3c34ab88ce355a8220af9f51991d5da376142c8",
+      "hash": "d3c34ab88ce355a8220af9f51991d5da376142c8"
+    }
+  }
+]

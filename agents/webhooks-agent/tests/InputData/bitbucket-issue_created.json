@@ -1,0 +1,86 @@
+{
+  "repository": {
+    "links": {
+      "html": {"href": "https://bitbucket.org/username/projectname"},
+      "avatar": {"href": "https://bitbucket.org/username/projectname/avatar/16/"},
+      "self": {"href": "https://bitbucket.org/api/2.0/repositories/username/projectname"}
+    },
+    "type": "repository",
+    "full_name": "username/projectname",
+    "uuid": "{aeed2ff3-1ca2-4af5-ad6d-e5d53c8e2e2f}",
+    "name": "projectname",
+    "owner": {
+      "links": {
+        "html": {"href": "https://bitbucket.org/username"},
+        "avatar": {"href": "https://bitbucket.org/account/username/avatar/32/"},
+        "self": {"href": "https://bitbucket.org/api/2.0/users/username"}
+      },
+      "username": "username",
+      "type": "user",
+      "display_name": "User Name",
+      "uuid": "{20d2ee5d-a839-48ad-aa75-58820d584946}"
+    }
+  },
+  "issue": {
+    "type": "issue",
+    "watches": 1,
+    "component": null,
+    "updated_on": "2015-06-23T12:05:28.064716+00:00",
+    "reporter": {
+      "links": {
+        "html": {"href": "https://bitbucket.org/username"},
+        "avatar": {"href": "https://bitbucket.org/account/username/avatar/32/"},
+        "self": {"href": "https://bitbucket.org/api/2.0/users/username"}
+      },
+      "username": "username",
+      "type": "user",
+      "display_name": "User Name",
+      "uuid": "{20d2ee5d-a839-48ad-aa75-58820d584946}"
+    },
+    "state": "new",
+    "content": {
+      "html": "<p>Content message.</p>",
+      "markup": "markdown",
+      "raw": "Content message."
+    },
+    "edited_on": null,
+    "kind": "bug",
+    "links": {
+      "attachments": {"href": "https://bitbucket.org/api/2.0/repositories/username/projectname/issues/1/attachments"},
+      "html": {"href": "https://bitbucket.org/username/projectname/issue/1/message-title"},
+      "comments": {"href": "https://bitbucket.org/api/2.0/repositories/username/projectname/issues/1/comments"},
+      "vote": {"href": "https://bitbucket.org/api/2.0/repositories/username/projectname/issues/1/vote"},
+      "watch": {"href": "https://bitbucket.org/api/2.0/repositories/username/projectname/issues/1/watch"},
+      "self": {"href": "https://bitbucket.org/api/2.0/repositories/username/projectname/issues/1"}
+    },
+    "created_on": "2015-06-23T12:05:28.064716+00:00",
+    "milestone": null,
+    "version": null,
+    "assignee": {
+      "links": {
+        "html": {"href": "https://bitbucket.org/username"},
+        "avatar": {"href": "https://bitbucket.org/account/username/avatar/32/"},
+        "self": {"href": "https://bitbucket.org/api/2.0/users/username"}
+      },
+      "username": "username",
+      "type": "user",
+      "display_name": "User Name",
+      "uuid": "{20d2ee5d-a839-48ad-aa75-58820d584946}"
+    },
+    "title": "Message Title",
+    "priority": "critical",
+    "id": 1,
+    "votes": 0
+  },
+  "actor": {
+    "links": {
+      "html": {"href": "https://bitbucket.org/username"},
+      "avatar": {"href": "https://bitbucket.org/account/username/avatar/32/"},
+      "self": {"href": "https://bitbucket.org/api/2.0/users/username"}
+    },
+    "username": "username",
+    "type": "user",
+    "display_name": "User Name",
+    "uuid": "{20d2ee5d-a839-48ad-aa75-58820d584946}"
+  }
+}
