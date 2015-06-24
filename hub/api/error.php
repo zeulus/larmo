@@ -5,7 +5,5 @@ $app->error(function (Exception $exception) use ($app) {
         return;
     }
 
-    $response = ['message' => $exception->getMessage()];
-
-    return $app->json($response);
+    return $app->json(['message' => $exception->getMessage()]);
 });
