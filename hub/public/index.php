@@ -4,7 +4,8 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 $app = new Silex\Application;
 
-require_once __DIR__ . '/../app/config.php';
+require_once __DIR__ . '/../config/config.php';
+require_once __DIR__ . '/../config/mongo_config.php';
 
 $pluginAdapter = new \FP\Larmo\Infrastructure\Adapter\FilesystemPluginsAdapter($app['pluginDirectory']);
 $pluginCollection = new \FP\Larmo\Domain\Service\PluginsCollection();
