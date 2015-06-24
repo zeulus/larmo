@@ -45,8 +45,8 @@ class FilesystemPluginsAdapter implements PluginsAdapterInterface
 
         foreach ($this->iterator as $fileInfo) {
             if (!$fileInfo->isDot() && $fileInfo->isDir()) {
-                $normalizeDir = ucfirst(strtolower($fileInfo->getFileName()));
-                $pluginClass = $namespace . $normalizeDir . $pluginManifest;
+                $pluginName = $fileInfo->getFileName();
+                $pluginClass = $namespace . $pluginName . $pluginManifest;
 
                 if (class_exists($pluginClass)) {
                     $plugin = new $pluginClass();
