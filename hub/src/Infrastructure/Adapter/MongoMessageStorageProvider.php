@@ -6,7 +6,7 @@ use FP\Larmo\Domain\Service\FiltersCollection;
 use FP\Larmo\Domain\Service\MessageCollection;
 use FP\Larmo\Infrastructure\Service\MessageStorageProvider;
 
-class MongoDbStorageProvider implements MessageStorageProvider {
+class MongoMessageStorageProvider implements MessageStorageProvider {
     private $db;
 
     public function __construct($config)
