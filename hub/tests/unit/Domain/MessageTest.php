@@ -15,7 +15,7 @@ class MessageTest extends PHPUnit_Framework_TestCase
     {
         $this->timestamp = 1434453297;
         $this->author = new Author('Test author');
-        $this->message = new Message('irc', $this->timestamp, $this->author, new PhpUniqidGenerator);
+        $this->message = new Message('irc', $this->timestamp, $this->author, new PhpUniqidGenerator, 'Body string', array('extra' => 'string'));
     }
 
     /**
@@ -54,5 +54,21 @@ class MessageTest extends PHPUnit_Framework_TestCase
     public function messageHasId()
     {
         $this->assertNotEmpty($this->message->getMessageId());
+    }
+
+    /**
+     * @test
+     */
+    public function messageHasBody()
+    {
+        $this->assertEquals('Body string', $this->message->getBody());
+    }
+
+    /**
+     * @test
+     */
+    public function messageHasExtras()
+    {
+        $this->assertArraySubset(array('extra' => 'string'), $this->message->getExtras());
     }
 }
