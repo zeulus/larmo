@@ -18,11 +18,6 @@ RUN echo "ServerName localhost" | tee /etc/apache2/conf-available/fqdn.conf
 COPY larmo-hub.conf /etc/apache2/sites-available/larmo-hub.conf
 RUN a2enconf fqdn && a2enmod rewrite && a2dissite 000-default.conf && a2ensite larmo-hub
 
-COPY entrypoint.sh /
-RUN chmod a+x /entrypoint.sh
-
-ENTRYPOINT ["/entrypoint.sh"]
-
 EXPOSE 80
 
 CMD ["apache2ctl", "-DFOREGROUND"]

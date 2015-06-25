@@ -1,2 +1,16 @@
-Files located in this directory will allow you to run project locally.
+# Developing app with Docker
 
+Follow steps below to access applications locally:
+ webapp: http://localhost:5000/
+ hub api: http://localhost:5100/
+
+## Linux
+
+Navigate from command line to this directory and run
+```bash
+docker-compose up
+```
+
+## Windows
+
+Coming soon (with Vagrant).
