@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # Install base packages
 RUN apt-get update && \
-    apt-get -y install \
+    apt-get -yq --no-install-recommends install \
         curl \
         apache2 \
         git \
