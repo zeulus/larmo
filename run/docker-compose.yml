@@ -1,0 +1,25 @@
+app:
+  build: webapp
+  ports:
+   - "5000:80"
+  volumes:
+   - ../webapp:/var/www/html
+  links:
+   - hub
+
+
+hub:
+  build: hub
+  ports:
+   - "5100:80"
+  volumes:
+   - ../hub:/data/larmo-hub/
+  links:
+   - mongo
+
+mongo:
+  image: mongo
+  volumes:
+   - ./mongo/data:/data/db
+  ports:
+    - "27017:27017"
