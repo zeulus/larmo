@@ -2,6 +2,7 @@
 
 use FP\Larmo\Domain\Entity\Message;
 use FP\Larmo\Domain\ValueObject\Author;
+use FP\Larmo\Domain\ValueObject\UniqueId;
 use FP\Larmo\Infrastructure\Adapter\PhpUniqidGenerator;
 
 class MessageTest extends PHPUnit_Framework_TestCase
@@ -15,7 +16,7 @@ class MessageTest extends PHPUnit_Framework_TestCase
     {
         $this->timestamp = 1434453297;
         $this->author = new Author('Test author');
-        $this->message = new Message('irc', $this->timestamp, $this->author, new PhpUniqidGenerator, 'Body string', array('extra' => 'string'));
+        $this->message = new Message('irc', $this->timestamp, $this->author, new UniqueId(new PhpUniqidGenerator), 'Body string', array('extra' => 'string'));
     }
 
     /**
