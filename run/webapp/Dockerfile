@@ -10,7 +10,10 @@ RUN apt-get update && \
         apache2 \
         git \
         nodejs \
-        npm
+        npm \
+     && apt-get purge -y --auto-remove \
+     && rm -rf /var/lib/apt/lists/*
+
 
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 

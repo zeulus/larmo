@@ -5,13 +5,19 @@ namespace FP\Larmo\Infrastructure\Adapter;
 use FP\Larmo\Domain\Service\FiltersCollection;
 use FP\Larmo\Domain\Service\MessageCollection;
 use FP\Larmo\Infrastructure\Service\MessageStorageProvider;
+use FP\Larmo\Infrastructure\Factory\Message as FactoryMessage;
 
 class MongoMessageStorageProvider implements MessageStorageProvider {
     private $db;
 
     public function __construct($config)
     {
-        $uri = "mongodb://{$config['db_user']}:{$config['db_password']}@{$config['db_url']}:{$config['db_port']}/{$config['db_name']}";
+        $credentials = '';
+        if(isset($config['db_user']) && isset($config['db_password'])) {
+            $credentials = "{$config['db_user']}:{$config['db_password']}@";
+        }
+
+        $uri = "mongodb://{$credentials}{$config['db_url']}:{$config['db_port']}/{$config['db_name']}";
 
         try {
             $client = new \MongoClient($uri);
@@ -33,7 +39,12 @@ class MongoMessageStorageProvider implements MessageStorageProvider {
 
     public function retrieve(MessageCollection $messages)
     {
-        return $this->db->messages->find();
+        $messagesArray = $this->db->messages->find();
+        foreach($messagesArray as $message) {
+            $uniqidGetter = new PhpUniqidGetter($message['messageId']);
+            $messageFactory = new FactoryMessage($uniqidGetter);
+            $messages[] = $messageFactory->fromArray($message);
+        }
     }
 
     private function convertMessageCollectionToArray(MessageCollection $messages)
@@ -41,17 +52,16 @@ class MongoMessageStorageProvider implements MessageStorageProvider {
         $outputArray = [];
 
         foreach($messages as $message) {
-            $authorArray = [
-                'fullName' => $message->getAuthor()->getFullName(),
-                'nickName' => $message->getAuthor()->getNickName(),
-                'email' => $message->getAuthor()->getEmail()
-            ];
-
             $messageArray = [
                 'messageId' => $message->getMessageId(),
+                'source' => explode('.', $message->getType())[0],
                 'type' => $message->getType(),
                 'timestamp' => $message->getTimestamp(),
-                'author' => $authorArray,
+                'author' => [
+                    'fullName' => $message->getAuthor()->getFullName(),
+                    'nickName' => $message->getAuthor()->getNickName(),
+                    'email' => $message->getAuthor()->getEmail()
+                ],
                 'body' => $message->getBody(),
                 'extras' => $message->getExtras()
             ];
