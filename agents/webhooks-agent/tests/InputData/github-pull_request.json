@@ -3,7 +3,7 @@
   "number": 3,
   "pull_request": {
     "url": "https://api.github.com/repos/test/test-hooks-repo/pulls/3",
-    "id": 0000000,
+    "id": 1000000,
     "html_url": "https://github.com/test/test-hooks-repo/pull/3",
     "diff_url": "https://github.com/test/test-hooks-repo/pull/3.diff",
     "patch_url": "https://github.com/test/test-hooks-repo/pull/3.patch",
@@ -14,8 +14,8 @@
     "title": "Elo",
     "user": {
       "login": "test",
-      "id": 0000000,
-      "avatar_url": "https://avatars.githubusercontent.com/u/0000000?v=3",
+      "id": 1000000,
+      "avatar_url": "https://avatars.githubusercontent.com/u/1000000?v=3",
       "gravatar_id": "",
       "url": "https://api.github.com/users/test",
       "html_url": "https://github.com/test",
@@ -50,8 +50,8 @@
       "sha": "4e69eeb0d4837fc9788280b733d6b32f60fcf895",
       "user": {
         "login": "test",
-        "id": 0000000,
-        "avatar_url": "https://avatars.githubusercontent.com/u/0000000?v=3",
+        "id": 1000000,
+        "avatar_url": "https://avatars.githubusercontent.com/u/1000000?v=3",
         "gravatar_id": "",
         "url": "https://api.github.com/users/test",
         "html_url": "https://github.com/test",
@@ -68,13 +68,13 @@
         "site_admin": false
       },
       "repo": {
-        "id": 0000000,
+        "id": 1000000,
         "name": "test-hooks-repo",
         "full_name": "test/test-hooks-repo",
         "owner": {
           "login": "test",
-          "id": 0000000,
-          "avatar_url": "https://avatars.githubusercontent.com/u/0000000?v=3",
+          "id": 1000000,
+          "avatar_url": "https://avatars.githubusercontent.com/u/1000000?v=3",
           "gravatar_id": "",
           "url": "https://api.github.com/users/test",
           "html_url": "https://github.com/test",
@@ -161,8 +161,8 @@
       "sha": "f4f2e3a04568a0bf519e4235d6a6bebe26e0dc45",
       "user": {
         "login": "test",
-        "id": 0000000,
-        "avatar_url": "https://avatars.githubusercontent.com/u/0000000?v=3",
+        "id": 1000000,
+        "avatar_url": "https://avatars.githubusercontent.com/u/1000000?v=3",
         "gravatar_id": "",
         "url": "https://api.github.com/users/test",
         "html_url": "https://github.com/test",
@@ -179,13 +179,13 @@
         "site_admin": false
       },
       "repo": {
-        "id": 0000000,
+        "id": 1000000,
         "name": "test-hooks-repo",
         "full_name": "test/test-hooks-repo",
         "owner": {
           "login": "test",
-          "id": 0000000,
-          "avatar_url": "https://avatars.githubusercontent.com/u/0000000?v=3",
+          "id": 1000000,
+          "avatar_url": "https://avatars.githubusercontent.com/u/1000000?v=3",
           "gravatar_id": "",
           "url": "https://api.github.com/users/test",
           "html_url": "https://github.com/test",
@@ -304,13 +304,13 @@
     "changed_files": 2
   },
   "repository": {
-    "id": 0000000,
+    "id": 1000000,
     "name": "test-hooks-repo",
     "full_name": "test/test-hooks-repo",
     "owner": {
       "login": "test",
-      "id": 0000000,
-      "avatar_url": "https://avatars.githubusercontent.com/u/0000000?v=3",
+      "id": 1000000,
+      "avatar_url": "https://avatars.githubusercontent.com/u/1000000?v=3",
       "gravatar_id": "",
       "url": "https://api.github.com/users/test",
       "html_url": "https://github.com/test",
@@ -392,8 +392,8 @@
   },
   "sender": {
     "login": "test",
-    "id": 0000000,
-    "avatar_url": "https://avatars.githubusercontent.com/u/0000000?v=3",
+    "id": 1000000,
+    "avatar_url": "https://avatars.githubusercontent.com/u/1000000?v=3",
     "gravatar_id": "",
     "url": "https://api.github.com/users/test",
     "html_url": "https://github.com/test",

@@ -3,7 +3,7 @@ It is a WebHooks Agent for open source project *Larmo*.
 
 ## Supported services
 - Github (events: push, commit comment, issues, issue comment, pull request)
-- Bitbucket (events: push)
+- Bitbucket (events: push, issues, issue comment)
 - Gitlab (events: push)
 
 ## To do

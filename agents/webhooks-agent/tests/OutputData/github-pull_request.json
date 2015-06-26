@@ -1,13 +1,13 @@
 [
   {
-    "type": "pull_request_opened",
+    "type": "github.pull_request_opened",
     "timestamp": 1434970146,
     "author": {
       "login": "test"
     },
     "message": "test opened pull request",
     "extras": {
-      "id": 0,
+      "id": 1000000,
       "number": 3,
       "title": "Elo",
       "message": "",

@@ -12,7 +12,7 @@ class PacketTest extends PHPUnit_Framework_TestCase
     {
         $_SERVER['HTTP_X_GITHUB_EVENT'] = 'push';
         $service = new GithubData($this->getDataObjectFromJson(), $_SERVER);
-        $metadata = new Metadata($service->getServiceName());
+        $metadata = new Metadata($service->getServiceName(),"AUTHENTICATION_KEY");
         $this->packet = new Packet($metadata, $service);
     }
 
@@ -24,7 +24,7 @@ class PacketTest extends PHPUnit_Framework_TestCase
 
     private function getDataObjectFromJson()
     {
-        if($json = $this->loadFile('InputData/github-push.json')) {
+        if($json = $this->loadFile(dirname(__FILE__).'/InputData/github-push.json')) {
             return json_decode($json);
         }
 
@@ -46,9 +46,9 @@ class PacketTest extends PHPUnit_Framework_TestCase
      */
     public function packetHasCorrectMessages()
     {
-        $exprectedResult = json_decode($this->loadFile('OutputData/github-push.json'), true);
+        $expectedResult = json_decode($this->loadFile(dirname(__FILE__).'/OutputData/github-push.json'), true);
         $result = json_decode($this->packet->send(), true);
 
-        $this->assertEquals($exprectedResult, $result['data']);
+        $this->assertEquals($expectedResult, $result['data']);
     }
 }

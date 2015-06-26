@@ -1,21 +1,33 @@
 <?php
 
-use fkooman\Json\Json;
 use Symfony\Component\HttpFoundation\Request;
 
 $app->post('/registerPacket', function (Request $request) use ($app) {
-    $content = $request->getContent();
-    $response = ['message' => 'OK'];
+    $jsonContent = $request->getContent();
+    $packet = $app['json_parse']($jsonContent);
 
-    try {
-        if ($content) {
-            Json::decode($content);
-        } else {
-            $response['message'] = "Empty content";
-        }
-    } catch (InvalidArgumentException $exception) {
-        $response['message'] = $exception->getMessage();
+    if (!$packet) {
+        return $app->json(['message' => 'Invalid JSON structure']);
     }
 
-    return $app->json($response);
+    if (!isset($packet['metadata'])) {
+        return $app->json(['message' => 'Metadata doesn\'t exists']);
+    }
+
+    if (!isset($packet['data'])) {
+        return $app->json(['message' => 'Data doesn\'t exists']);
+    }
+
+    if (!isset($packet['metadata']['authinfo']) || !$app['authinfo']->validate($packet['metadata']['authinfo'])) {
+        return $app->json(['message' => 'Invalid authinfo']);
+    }
+
+    if (!isset($packet['metadata']['source']) || !$app['plugins']->checkPluginIsRegistered($packet['metadata']['source'])) {
+        return $app->json(['message' => 'Invalid source']);
+    }
+
+    $messages = $app['messages.factory']->fromArray($packet['data']);
+    $app['messages.repository']->store($messages);
+
+    return $app->json(['message' => 'OK']);
 });
