@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Packet",
+  "description": "Incomming packet of messages",
+  "type": "object",
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "type": "number"
+        },
+        "source": {
+          "type": "string"
+        },
+        "authinfo": {
+          "type": "object",
+          "properties": {
+            "agent": {"type": "string"},
+            "auth": {"type": "string"}
+          },
+          "required": [
+            "agent",
+            "auth"
+          ]
+        }
+      },
+      "required": [
+        "timestamp",
+        "source",
+        "authinfo"
+      ]
+    },
+    "data": {
+      "type": "array"
+    }
+  },
+  "required": [
+    "metadata",
+    "data"
+  ]
+}

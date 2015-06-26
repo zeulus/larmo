@@ -35,8 +35,8 @@
   "require": {
     "php": ">=5.5.0",
     "silex/silex": "~1.3",
-    "fkooman/json": "^0.6.0",
-    "ext-mongo": "*"
+    "ext-mongo": "*",
+    "justinrainbow/json-schema": "^1.4"
   },
   "require-dev": {
     "phpunit/phpunit": "4.7",

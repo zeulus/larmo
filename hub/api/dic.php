@@ -1,7 +1,5 @@
 <?php
 
-use fkooman\Json\Json;
-
 $app['plugins'] = $app->share(function ($app) {
     $pluginAdapter = new \FP\Larmo\Infrastructure\Adapter\FilesystemPluginsAdapter($app['plugins_directory']);
     $pluginCollection = new \FP\Larmo\Domain\Service\PluginsCollection();
@@ -28,14 +26,11 @@ $app['authinfo'] = $app->share(function ($app) {
     return new \FP\Larmo\Infrastructure\Adapter\IniFileAuthInfoProvider($app['authinfo_config']);
 });
 
-$app['json_parse'] = $app->protect(function ($json) {
-    if ($json) {
-        try {
-            return Json::decode($json);
-        } catch (InvalidArgumentException $exception) {
-            return false;
-        }
-    }
+$app['packetValidation.service'] = function($app) {
+    $retriever = new \JsonSchema\Uri\UriRetriever();
+    $validator = new \JsonSchema\Validator();
+    $authinfo = $app['authinfo'];
+    $plugins = $app['plugins'];
 
-    return false;
-});
+    return new \FP\Larmo\Application\PacketValidationService($retriever, $validator, $authinfo, $plugins);
+};
