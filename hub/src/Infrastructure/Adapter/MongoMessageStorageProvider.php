@@ -7,13 +7,14 @@ use FP\Larmo\Domain\Service\MessageCollection;
 use FP\Larmo\Infrastructure\Service\MessageStorageProvider;
 use FP\Larmo\Infrastructure\Factory\Message as FactoryMessage;
 
-class MongoMessageStorageProvider implements MessageStorageProvider {
+class MongoMessageStorageProvider implements MessageStorageProvider
+{
     private $db;
 
     public function __construct($config)
     {
         $credentials = '';
-        if(isset($config['db_user']) && isset($config['db_password'])) {
+        if (isset($config['db_user']) && isset($config['db_password'])) {
             $credentials = "{$config['db_user']}:{$config['db_password']}@";
         }
 
@@ -22,8 +23,8 @@ class MongoMessageStorageProvider implements MessageStorageProvider {
         try {
             $client = new \MongoClient($uri);
             $this->db = $client->selectDB($config['db_name']);
-        } catch(\MongoConnectionException $e) {
-            throw new \MongoConnectionException;
+        } catch (\MongoConnectionException $exception) {
+            throw $exception;
         }
     }
 
@@ -40,7 +41,7 @@ class MongoMessageStorageProvider implements MessageStorageProvider {
     public function retrieve(MessageCollection $messages)
     {
         $messagesArray = $this->db->messages->find();
-        foreach($messagesArray as $message) {
+        foreach ($messagesArray as $message) {
             $uniqidGetter = new PhpUniqidGetter($message['messageId']);
             $messageFactory = new FactoryMessage($uniqidGetter);
             $messages[] = $messageFactory->fromArray($message);
@@ -51,7 +52,7 @@ class MongoMessageStorageProvider implements MessageStorageProvider {
     {
         $outputArray = [];
 
-        foreach($messages as $message) {
+        foreach ($messages as $message) {
             $messageArray = [
                 'messageId' => $message->getMessageId(),
                 'source' => explode('.', $message->getType())[0],
