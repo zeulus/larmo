@@ -1,18 +1,11 @@
 <?php
 
-$setupConfig = function() use ($app) {
-    $config_directory = __DIR__ . '/../config/';
-    $files = scandir($config_directory);
+$config = __DIR__ . '/../config/';
 
-    foreach ($files as $file) {
-        if (pathinfo($file, PATHINFO_EXTENSION) === 'php' && $file !== 'parameters.php') {
-            require_once $config_directory . $file;
-        }
-    }
+require_once $config . 'env.php';
+require_once $config . 'path.php';
+require_once $config . 'mongo.php';
 
-    if (file_exists($config_directory . 'parameters.php')) {
-        require_once $config_directory . 'parameters.php';
-    }
-};
-
-$setupConfig();
+if (file_exists($config . 'parameters.php')) {
+    require_once $config . 'parameters.php';
+}
