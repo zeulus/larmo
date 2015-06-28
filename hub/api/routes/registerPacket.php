@@ -7,7 +7,7 @@ $app->post('/registerPacket', function (Request $request) use ($app) {
     $packetDataAsObject = json_decode($request->getContent());
     $packetDataAsArray = json_decode($request->getContent(), true);
 
-    $packetValidation = $app['packet_validation.service']->setSchemaFromFile($app['packet_scheme'])
+    $packetValidation = $app['packet_validation.service']->setSchemaFromFile($app['config.path.packet_scheme'])
         ->setPacket($packetDataAsObject);
 
     if ($packetValidation->isValid()) {

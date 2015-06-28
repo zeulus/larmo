@@ -1,7 +1,7 @@
 <?php
 
 $app['plugins'] = $app->share(function ($app) {
-    $pluginAdapter = new \FP\Larmo\Infrastructure\Adapter\FilesystemPluginsAdapter($app['plugins_directory']);
+    $pluginAdapter = new \FP\Larmo\Infrastructure\Adapter\FilesystemPluginsAdapter($app['config.path.plugins']);
     $pluginCollection = new \FP\Larmo\Domain\Service\PluginsCollection();
     $pluginRepository = new \FP\Larmo\Infrastructure\Repository\PluginsRepository($pluginAdapter);
     $pluginRepository->registerPlugins($pluginCollection);
@@ -10,7 +10,7 @@ $app['plugins'] = $app->share(function ($app) {
 });
 
 $app['messages.repository'] = $app->share(function ($app) {
-    $messageProvider = new \FP\Larmo\Infrastructure\Adapter\MongoMessageStorageProvider($app['mongo_db']);
+    $messageProvider = new \FP\Larmo\Infrastructure\Adapter\MongoMessageStorageProvider($app['config.mongo_db']);
 
     return new \FP\Larmo\Infrastructure\Repository\MessageRepository($messageProvider);
 });
@@ -24,7 +24,7 @@ $app['filters.service'] = $app->share(function () {
 });
 
 $app['authinfo'] = $app->share(function ($app) {
-    return new \FP\Larmo\Infrastructure\Adapter\IniFileAuthInfoProvider($app['authinfo_config']);
+    return new \FP\Larmo\Infrastructure\Adapter\IniFileAuthInfoProvider($app['config.path.authinfo']);
 });
 
 $app['json_schema_validation'] = function () {
