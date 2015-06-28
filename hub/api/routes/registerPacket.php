@@ -4,7 +4,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
 $app->post('/registerPacket', function (Request $request) use ($app) {
-    // @fixme
     $packetDataAsObject = json_decode($request->getContent());
     $packetDataAsArray = json_decode($request->getContent(), true);
 

@@ -28,7 +28,7 @@ $app['authinfo'] = $app->share(function ($app) {
 });
 
 $app['json_schema_validation'] = function () {
-    return new FP\Larmo\Application\Adapter\VendorJsonSchemaValidation;
+    return new \FP\Larmo\Application\Adapter\VendorJsonSchemaValidation;
 };
 
 $app['packet_validation.service'] = function ($app) {
