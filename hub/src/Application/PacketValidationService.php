@@ -2,27 +2,36 @@
 
 namespace FP\Larmo\Application;
 
+use FP\Larmo\Application\Contract\JsonSchemaValidation;
+use FP\Larmo\Domain\Service\AuthInfoInterface;
+use Symfony\Component\Config\Definition\Exception\Exception;
+
 final class PacketValidationService
 {
     private $schema;
     private $packet;
-    private $retriever;
     private $validator;
     private $authinfo;
     private $plugins;
     private $errors = [];
 
-    public function __construct($schemaRetriver, $schemaValidator, $authinfo, $plugins)
-    {
-        $this->retriever = $schemaRetriver;
-        $this->validator = $schemaValidator;
+    public function __construct(
+        JsonSchemaValidation $schemaValidation,
+        AuthInfoInterface $authinfo,
+        PluginService $plugins
+    ) {
+        $this->validator = $schemaValidation;
         $this->authinfo = $authinfo;
         $this->plugins = $plugins;
     }
 
     public function setSchemaFromFile($schemaFilePath)
     {
-        $this->schema = $this->retriever->retrieve($schemaFilePath);
+        if (!file_exists($schemaFilePath) || !is_readable($schemaFilePath)) {
+            throw new Exception('Can\'t read the specified file: ' . $schemaFilePath);
+        }
+
+        $this->schema = json_decode(file_get_contents($schemaFilePath));
 
         return $this;
     }
