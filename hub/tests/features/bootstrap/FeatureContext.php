@@ -2,15 +2,24 @@
 
 use Behat\Behat\Context\BehatContext;
 use Behat\Gherkin\Node\PyStringNode;
+use fkooman\Json\Json;
 
 /**
  * Features context.
  */
 class FeatureContext extends BehatContext
 {
+
+    /**
+     * @var string String retrieved from PyStringNode
+     */
     public $string;
+
+    /**
+     * @var array Decoded string result from JSON decoding
+     */
     public $decodedString;
-    
+
     /**
      * Initializes context.
      * Every scenario gets its own context object.
@@ -31,25 +40,14 @@ class FeatureContext extends BehatContext
     }
 
     /**
-     * @Given /^it is valid JSON string$/
+     * @Given /^it can be decoded to an array$/
      */
-    public function itIsValidJsonString()
+    public function itCanBeDecodedToAnArray()
     {
-        json_decode($this->string);
-        
-        if (json_last_error() !== JSON_ERROR_NONE) {
-            throw new Exception('The provided string is not a valid JSON');			
-        }
-    }
-
-    /**
-     * @Given /^can be decoded to array$/
-     */
-    public function canBeDecodedToArray()
-    {
-        $this->decodedString = json_decode($this->string, true);
-        if (!is_array($this->decodedString)) {
-            throw new Exception('The provided string could not be decoded to an array');
+        try {
+            $this->decodedString = Json::decode($this->string);
+        } catch (InvalidArgumentException $exception) {
+            throw new Exception('Provided string could not be decoded: '.$exception->getMessage());
         }
     }
 
