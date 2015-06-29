@@ -1,0 +1,23 @@
+{
+  "name": "larmo-webapp",
+  "version": "0.0.1",
+  "description": "Web application for open source project Larmo.",
+  "main": "index.js",
+  "keywords": [
+    "larmo"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adrianpietka/larmo"
+  },
+  "dependencies": {
+    "bower": "*",
+    "express": "^4.13.0"
+  },
+  "scripts": {
+    "postinstall": "./node_modules/bower/bin/bower install",
+    "start": "node index.js"
+  },
+  "author": "Mateusz Ksiazek",
+  "license": "MIT"
+}

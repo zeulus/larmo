@@ -23,20 +23,29 @@ Feature:
        "extra"  : {
                     "ident": "something that would get decoded by skype plugin"
                   }
+      },
+      {
+       "type"   : "skype.message.new",
+       "time"   : 1434724489,
+       "author" : {
+                    "email": "someoneelse@somewhereelse.tld"
+                  },
+       "body"   : "sup!",
+       "extra"  : {
+                    "ident": "something that would get decoded by skype plugin"
+                  }
       }
      ]
     }
     """
-    And it is valid JSON string
-    And can be decoded to array
-
+    And it can be decoded to an array
+    And I create a packet
 
   Scenario: Verify sender auth info
-    Given a packet metadata created from decoded string
     When auth info fails to validate
     Then I drop the packet
 
   Scenario: Verify packet can be handled by system
-    Given a plugin identifier provided by "source" metadata field
+    Given a plugin identifier provided by metadata source field
     When that plugin is not registered in system
     Then I drop the packet

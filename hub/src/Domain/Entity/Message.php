@@ -2,8 +2,8 @@
 
 namespace FP\Larmo\Domain\Entity;
 
-use FP\Larmo\Domain\Service\UniqueIdGenerator;
 use FP\Larmo\Domain\ValueObject\Author;
+use FP\Larmo\Domain\ValueObject\UniqueId;
 
 class Message
 {
@@ -15,15 +15,14 @@ class Message
     private $body;
     private $extras;
 
-    public function __construct($type, $timestamp, Author $author, UniqueIdGenerator $generator, $body = '', $extras = array())
+    public function __construct($type, $timestamp, Author $author, UniqueId $uniqueId, $body = '', $extras = array())
     {
         $this->type = $type;
         $this->timestamp = $timestamp;
         $this->author = $author;
         $this->body = $body;
         $this->extras = $extras;
-
-        $this->messageId = $generator->generate();
+        $this->messageId = $uniqueId->getId();
     }
 
     public function getType()
