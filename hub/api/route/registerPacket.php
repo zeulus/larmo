@@ -17,8 +17,7 @@ $app->post('/registerPacket', function (Request $request) use ($app) {
         // store messages
         $app['messages.repository']->store($messages);
 
-        return $app->json(['message' => 'OK'], Request::HTTP_OK);
-
+        return $app->json(['message' => 'OK'], Response::HTTP_OK);
     } else {
         return $app->json(['message' => $packetValidation->getErrors()], Response::HTTP_BAD_REQUEST);
     }

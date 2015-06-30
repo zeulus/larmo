@@ -2,7 +2,7 @@
 
 $app['plugins'] = $app->share(function ($app) {
     $pluginAdapter = new \FP\Larmo\Infrastructure\Adapter\FilesystemPluginsAdapter($app['config.path.plugins']);
-    $pluginCollection = new \FP\Larmo\Domain\Service\PluginsCollection();
+    $pluginCollection = new \FP\Larmo\Domain\Service\PluginsCollection;
     $pluginRepository = new \FP\Larmo\Infrastructure\Repository\PluginsRepository($pluginAdapter);
     $pluginRepository->registerPlugins($pluginCollection);
 

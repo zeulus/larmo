@@ -2,6 +2,7 @@
 
 namespace FP\Larmo\Application\Adapter;
 
+use JsonSchema\Validator;
 use FP\Larmo\Application\Contract\JsonSchemaValidation as JsonSchemaValidationContract;
 
 class VendorJsonSchemaValidation implements JsonSchemaValidationContract
@@ -10,7 +11,7 @@ class VendorJsonSchemaValidation implements JsonSchemaValidationContract
 
     public function __construct()
     {
-        $this->validator = new \JsonSchema\Validator();
+        $this->validator = new Validator;
     }
 
     public function check($value, $schema)

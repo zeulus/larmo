@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Packet",
-  "description": "Incomming packet of messages",
+  "description": "Incoming packet of messages",
   "type": "object",
   "properties": {
     "metadata": {

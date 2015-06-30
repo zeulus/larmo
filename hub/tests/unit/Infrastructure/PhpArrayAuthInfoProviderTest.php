@@ -27,7 +27,8 @@ class PhpArrayAuthInfoProviderTest extends PHPUnit_Framework_TestCase
     {
         $authinfo = ['agent' => 'invalidAgent', 'auth' => 'secretKey'];
 
-        $this->assertFalse($this->authProvider->validate($authinfo), 'invalid agent name should fail the validation');
+        $this->assertFalse($this->authProvider->validate($authinfo),
+            'invalid agent name should fail the validation');
     }
 
     /**
