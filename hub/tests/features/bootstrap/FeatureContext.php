@@ -2,7 +2,6 @@
 
 use Behat\Behat\Context\BehatContext;
 use Behat\Gherkin\Node\PyStringNode;
-use fkooman\Json\Json;
 
 /**
  * Features context.
@@ -45,7 +44,7 @@ class FeatureContext extends BehatContext
     public function itCanBeDecodedToAnArray()
     {
         try {
-            $this->decodedString = Json::decode($this->string);
+            $this->decodedString = json_decode($this->string, true);
         } catch (InvalidArgumentException $exception) {
             throw new Exception('Provided string could not be decoded: '.$exception->getMessage());
         }
