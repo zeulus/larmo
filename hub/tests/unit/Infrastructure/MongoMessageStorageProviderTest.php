@@ -14,9 +14,9 @@ class MongoMessageStorageProviderTest extends PHPUnit_Framework_TestCase
     public function setup()
     {
         $app = array();
-        require __DIR__ . '/../../../config/mongo_config.php';
+        require __DIR__ . '/../../../config/mongo.php';
 
-        $this->mongo = new MongoMessageStorageProvider($app['mongo_db']);
+        $this->mongo = new MongoMessageStorageProvider($app['config.mongo_db']);
     }
 
     /**
