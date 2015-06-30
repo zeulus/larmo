@@ -7,6 +7,7 @@ use \FP\Larmo\Domain\Aggregate\Packet;
 use \FP\Larmo\Domain\Entity\Metadata;
 use \FP\Larmo\Domain\Entity\Message;
 use \FP\Larmo\Domain\ValueObject\Author;
+use \FP\Larmo\Domain\ValueObject\UniqueId;
 use \FP\Larmo\Domain\Service\MessageCollection;
 use \FP\Larmo\Infrastructure\Adapter\PhpUniqidGenerator;
 
@@ -63,6 +64,7 @@ class CreatePacketContext extends BehatContext
     {
         $messageCollectionFromDecodedString = $this->getMainContext()->decodedString['messages'];
         $uniqueIDGenerator = new PhpUniqidGenerator;
+        $uniqueIDValueObject = new UniqueId($uniqueIDGenerator);
         $this->messages =  new MessageCollection;
 
         foreach($messageCollectionFromDecodedString as $singleMessage) {
@@ -71,7 +73,7 @@ class CreatePacketContext extends BehatContext
                 $singleMessage['type'],
                 $singleMessage['time'],
                 $author,
-                $uniqueIDGenerator,
+                $uniqueIDValueObject,
                 $singleMessage['body'])
             );
         }
