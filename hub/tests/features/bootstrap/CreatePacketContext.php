@@ -3,7 +3,13 @@
 use Behat\Behat\Context\BehatContext;
 use Behat\Behat\Exception\PendingException;
 use PHPUnit_Framework_MockObject_Generator as MockObject;
+use \FP\Larmo\Domain\Aggregate\Packet;
 use \FP\Larmo\Domain\Entity\Metadata;
+use \FP\Larmo\Domain\Entity\Message;
+use \FP\Larmo\Domain\ValueObject\Author;
+use \FP\Larmo\Domain\ValueObject\UniqueId;
+use \FP\Larmo\Domain\Service\MessageCollection;
+use \FP\Larmo\Infrastructure\Adapter\PhpUniqidGenerator;
 
 class CreatePacketContext extends BehatContext
 {
@@ -12,16 +18,73 @@ class CreatePacketContext extends BehatContext
      * @var Metadata entity
      */
     private $metadata;
-    
+
     /**
-     * @Given /^a packet metadata created from decoded string$/
+     * @var MessageCollection Factory
      */
-    public function aPacketMetadataCreatedFromDecodedString()
+    private $messages;
+
+    /**
+     * @var Packet Aggregate
+     */
+    private $packet;
+
+    /**
+     * @var string Plugin identifier
+     */
+    private $pluginID;
+
+    /**
+     * @Given /^I create a packet$/
+     */
+    public function iCreateAPacket()
+    {
+        return array(
+            new Behat\Behat\Context\Step\Given('a metadata entity created from decoded string'),
+            new Behat\Behat\Context\Step\Given('a message entity created from decoded string'),
+            new Behat\Behat\Context\Step\Given('a packet aggregate is created from metadata and message entities')
+        );
+    }
+
+    /**
+     * @Given /^a metadata entity created from decoded string$/
+     */
+    public function aMetadataEntityCreatedFromDecodedString()
     {
         $mockObject = new MockObject;
         $authInterface = $mockObject->getMock('\FP\Larmo\Domain\Service\AuthInfoInterface');
         $head = $this->getMainContext()->decodedString['head'];
-        $this->metadata = new Metadata($authInterface, time(), $head['auth'], $head['source']);
+        $this->metadata = new Metadata($authInterface, $head['time'], $head['auth'], $head['source']);
+    }
+
+    /**
+     * @Given /^a message entity created from decoded string$/
+     */
+    public function aMessageEntityCreatedFromDecodedString()
+    {
+        $messageCollectionFromDecodedString = $this->getMainContext()->decodedString['messages'];
+        $uniqueIDGenerator = new PhpUniqidGenerator;
+        $uniqueIDValueObject = new UniqueId($uniqueIDGenerator);
+        $this->messages =  new MessageCollection;
+
+        foreach($messageCollectionFromDecodedString as $singleMessage) {
+            $author = new Author('', '', $singleMessage['author']['email']);
+            $this->messages->append(new Message(
+                $singleMessage['type'],
+                $singleMessage['time'],
+                $author,
+                $uniqueIDValueObject,
+                $singleMessage['body'])
+            );
+        }
+    }
+
+    /**
+     * @Given /^a packet aggregate is created from metadata and message entities$/
+     */
+    public function aPacketAggregateIsCreatedFromMetadataAndMessageEntities()
+    {
+        $this->packet = new Packet($this->messages, $this->metadata);
     }
 
     /**
@@ -33,7 +96,7 @@ class CreatePacketContext extends BehatContext
         {
             // @NOTE: Now this is the only way to validate authInfo in Metadata entity. 
             //        Should not be validated when we inject it?
-            $this->metadata->setAuthInfo('NOT_VALID_AUTH_INFO');
+            $this->packet->getMetadata()->setAuthInfo('NOT_VALID_AUTH_INFO');
         } 
         catch (Exception $exception)
         {
@@ -44,11 +107,11 @@ class CreatePacketContext extends BehatContext
     }
 
     /**
-     * @Given /^a plugin identifier provided by "([^"]*)" metadata field$/
+     * @Given /^a plugin identifier provided by metadata source field$/
      */
-    public function aPluginIdentifierProvidedByMetadataField($metadataField)
+    public function aPluginIdentifierProvidedByMetadataSourceField()
     {
-        throw new PendingException();
+        $this->pluginID = $this->packet->getMetadata()->getSource();
     }
 
     /**

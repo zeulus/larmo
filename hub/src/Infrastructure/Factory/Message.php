@@ -4,15 +4,16 @@ namespace FP\Larmo\Infrastructure\Factory;
 
 use FP\Larmo\Domain\Entity;
 use FP\Larmo\Domain\ValueObject\Author;
+use FP\Larmo\Domain\ValueObject\UniqueId;
 use FP\Larmo\Domain\Service\UniqueIdGenerator;
 
 class Message
 {
-    private $generator;
+    private $uniqueId;
 
-    public function __construct(UniqueIdGenerator $generator)
+    public function __construct(UniqueId $uniqueId)
     {
-        $this->generator = $generator;
+        $this->uniqueId = $uniqueId;
     }
 
     public function fromArray($message)
@@ -32,6 +33,6 @@ class Message
             $author = new Author();
         }
 
-        return new Entity\Message($type, $timestamp, $author, $this->generator, $body, $extras);
+        return new Entity\Message($type, $timestamp, $author, $this->uniqueId, $body, $extras);
     }
 }

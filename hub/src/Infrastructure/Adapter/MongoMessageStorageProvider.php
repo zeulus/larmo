@@ -4,6 +4,7 @@ namespace FP\Larmo\Infrastructure\Adapter;
 
 use FP\Larmo\Domain\Service\FiltersCollection;
 use FP\Larmo\Domain\Service\MessageCollection;
+use FP\Larmo\Domain\ValueObject\UniqueId;
 use FP\Larmo\Infrastructure\Service\MessageStorageProvider;
 use FP\Larmo\Infrastructure\Factory\Message as FactoryMessage;
 
@@ -41,9 +42,12 @@ class MongoMessageStorageProvider implements MessageStorageProvider
     public function retrieve(MessageCollection $messages)
     {
         $messagesArray = $this->db->messages->find();
-        foreach ($messagesArray as $message) {
-            $uniqidGetter = new PhpUniqidGetter($message['messageId']);
-            $messageFactory = new FactoryMessage($uniqidGetter);
+
+        // @todo: use message collection factory
+
+        foreach($messagesArray as $message) {
+            $uniqueId = new UniqueId($message['messageId']);
+            $messageFactory = new FactoryMessage($uniqueId);
             $messages[] = $messageFactory->fromArray($message);
         }
     }
