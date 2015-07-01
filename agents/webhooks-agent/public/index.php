@@ -8,10 +8,11 @@ use FP\Larmo\Agents\WebHookAgent\Routing;
 use FP\Larmo\Agents\WebHookAgent\Metadata;
 use FP\Larmo\Agents\WebHookAgent\Services;
 use FP\Larmo\Agents\WebHookAgent\Services\ServiceFactory;
+use FP\Larmo\Agents\WebHookAgent\Exceptions\EventTypeNotFoundException;
+use FP\Larmo\Agents\WebHookAgent\Exceptions\InvalidConfigurationException;
 use FP\Larmo\Agents\WebHookAgent\Exceptions\InvalidIncomingDataException;
 use FP\Larmo\Agents\WebHookAgent\Exceptions\MethodNotAllowedHttpException;
 use FP\Larmo\Agents\WebHookAgent\Exceptions\ServiceNotFoundException;
-use FP\Larmo\Agents\WebHookAgent\Exceptions\EventTypeNotFoundException;
 
 require_once('/../config/config.php');
 
@@ -37,7 +38,8 @@ try {
 
     /* Create and send packet */
     $packet = new Packet($metadata, $service);
-    $packet->send();
+    $packet->send($config['hubURI']);
+
 } catch (MethodNotAllowedHttpException $e) {
     http_response_code(405); // POST only allowed
 } catch (InvalidIncomingDataException $e) {
@@ -48,7 +50,9 @@ try {
     http_response_code(404); // We do not have the ability to handle this service
 } catch (InvalidArgumentException $e) {
     http_response_code(404);
+} catch (InvalidConfigurationException $e) {
+    http_response_code(500);
 } catch (Exception $e) {
     /* Unpredicted error */
-    file_put_contents('php://stderr', $e->getMessage());
+    trigger_error($e->getMessage(), E_USER_WARNING);
 }

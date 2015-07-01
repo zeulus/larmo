@@ -1,6 +1,6 @@
 <?php
 
-namespace FP\Larmo\Agents\WebHookAgent\Services\Github;
+namespace FP\Larmo\Agents\WebHookAgent\Services;
 
 interface EventInterface
 {
@@ -10,7 +10,7 @@ interface EventInterface
     public function __construct($data);
 
     /**
-     * @return array() - Array contains massages ready to send
+     * @return array - Array contains massages ready to send
      */
     public function getMessages();
 }
