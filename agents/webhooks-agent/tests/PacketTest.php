@@ -7,12 +7,14 @@ use FP\Larmo\Agents\WebHookAgent\Services\Github\GithubData;
 class PacketTest extends PHPUnit_Framework_TestCase
 {
     private $packet;
+    private $errorCatched;
 
     public function setup()
     {
-        $_SERVER['HTTP_X_GITHUB_EVENT'] = 'push';
-        $service = new GithubData($this->getDataObjectFromJson(), $_SERVER);
-        $metadata = new Metadata($service->getServiceName(),"AUTHENTICATION_KEY");
+        $this->errorCatched = false;
+        set_error_handler(array($this, 'errorHandler'));
+        $service = new GithubData($this->getDataObjectFromJson(), array('HTTP_X_GITHUB_EVENT' => 'push'));
+        $metadata = new Metadata($service->getServiceName(), "AUTHENTICATION_KEY");
         $this->packet = new Packet($metadata, $service);
     }
 
@@ -31,12 +33,36 @@ class PacketTest extends PHPUnit_Framework_TestCase
         return null;
     }
 
+    public function errorHandler($errNo, $msg)
+    {
+        $this->errorCatched = true;
+        file_put_contents('php://stderr', $msg . "\n");
+    }
+
+    /**
+     * @test
+     */
+    public function wrongUriThrowError()
+    {
+        $this->setExpectedException('FP\Larmo\Agents\WebHookAgent\Exceptions\InvalidConfigurationException');
+        $this->packet->send('');
+    }
+
+    /**
+     * @test
+     */
+    public function sendPacketWithoutErrors()
+    {
+        $this->packet->send('localhost');
+        $this->assertEquals(false, $this->errorCatched);
+    }
+
     /**
      * @test
      */
     public function packetHasCorrectStructure()
     {
-        $result = json_decode($this->packet->send(), true);
+        $result = $this->packet->getPacket();
         $this->assertArrayHasKey('metadata', $result);
         $this->assertArrayHasKey('data', $result);
     }
@@ -47,7 +73,7 @@ class PacketTest extends PHPUnit_Framework_TestCase
     public function packetHasCorrectMessages()
     {
         $expectedResult = json_decode($this->loadFile(dirname(__FILE__).'/OutputData/github-push.json'), true);
-        $result = json_decode($this->packet->send(), true);
+        $result = $this->packet->getPacket();
 
         $this->assertEquals($expectedResult, $result['data']);
     }

@@ -2,8 +2,6 @@
 
 namespace FP\Larmo\Agents\WebHookAgent\Services\Bitbucket\Events;
 
-use FP\Larmo\Agents\WebHookAgent\Services\Bitbucket\EventInterface;
-
 /**
  * Class Push
  * @package FP\Larmo\Agents\WebHookAgent\Services\Bitbucket\Events

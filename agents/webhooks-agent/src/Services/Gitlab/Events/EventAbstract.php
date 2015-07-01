@@ -2,7 +2,7 @@
 
 namespace FP\Larmo\Agents\WebHookAgent\Services\Gitlab\Events;
 
-use FP\Larmo\Agents\WebHookAgent\Services\Gitlab\EventInterface;
+use FP\Larmo\Agents\WebHookAgent\Services\EventInterface;
 
 abstract class EventAbstract implements EventInterface
 {
