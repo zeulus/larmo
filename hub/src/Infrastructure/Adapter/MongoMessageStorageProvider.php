@@ -22,12 +22,8 @@ class MongoMessageStorageProvider implements MessageStorageProvider
 
         $uri = "mongodb://{$credentials}{$config['db_url']}:{$config['db_port']}/{$config['db_name']}";
 
-        try {
-            $client = new \MongoClient($uri);
-            $this->db = $client->selectDB($config['db_name']);
-        } catch (\MongoConnectionException $exception) {
-            throw new \MongoConnectionException;
-        }
+        $client = new \MongoClient($uri);
+        $this->db = $client->selectDB($config['db_name']);
     }
 
     public function store(MessageCollection $messages)
