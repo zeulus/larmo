@@ -11,6 +11,7 @@ use FP\Larmo\Infrastructure\Factory\Message as FactoryMessage;
 class MongoMessageStorageProvider implements MessageStorageProvider
 {
     private $db;
+    private $filters;
 
     public function __construct($config)
     {
@@ -21,12 +22,8 @@ class MongoMessageStorageProvider implements MessageStorageProvider
 
         $uri = "mongodb://{$credentials}{$config['db_url']}:{$config['db_port']}/{$config['db_name']}";
 
-        try {
-            $client = new \MongoClient($uri);
-            $this->db = $client->selectDB($config['db_name']);
-        } catch (\MongoConnectionException $exception) {
-            throw $exception;
-        }
+        $client = new \MongoClient($uri);
+        $this->db = $client->selectDB($config['db_name']);
     }
 
     public function store(MessageCollection $messages)
@@ -36,7 +33,7 @@ class MongoMessageStorageProvider implements MessageStorageProvider
 
     public function setFilters(FiltersCollection $filters)
     {
-
+        $this->filters = $filters;
     }
 
     public function retrieve(MessageCollection $messages)
