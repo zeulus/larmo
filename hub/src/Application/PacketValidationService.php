@@ -48,6 +48,15 @@ final class PacketValidationService
         $this->errors = [];
         $this->validator->check($this->packet, $this->schema);
 
+        if (!$this->packet) {
+            $this->errors[] = [
+                'property' => '',
+                'message' => 'the packet is empty or has invalid JSON structure'
+            ];
+
+            return false;
+        }
+
         if (!$this->validator->isValid()) {
             $this->errors = $this->validator->getErrors();
 
