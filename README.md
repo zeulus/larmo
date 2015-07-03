@@ -8,6 +8,9 @@
 ## What is it?
 This project is a PoC of a central hub that stores information from many data feeds - control version systems, Skype, IRC, etc. - in order to have a clear project history with ability to search and analyse and sending out aggregated information to different media: email, IRC, Skype, etc.
 
+## Is it really working?
+Yes, you can check the webapp under http://larmo.herokuapp.com/ - it's currently connected to our Github repo.
+
 ## Directory structure
 
 * [agents/](https://github.com/adrianpietka/larmo/tree/master/agents) - small independent applications that collect messages, normalize them and send it to the Larmo Hub,
