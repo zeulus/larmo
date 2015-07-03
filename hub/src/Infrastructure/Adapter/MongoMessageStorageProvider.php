@@ -8,24 +8,22 @@ use FP\Larmo\Domain\ValueObject\UniqueId;
 use FP\Larmo\Infrastructure\Service\MessageStorageProvider;
 use FP\Larmo\Infrastructure\Factory\Message as FactoryMessage;
 
-class MongoMessageStorageProvider implements MessageStorageProvider {
+class MongoMessageStorageProvider implements MessageStorageProvider
+{
     private $db;
+    private $filters;
 
     public function __construct($config)
     {
         $credentials = '';
-        if(isset($config['db_user']) && isset($config['db_password'])) {
+        if (isset($config['db_user']) && isset($config['db_password'])) {
             $credentials = "{$config['db_user']}:{$config['db_password']}@";
         }
 
         $uri = "mongodb://{$credentials}{$config['db_url']}:{$config['db_port']}/{$config['db_name']}";
 
-        try {
-            $client = new \MongoClient($uri);
-            $this->db = $client->selectDB($config['db_name']);
-        } catch(\MongoConnectionException $e) {
-            throw new \MongoConnectionException;
-        }
+        $client = new \MongoClient($uri);
+        $this->db = $client->selectDB($config['db_name']);
     }
 
     public function store(MessageCollection $messages)
@@ -35,12 +33,15 @@ class MongoMessageStorageProvider implements MessageStorageProvider {
 
     public function setFilters(FiltersCollection $filters)
     {
-
+        $this->filters = $filters;
     }
 
     public function retrieve(MessageCollection $messages)
     {
         $messagesArray = $this->db->messages->find();
+
+        // @todo: use message collection factory
+
         foreach($messagesArray as $message) {
             $uniqueId = new UniqueId($message['messageId']);
             $messageFactory = new FactoryMessage($uniqueId);
@@ -52,7 +53,7 @@ class MongoMessageStorageProvider implements MessageStorageProvider {
     {
         $outputArray = [];
 
-        foreach($messages as $message) {
+        foreach ($messages as $message) {
             $messageArray = [
                 'messageId' => $message->getMessageId(),
                 'source' => explode('.', $message->getType())[0],
