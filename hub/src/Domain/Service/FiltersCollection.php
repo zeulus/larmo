@@ -9,6 +9,11 @@ class FiltersCollection
 
     public function __construct(array $filters = array())
     {
+        $this->addFilters($filters);
+    }
+
+    public function addFilters(array $filters)
+    {
         foreach ($filters as $filter) {
             $this->addFilter($filter);
         }
