@@ -1,9 +1,5 @@
 <?php
 
-$app->after(function (Symfony\Component\HttpFoundation\Request $request, Symfony\Component\HttpFoundation\Response $response) {
-    $response->headers->set('Access-Control-Allow-Origin', '*');
-});
-
 $app['plugins'] = $app->share(function ($app) {
     $pluginAdapter = new \FP\Larmo\Infrastructure\Adapter\FilesystemPluginsAdapter($app['config.path.plugins']);
     $pluginCollection = new \FP\Larmo\Domain\Service\PluginsCollection;
