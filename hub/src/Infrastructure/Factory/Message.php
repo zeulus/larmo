@@ -19,7 +19,7 @@ class Message
     public function fromArray($message)
     {
         $type = isset($message['type']) ? $message['type'] : '';
-        $timestamp = isset($message['type']) ? $message['type'] : '';
+        $timestamp = isset($message['timestamp']) ? $message['timestamp'] : '';
         $body = isset($message['body']) ? $message['body'] : '';
         $extras = isset($message['extras']) ? $message['extras'] : '';
 
