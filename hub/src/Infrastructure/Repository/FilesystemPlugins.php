@@ -1,10 +1,9 @@
 <?php
 
-namespace FP\Larmo\Infrastructure\Adapter;
-
+namespace FP\Larmo\Infrastructure\Repository;
 
 use FP\Larmo\Domain\Service\PluginsCollection;
-use FP\Larmo\Infrastructure\Service\PluginsAdapterInterface;
+use FP\Larmo\Domain\Repository\Plugins as PluginsRepository;
 
 /**
  * Class PluginsFilesystemAdapter
@@ -19,9 +18,8 @@ use FP\Larmo\Infrastructure\Service\PluginsAdapterInterface;
  *
  * @package FP\Larmo\Infrastructure\Adapter
  */
-class FilesystemPluginsAdapter implements PluginsAdapterInterface
+class FilesystemPlugins implements PluginsRepository
 {
-
     /**
      * @var \DirectoryIterator
      */
@@ -38,7 +36,7 @@ class FilesystemPluginsAdapter implements PluginsAdapterInterface
     /**
      * @param PluginsCollection $plugins
      */
-    public function loadPlugins(PluginsCollection $plugins)
+    public function retrieve(PluginsCollection $plugins)
     {
         $namespace = '\\FP\\Larmo\\Plugin\\';
         $pluginManifest = '\\PluginManifest';

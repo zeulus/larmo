@@ -9,13 +9,6 @@ use FP\Larmo\Domain\Service\UniqueIdGenerator;
 
 class Message
 {
-    private $uniqueId;
-
-    public function __construct(UniqueId $uniqueId)
-    {
-        $this->uniqueId = $uniqueId;
-    }
-
     public function fromArray($message)
     {
         $type = isset($message['type']) ? $message['type'] : '';
@@ -33,6 +26,8 @@ class Message
             $author = new Author();
         }
 
-        return new Entity\Message($type, $timestamp, $author, $this->uniqueId, $body, $extras);
+        $uniqueId = new UniqueId(isset($message['id']) ? $message['id'] : '');
+
+        return new Entity\Message($type, $timestamp, $author, $uniqueId, $body, $extras);
     }
 }
