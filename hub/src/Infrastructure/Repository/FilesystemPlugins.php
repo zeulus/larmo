@@ -26,11 +26,11 @@ class FilesystemPlugins implements PluginsRepository
     private $iterator;
 
     /**
-     * @param $path Path to Plugins directory
+     * @param \DirectoryIterator $iterator
      */
-    public function __construct($path)
+    public function __construct(\DirectoryIterator $iterator)
     {
-        $this->iterator = new \DirectoryIterator($path);
+        $this->iterator = $iterator;
     }
 
     /**
