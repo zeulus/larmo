@@ -1,3 +1,3 @@
 <?php
 
-$app['debug'] = false;
+$app['debug'] = true;
