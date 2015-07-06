@@ -25,8 +25,8 @@ function GithubAction() {
         var action = '';
 
         if(input.type == 'github.commit') {
-            action = '[<a href="' + input.extras.url + '" target="new">' + input.extras.id.substr(0, 10) + '</a>]';
-        } else if(input.type.contains('github.pull_request')) {
+            action = '<a href="' + input.extras.url + '" target="new">' + input.extras.id.substr(0, 10) + '</a>';
+        } else if(input.type.contains('github.pull_request') || input.type.contains('github.issue')) {
             action = '<a href="' + input.extras.url + '" target="new">#' + input.extras.number + '</a>';
         }
 
@@ -39,7 +39,9 @@ function GithubExtendedMessage() {
         var message = '';
 
         if(input.type == 'github.commit') {
-            message = '"' + input.extras.body + '"';
+            message = input.extras.body;
+        } else if(input.type == 'github.issue_opened') {
+            message = '<strong>' + input.extras.title + '</strong><br/>' + input.extras.body;
         }
 
         return message;

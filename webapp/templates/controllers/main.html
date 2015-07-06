@@ -5,10 +5,6 @@
         <i class="{{'fa fa-2x fa-' + message.source}}" title="{{message.source}}"></i>
     </div>
     <div class="col-sm-11 col-xs-12 content">
-        <div class="metadata">
-            <span class="metadata-author" ng-bind-html="message.author | displayName"></span>
-            <span class="metadata-date">{{message.timestamp | date:"dd MMM yyyy 'at' HH:mm:ss"}}</span>
-        </div>
         <div ng-include=" 'templates/sources/' + message.source + '.html' "></div>
     </div>
 </div>
