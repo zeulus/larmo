@@ -1,6 +1,6 @@
 "use strict";
 
-app.filter("author", AuthorFilter);
+app.filter("displayName", AuthorFilter);
 
 function AuthorFilter() {
     return function(input) {

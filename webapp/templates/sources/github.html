@@ -1,0 +1,6 @@
+<div class="well well-sm body">
+    <span ng-bind-html='message.author | githubUser'></span>
+    {{message.body}}
+    <span ng-bind-html='message | githubAction'></span>
+    <div class="extended-message" ng-bind-html='message | githubExtendedMessage'></div>
+</div>
