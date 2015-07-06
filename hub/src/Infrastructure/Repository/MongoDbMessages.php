@@ -57,8 +57,8 @@ class MongoDbMessages implements MessagesRepository
                 'type' => $message->getType(),
                 'timestamp' => $message->getTimestamp(),
                 'author' => [
-                    'fullName' => $message->getAuthor()->getFullName(),
-                    'nickName' => $message->getAuthor()->getNickName(),
+                    'name' => $message->getAuthor()->getFullName(),
+                    'login' => $message->getAuthor()->getNickName(),
                     'email' => $message->getAuthor()->getEmail()
                 ],
                 'body' => $message->getBody(),
