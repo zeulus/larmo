@@ -3,9 +3,8 @@
 use FP\Larmo\Application\Adapter\VendorJsonSchemaValidation;
 use FP\Larmo\Application\PacketValidationService;
 use FP\Larmo\Infrastructure\Adapter\IniFileAuthInfoProvider;
-use FP\Larmo\Infrastructure\Adapter\FilesystemPluginsAdapter;
+use FP\Larmo\Infrastructure\Repository\FilesystemPlugins as FilesystemPluginsRepository;
 use FP\Larmo\Domain\Service\PluginsCollection;
-use FP\Larmo\Infrastructure\Repository\PluginsRepository;
 use FP\Larmo\Application\PluginService;
 use FP\Larmo\Domain\Aggregate\Packet;
 use FP\Larmo\Domain\Entity\Metadata;
@@ -24,10 +23,9 @@ class PacketValidationServiceTest extends PHPUnit_Framework_TestCase
         $jsonValidator = new VendorJsonSchemaValidation();
         $authinfo = new IniFileAuthInfoProvider($path . 'config/authinfo.ini');
 
-        $pluginAdapter = new FilesystemPluginsAdapter($path . 'src/Plugin');
+        $pluginRepository = new FilesystemPluginsRepository($path . 'src/Plugin');
         $pluginCollection = new PluginsCollection;
-        $pluginRepository = new PluginsRepository($pluginAdapter);
-        $pluginRepository->registerPlugins($pluginCollection);
+        $pluginRepository->retrieve($pluginCollection);
         $pluginsService = new PluginService($pluginCollection);
 
         $this->packetValidation = new PacketValidationService($jsonValidator, $authinfo, $pluginsService);
@@ -38,7 +36,8 @@ class PacketValidationServiceTest extends PHPUnit_Framework_TestCase
      */
     public function setSchemaWorks()
     {
-        $this->assertInstanceOf(PacketValidationService::class, $this->packetValidation->setSchemaFromFile($this->schema));
+        $this->assertInstanceOf(PacketValidationService::class,
+            $this->packetValidation->setSchemaFromFile($this->schema));
     }
 
     /**
