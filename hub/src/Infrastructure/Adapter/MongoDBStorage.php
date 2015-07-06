@@ -2,19 +2,25 @@
 
 namespace FP\Larmo\Infrastructure\Adapter;
 
-class MongoDBStorage {
+class MongoDbStorage
+{
     private $connection;
 
-    public function __construct($uri)
+    public function __construct($url, $port, $user, $password, $db, array $options = [])
     {
-        $credentials = '';
-        if (isset($config['db_user']) && isset($config['db_password'])) {
-            $credentials = "{$config['db_user']}:{$config['db_password']}@";
-        }
+        $server = "mongodb://$user:$password@$url:$port/$db";
+        $mongoClient = new \MongoClient($server, $options);
 
-        $uri = "mongodb://{$credentials}{$config['db_url']}:{$config['db_port']}/{$config['db_name']}";
+        $this->connection = $mongoClient->selectDB($db);
+    }
 
-        $client = new \MongoClient($uri);
-        $this->db = $client->selectDB($config['db_name']);
+    public function batchInsert($collection, array $data)
+    {
+        return $this->connection->{$collection}->batchInsert($data);
+    }
+
+    public function find($collection)
+    {
+        return $this->connection->{$collection}->find();
     }
 }

@@ -1,17 +1,18 @@
 <?php
 
-namespace FP\Larmo\Infrastructure\Adapter;
+namespace FP\Larmo\Infrastructure\Repository;
 
 use FP\Larmo\Domain\ValueObject\UniqueId;
 use FP\Larmo\Domain\Service\FiltersCollection;
 use FP\Larmo\Domain\Service\MessageCollection;
-use FP\Larmo\Infrastructure\Factory\Message as MessageFactory;
-use FP\Larmo\Infrastructure\Repository\Messages as MessageRepository;
+use FP\Larmo\Domain\Repository\Messages as MessagesRepository;
 
-class MongoDbMessage implements MessageRepository
+use FP\Larmo\Infrastructure\Adapter\MongoDbStorage;
+use FP\Larmo\Infrastructure\Factory\Message as MessageFactory;
+
+class MongoDbMessages implements MessagesRepository
 {
     private $storage;
-    private $filters;
     private $collectionName = 'messages';
 
     public function __construct(MongoDbStorage $storage)
@@ -37,7 +38,7 @@ class MongoDbMessage implements MessageRepository
         $retrieved = $this->storage->find($this->collectionName);
 
         foreach ($retrieved as $message) {
-            $uniqueId = new UniqueId($message['messageId']);
+            $uniqueId = new UniqueId($message['id']);
             $messageFactory = new MessageFactory($uniqueId);
             $messages[] = $messageFactory->fromArray($message);
         }
@@ -51,7 +52,7 @@ class MongoDbMessage implements MessageRepository
 
         foreach ($messages as $message) {
             $messageArray = [
-                'messageId' => $message->getMessageId(),
+                'id' => $message->getMessageId(),
                 'source' => explode('.', $message->getType())[0],
                 'type' => $message->getType(),
                 'timestamp' => $message->getTimestamp(),

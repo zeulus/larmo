@@ -1,102 +1,61 @@
 <?php
 
-use FP\Larmo\Domain\Service\FiltersCollection;
+use Prophecy\Argument;
+
 use FP\Larmo\Domain\Service\MessageCollection;
-use FP\Larmo\Infrastructure\Repository\MessageRepository;
+use FP\Larmo\Infrastructure\Adapter\MongoDbStorage;
+use FP\Larmo\Infrastructure\Factory\Message as MessageFactory;
+use FP\Larmo\Infrastructure\Repository\MongoDbMessages as MongoDbMessagesRepository;
 
-class MessageRepositoryTest extends PHPUnit_Framework_TestCase
+class MongoDbMessagesRepositoryTest extends PHPUnit_Framework_TestCase
 {
+    /**
+     * @var \FP\Larmo\Infrastructure\Adapter\MongoDbStorage
+     */
+    private $storage;
 
     /**
-     * @var \FP\Larmo\Domain\Service\MessageCollection
+     * @var \FP\Larmo\Infrastructure\Repository\MongoDbMessages
      */
-    private $messages;
-    private $storageProvider;
-    private $filters;
+    private $repository;
 
-    public function setup()
+    protected function setUp()
     {
-        $this->messages = new MessageCollection();
+        $this->storage = $this->getMockBuilder(MongoDbStorage::class)
+            ->disableOriginalConstructor()
+            ->setMethods(['batchInsert', 'find'])
+            ->getMock();
 
-        $this->filters = new FiltersCollection();
-
-        $this->storageProvider = $this->getMockBuilder('\FP\Larmo\Infrastructure\Service\MessageStorageProvider')
-            ->setMethods(array('store', 'setFilters', 'retrieve'))->getMock();
+        $this->repository = new MongoDbMessagesRepository($this->storage);
     }
 
     /**
      * @test
      */
-    public function messageRepositoryRequiresStorageProvider()
+    public function canStoreMessages()
     {
-        $this->setExpectedException('PHPUnit_Framework_Error');
-        $repo = new MessageRepository(new \stdClass());
+        $messageFactory = new MessageFactory;
+        $messages = new MessageCollection;
+
+        $messages[] = $messageFactory->fromArray(['id' => '1']);
+        $messages[] = $messageFactory->fromArray(['id' => '2']);
+
+        $this->storage->method('batchInsert')->willReturn(true);
+        $this->assertTrue($this->repository->store($messages));
     }
 
     /**
      * @test
      */
-    public function messageRepositoryRequiresDataToBeStored()
+    public function canRetrieveMessages()
     {
-        $repo = new MessageRepository($this->storageProvider);
-        $this->setExpectedException('PHPUnit_Framework_Error');
-        $repo->store();
-    }
+        $messages = new MessageCollection();
+        $retrieved = [['id' => 1], ['id' => 2]];
 
-    /**
-     * @test
-     */
-    public function messageRepositoryStoresData()
-    {
-        $repo = new MessageRepository($this->storageProvider);
-        $message = $this->getMockBuilder('\FP\Larmo\Domain\Entity\Message')->disableOriginalConstructor()->getMock();
-        $this->messages[] = $message;
-        $this->messages[] = $message;
+        $this->storage->method('find')->will($this->returnValue($retrieved));
 
-        $this->assertEquals(2, count($this->messages));
-
-        $storedData = array();
-
-        $this->storageProvider->expects($this->once())
-            ->method('store')
-            ->will($this->returnCallback(
-                function (MessageCollection $c) use (&$storedData) {
-                    foreach($c as $message) {
-                        $storedData[] = $message;
-                    }
-                }
-            ));
-
-        $repo->store($this->messages);
-
-        $this->assertEquals(2, count($storedData));
-
-        return $storedData;
-    }
-
-    /**
-     * @test
-     * @depends messageRepositoryStoresData
-     */
-    public function repositoryRetrievesMessageCollection($storedData)
-    {
-        $repo = new MessageRepository($this->storageProvider);
-
-        $this->storageProvider->expects($this->once())
-            ->method('retrieve')
-            ->will($this->returnCallback(
-                function (MessageCollection $c) use ($storedData) {
-                    foreach ($storedData as $message) {
-                        $c->append($message);
-                    }
-                }
-            ));
-
-
-        $messages = $repo->retrieve($this->filters);
-
-        $this->assertInstanceOf('FP\Larmo\Domain\Service\MessageCollection', $messages);
-        $this->assertEquals(2, count($messages));
+        $this->assertInstanceOf(MessageCollection::class, $this->repository->retrieve($messages));
+        $this->assertEquals($messages, $this->repository->retrieve($messages));
     }
 
 }

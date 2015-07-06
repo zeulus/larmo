@@ -1,8 +1,7 @@
 <?php
 
-
 use FP\Larmo\Domain\Service\PluginsCollection;
-use FP\Larmo\Infrastructure\Adapter\FilesystemPluginsAdapter;
+use FP\Larmo\Infrastructure\Repository\FilesystemPlugins as FilesystemPluginsRepository;
 
 class FilesystemPluginRepositoryTest extends PHPUnit_Framework_TestCase
 {
@@ -25,14 +24,14 @@ class FilesystemPluginRepositoryTest extends PHPUnit_Framework_TestCase
      * @depends pluginsDirectoryExists
      * @param $path
      */
-    public function filesystemPluginsAdapterWillLoadPlugins($path)
+    public function filesystemPluginsRepositoryWillLoadPlugins($path)
     {
-        $adapter = new FilesystemPluginsAdapter($path);
+        $adapter = new FilesystemPluginsRepository($path);
         $collection = new PluginsCollection();
 
         $this->assertEquals(0, count($collection));
 
-        $adapter->loadPlugins($collection);
+        $adapter->retrieve($collection);
 
         $this->assertTrue(count($collection) > 0);
     }

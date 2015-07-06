@@ -1,35 +1,21 @@
 <?php
 
-namespace FP\Larmo\Infrastructure\Repository;
+namespace FP\Larmo\Domain\Repository;
 
 use FP\Larmo\Domain\Service\FiltersCollection;
 use FP\Larmo\Domain\Service\MessageCollection;
-use FP\Larmo\Infrastructure\Service\MessageStorageProvider;
 
-interface Message
+interface Messages
 {
-
     /**
      * @param MessageCollection $messages
      */
-    public function store(MessageCollection $messages)
-    {
-
-        $this->storage->store($messages);
-    }
+    public function store(MessageCollection $messages);
 
     /**
+     * @param MessageCollection $messages
      * @param FiltersCollection $filters
      * @return MessageCollection
      */
-    public function retrieve(FiltersCollection $filters)
-    {
-
-        $this->storage->setFilters($filters);
-
-        $messages = new MessageCollection();
-        $this->storage->retrieve($messages);
-
-        return $messages;
-    }
+    public function retrieve(MessageCollection $messages, FiltersCollection $filters = null);
 }

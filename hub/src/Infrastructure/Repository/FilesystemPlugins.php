@@ -36,7 +36,7 @@ class FilesystemPlugins implements PluginsRepository
     /**
      * @param PluginsCollection $plugins
      */
-    public function loadPlugins(PluginsCollection $plugins)
+    public function retrieve(PluginsCollection $plugins)
     {
         $namespace = '\\FP\\Larmo\\Plugin\\';
         $pluginManifest = '\\PluginManifest';

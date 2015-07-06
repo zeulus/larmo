@@ -1,25 +1,13 @@
 <?php
 
-namespace FP\Larmo\Infrastructure\Repository;
+namespace FP\Larmo\Domain\Repository;
 
 use FP\Larmo\Domain\Service\PluginsCollection;
-use FP\Larmo\Infrastructure\Service\PluginsAdapterInterface;
 
-class PluginsRepository
+interface Plugins
 {
-
     /**
-     * @var PluginsAdapterInterface
+     * @param PluginsCollection $plugins
      */
-    private $adapter;
-
-    public function __construct(PluginsAdapterInterface $adapter)
-    {
-        $this->adapter = $adapter;
-    }
-
-    public function registerPlugins(PluginsCollection $collection)
-    {
-        $this->adapter->loadPlugins($collection);
-    }
+    public function retrieve(PluginsCollection $plugins);
 }
