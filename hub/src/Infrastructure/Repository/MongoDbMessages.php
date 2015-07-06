@@ -2,51 +2,47 @@
 
 namespace FP\Larmo\Infrastructure\Adapter;
 
+use FP\Larmo\Domain\ValueObject\UniqueId;
 use FP\Larmo\Domain\Service\FiltersCollection;
 use FP\Larmo\Domain\Service\MessageCollection;
-use FP\Larmo\Domain\ValueObject\UniqueId;
-use FP\Larmo\Infrastructure\Service\MessageStorageProvider;
-use FP\Larmo\Infrastructure\Factory\Message as FactoryMessage;
+use FP\Larmo\Infrastructure\Factory\Message as MessageFactory;
+use FP\Larmo\Infrastructure\Repository\Messages as MessageRepository;
 
-class MongoMessageStorageProvider implements MessageStorageProvider
+class MongoDbMessage implements MessageRepository
 {
-    private $db;
+    private $storage;
     private $filters;
+    private $collectionName = 'messages';
 
-    public function __construct($config)
+    public function __construct(MongoDbStorage $storage)
     {
-        $credentials = '';
-        if (isset($config['db_user']) && isset($config['db_password'])) {
-            $credentials = "{$config['db_user']}:{$config['db_password']}@";
-        }
-
-        $uri = "mongodb://{$credentials}{$config['db_url']}:{$config['db_port']}/{$config['db_name']}";
-
-        $client = new \MongoClient($uri);
-        $this->db = $client->selectDB($config['db_name']);
+        $this->storage = $storage;
     }
 
     public function store(MessageCollection $messages)
     {
-        return $this->db->messages->batchInsert($this->convertMessageCollectionToArray($messages));
+        return $this->storage->batchInsert($this->collectionName, $this->convertMessageCollectionToArray($messages));
     }
 
-    public function setFilters(FiltersCollection $filters)
+    /**
+     * @param MessageCollection $messages
+     * @param FiltersCollection $filters
+     * @return MessageCollection
+     */
+    public function retrieve(MessageCollection $messages, FiltersCollection $filters = null)
     {
-        $this->filters = $filters;
-    }
-
-    public function retrieve(MessageCollection $messages)
-    {
-        $messagesArray = $this->db->messages->find();
-
         // @todo: use message collection factory
+        // @todo: set filters: ...->setFilters($filters);
 
-        foreach($messagesArray as $message) {
+        $retrieved = $this->storage->find($this->collectionName);
+
+        foreach ($retrieved as $message) {
             $uniqueId = new UniqueId($message['messageId']);
-            $messageFactory = new FactoryMessage($uniqueId);
+            $messageFactory = new MessageFactory($uniqueId);
             $messages[] = $messageFactory->fromArray($message);
         }
+
+        return $messages;
     }
 
     private function convertMessageCollectionToArray(MessageCollection $messages)

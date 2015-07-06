@@ -1,18 +1,20 @@
 <?php
 
 $app['plugins'] = $app->share(function ($app) {
-    $pluginAdapter = new \FP\Larmo\Infrastructure\Adapter\FilesystemPluginsAdapter($app['config.path.plugins']);
-    $pluginCollection = new \FP\Larmo\Domain\Service\PluginsCollection;
-    $pluginRepository = new \FP\Larmo\Infrastructure\Repository\PluginsRepository($pluginAdapter);
-    $pluginRepository->registerPlugins($pluginCollection);
+    $pluginsCollection = new \FP\Larmo\Domain\Service\PluginsCollection;
+    $pluginsRepository = new \FP\Larmo\Infrastructure\Repository\FilesystemPlugins($app['config.path.plugins']);
+    $pluginsRepository->retrieve($pluginsCollection);
 
-    return new \FP\Larmo\Application\PluginService($pluginCollection);
+    return new \FP\Larmo\Application\PluginService($pluginsCollection);
+});
+
+$app['mongo_db.storage'] = $app->share(function ($app) {
+    $config = $app['config.mongo_db'];
+    return new \FP\Larmo\Infrastructure\Adapter\MongoDbStorage($config['db_url'], $config['db_port'], $config['db_user'], $config['db_password'], $config['db_name'], $config['db_options']);
 });
 
 $app['messages.repository'] = $app->share(function ($app) {
-    $messageProvider = new \FP\Larmo\Infrastructure\Adapter\MongoMessageStorageProvider($app['config.mongo_db']);
-
-    return new \FP\Larmo\Infrastructure\Repository\MessageRepository($messageProvider);
+    return new \FP\Larmo\Infrastructure\Repository\MongoDbMessages($app['mongo_db.storage']);
 });
 
 $app['messages.factory'] = $app->share(function () {

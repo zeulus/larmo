@@ -6,21 +6,8 @@ use FP\Larmo\Domain\Service\FiltersCollection;
 use FP\Larmo\Domain\Service\MessageCollection;
 use FP\Larmo\Infrastructure\Service\MessageStorageProvider;
 
-class MessageRepository
+interface Message
 {
-
-    /**
-     * @var MessageStorageProvider
-     */
-    private $storage;
-
-    /**
-     * @param MessageStorageProvider $storage
-     */
-    public function __construct(MessageStorageProvider $storage)
-    {
-        $this->storage = $storage;
-    }
 
     /**
      * @param MessageCollection $messages

@@ -4,7 +4,7 @@
 use FP\Larmo\Domain\Service\PluginsCollection;
 use FP\Larmo\Infrastructure\Adapter\FilesystemPluginsAdapter;
 
-class FilesystemPluginAdapterTest extends PHPUnit_Framework_TestCase
+class FilesystemPluginRepositoryTest extends PHPUnit_Framework_TestCase
 {
 
     /**
