@@ -11,7 +11,8 @@ $app->get('/latestMessages', function (Request $request) use ($app) {
         $filters->addFilters($content);
     }
 
-    $messages = $app['messages.repository']->retrieve($filters);
+    $messages = $app['messages.collection'];
+    $app['messages.repository']->retrieve($messages, $filters);
 
     $outputArray = [];
 

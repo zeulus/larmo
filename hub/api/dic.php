@@ -13,6 +13,10 @@ $app['mongo_db.storage'] = $app->share(function ($app) {
     return new \FP\Larmo\Infrastructure\Adapter\MongoDbStorage($config['db_url'], $config['db_port'], $config['db_user'], $config['db_password'], $config['db_name'], $config['db_options']);
 });
 
+$app['messages.collection'] = $app->share(function ($app) {
+    return new \FP\Larmo\Domain\Service\MessageCollection;
+});
+
 $app['messages.repository'] = $app->share(function ($app) {
     return new \FP\Larmo\Infrastructure\Repository\MongoDbMessages($app['mongo_db.storage']);
 });
