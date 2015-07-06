@@ -8,6 +8,11 @@ use FP\Larmo\Domain\ValueObject\UniqueId;
 
 class MessageCollection
 {
+    public function createEmptyCollection()
+    {
+        return $this->fromArray([]);
+    }
+
     public function fromArray($messages)
     {
         $generator = new PhpUniqidGenerator();
