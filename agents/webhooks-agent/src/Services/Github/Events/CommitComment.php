@@ -11,7 +11,7 @@ class CommitComment extends EventAbstract
 
         $message = array(
             'type' => 'github.created_commit_comment',
-            'timestamp' => strtotime($comment->created_at),
+            'timestamp' => $comment->created_at,
             'author' => array(
                 'login' => $comment->user->login
             ),

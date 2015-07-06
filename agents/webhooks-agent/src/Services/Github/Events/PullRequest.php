@@ -10,7 +10,7 @@ class PullRequest extends EventAbstract
 
         $message = array(
             'type' => 'github.pull_request_' . $dataObject->action,
-            'timestamp' => strtotime($pullRequest->updated_at),
+            'timestamp' => $pullRequest->updated_at,
             'author' => array(
                 'login' => $pullRequest->user->login
             ),
