@@ -14,12 +14,12 @@ class Issues extends EventAbstract
             'author' => array(
                 'login' => $issue->user->login
             ),
-            'message' => $issue->user->login . ' ' . $dataObject->action . ' issue',
+            'body' => $dataObject->action . ' issue',
             'extras' => array(
                 'id' => $issue->id,
                 'number' => $issue->number,
                 'title' => $issue->title,
-                'message' => $issue->body,
+                'body' => $issue->body,
                 'url' => $issue->html_url
             )
         );

@@ -14,12 +14,12 @@ class PullRequest extends EventAbstract
             'author' => array(
                 'login' => $pullRequest->user->login
             ),
-            'message' => $pullRequest->user->login . ' ' . $dataObject->action . ' pull request',
+            'body' => $dataObject->action . ' pull request',
             'extras' => array(
                 'id' => $pullRequest->id,
                 'number' => $pullRequest->number,
                 'title' => $pullRequest->title,
-                'message' => $pullRequest->body,
+                'body' => $pullRequest->body,
                 'url' => $pullRequest->html_url
             )
         );

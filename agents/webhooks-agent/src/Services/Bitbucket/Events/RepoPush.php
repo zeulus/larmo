@@ -35,9 +35,9 @@ class RepoPush extends EventAbstract
                 'email' => $commit->author->raw,
                 'login' => $commit->author->user->username
             ),
-            'message' => $commit->author->user->display_name . ' added commit: "' . $commit->message . '"',
+            'body' => $commit->author->user->display_name . ' added commit: "' . $commit->message . '"',
             'extras' => array(
-                'message' => $commit->message,
+                'body' => $commit->message,
                 'url' => $commit->links->html->href,
                 'hash' => $commit->hash
             )

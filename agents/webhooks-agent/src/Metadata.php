@@ -20,7 +20,7 @@ class Metadata
         return array(
             'timestamp' => $this->timestamp,
             'source' => $this->source,
-            'authinfo' => $this->authinfo
+            'authinfo' => ['agent' => 'webhooks', 'auth' =>$this->authinfo]
         );
     }
 }

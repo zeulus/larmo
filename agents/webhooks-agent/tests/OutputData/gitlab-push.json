@@ -6,10 +6,10 @@
       "name": "Jordi Mallach",
       "email": "jordi@softcatala.org"
     },
-    "message": "Jordi Mallach added commit: \"Update Catalan translation to e38cb41.\"",
+    "body": "Jordi Mallach added commit: \"Update Catalan translation to e38cb41.\"",
     "extras": {
       "id": "b6568db1bc1dcd7f8b4d5a946b0b91f9dacd7327",
-      "message": "Update Catalan translation to e38cb41.",
+      "body": "Update Catalan translation to e38cb41.",
       "url": "http://example.com/mike/diaspora/commit/b6568db1bc1dcd7f8b4d5a946b0b91f9dacd7327"
     }
   },
@@ -20,10 +20,10 @@
       "name": "GitLab dev user",
       "email": "gitlabdev@dv6700.(none)"
     },
-    "message": "GitLab dev user added commit: \"fixed readme\"",
+    "body": "GitLab dev user added commit: \"fixed readme\"",
     "extras": {
       "id": "da1560886d4f094c3e6c9ef40349f7d38b5d27d7",
-      "message": "fixed readme",
+      "body": "fixed readme",
       "url": "http://example.com/mike/diaspora/commit/da1560886d4f094c3e6c9ef40349f7d38b5d27d7"
     }
   }

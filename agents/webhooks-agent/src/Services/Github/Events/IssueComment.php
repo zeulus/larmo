@@ -15,12 +15,12 @@ class IssueComment extends EventAbstract
             'author' => array(
                 'login' => $comment->user->login
             ),
-            'message' => $comment->user->login . ' ' . $dataObject->action . ' issue comment',
+            'body' => $dataObject->action . ' issue comment',
             'extras' => array(
                 'id' => $comment->id,
                 'issue_id' => $issue->id,
                 'issue_title' => $issue->title,
-                'message' => $comment->body,
+                'body' => $comment->body,
                 'url' => $comment->html_url
             )
         );

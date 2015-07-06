@@ -5,12 +5,12 @@
     "author": {
       "login": "test"
     },
-    "message": "test created issue comment",
+    "body": "created issue comment",
     "extras": {
       "id": 114112195,
       "issue_id": 1000000,
       "issue_title": "sasa",
-      "message": "aaaaaaaaaaaasasa",
+      "body": "aaaaaaaaaaaasasa",
       "url": "https://github.com/test/test-hooks-repo/issues/2#issuecomment-114112195"
     }
   }

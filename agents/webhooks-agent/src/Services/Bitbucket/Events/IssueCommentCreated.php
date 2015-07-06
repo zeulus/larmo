@@ -16,11 +16,11 @@ class IssueCommentCreated extends EventAbstract
                 'login' => $comment->user->username,
                 'name' => $comment->user->display_name,
             ),
-            'message' => $comment->user->display_name . ' has commented on issue "' . $issue->title . '"',
+            'body' => $comment->user->display_name . ' has commented on issue "' . $issue->title . '"',
             'extras' => array(
                 'issue_id' => $issue->id,
                 'comment_id' => $comment->id,
-                'message' => $comment->content->raw,
+                'body' => $comment->content->raw,
                 'html' => $comment->content->html,
                 'url' => $comment->links->html->href,
             )

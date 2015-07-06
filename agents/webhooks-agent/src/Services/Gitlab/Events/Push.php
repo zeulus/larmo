@@ -25,10 +25,10 @@ class Push extends EventAbstract
                 'name' => $commit->author->name,
                 'email' => $commit->author->email
             ),
-            'message' => $commit->author->name . ' added commit: "' . $commit->message . '"',
+            'body' => $commit->author->name . ' added commit: "' . $commit->message . '"',
             'extras' => array(
                 'id' => $commit->id,
-                'message' => $commit->message,
+                'body' => $commit->message,
                 'url' => $commit->url
             )
         );

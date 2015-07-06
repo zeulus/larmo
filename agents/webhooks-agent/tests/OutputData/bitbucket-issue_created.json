@@ -6,12 +6,12 @@
       "login": "username",
       "name": "User Name"
     },
-    "message": "User Name has created \"Message Title\" issue",
+    "body": "User Name has created \"Message Title\" issue",
     "extras": {
       "id": 1,
       "priority": "critical",
       "title": "Message Title",
-      "message": "Content message.",
+      "body": "Content message.",
       "html": "<p>Content message.</p>",
       "url": "https://bitbucket.org/username/projectname/issue/1/message-title",
       "attachments": "https://bitbucket.org/api/2.0/repositories/username/projectname/issues/1/attachments",
