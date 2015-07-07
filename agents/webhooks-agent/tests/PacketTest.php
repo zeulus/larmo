@@ -9,7 +9,7 @@ class PacketTest extends PHPUnit_Framework_TestCase
     private $packet;
     private $errorCatched;
 
-    public function setup()
+    protected function setUp()
     {
         $this->errorCatched = false;
         set_error_handler(array($this, 'errorHandler'));
