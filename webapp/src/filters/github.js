@@ -42,6 +42,8 @@ function GithubExtendedMessage() {
             message = input.extras.body;
         } else if(input.type == 'github.issue_opened') {
             message = '<strong>' + input.extras.title + '</strong><br/>' + input.extras.body;
+        } else if(input.type == 'github.issue_comment_created') {
+            message = input.extras.body;
         }
 
         return message;
