@@ -8,6 +8,16 @@ use \Behat\Behat\Context\BehatContext;
 class FeatureContext extends BehatContext
 {
 
+    public static $app;
+
+    /**
+     * @beforeSuite
+     */
+    public static function prepareDIC()
+    {
+        self::$app = require(__DIR__.'/DIC/definitions.php');
+    }
+
     /**
      * Initializes context.
      * Every scenario gets its own context object.

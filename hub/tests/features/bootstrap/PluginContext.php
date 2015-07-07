@@ -1,12 +1,6 @@
 <?php
 
 use Behat\Behat\Context\BehatContext;
-use FP\Larmo\Application\Adapter\VendorJsonSchemaValidation;
-use FP\Larmo\Application\PacketValidationService;
-use FP\Larmo\Application\PluginService;
-use FP\Larmo\Domain\Service\PluginsCollection;
-use FP\Larmo\Infrastructure\Repository\FilesystemPlugins;
-use FP\Larmo\Infrastructure\Adapter\IniFileAuthInfoProvider;
 
 class PluginContext extends BehatContext
 {
@@ -18,18 +12,7 @@ class PluginContext extends BehatContext
      */
     public static function preparePluginContext()
     {
-        $path = __DIR__ . '/../../../';
-
-        $jsonValidator = new VendorJsonSchemaValidation();
-        $authinfo = new IniFileAuthInfoProvider($path . 'config/authinfo.ini');
-
-        $pluginsCollection = new PluginsCollection;
-        $directoryIterator = new \DirectoryIterator($path . 'src/Plugin');
-        $pluginRepository = new FilesystemPlugins($directoryIterator);
-        $pluginRepository->retrieve($pluginsCollection);
-        $pluginsService = new PluginService($pluginsCollection);
-
-        self::$packetValidationServiceInstance = new PacketValidationService($jsonValidator, $authinfo, $pluginsService);
+        self::$packetValidationServiceInstance = FeatureContext::$app['packet_validation.service'];
     }
 
     /**

@@ -1,14 +1,6 @@
 <?php
 
 use Behat\Behat\Context\BehatContext;
-use PHPUnit_Framework_MockObject_Generator as MockObject;
-use FP\Larmo\Domain\Aggregate\Packet;
-use FP\Larmo\Domain\Entity\Metadata;
-use FP\Larmo\Domain\Entity\Message;
-use FP\Larmo\Domain\ValueObject\Author;
-use FP\Larmo\Domain\ValueObject\UniqueId;
-use FP\Larmo\Domain\Service\MessageCollection;
-use FP\Larmo\Infrastructure\Adapter\PhpUniqidGenerator;
 
 class DomainPacketContext extends BehatContext
 {
@@ -42,28 +34,17 @@ class DomainPacketContext extends BehatContext
             throw new Exception('There is no agent packet to build a domain packet');
         }
 
-        $mockObject = new MockObject;
-        $authInterface = $mockObject->getMock('\FP\Larmo\Domain\Service\AuthInfoInterface');
-        $metadata = $this->decodedString['metadata'];
-        $this->metadata = new Metadata($authInterface, $metadata['timestamp'], $metadata['authinfo'], $metadata['source']);
+        $metadataEntityContainer = FeatureContext::$app['metadata.entity'];
+        $this->metadata = $metadataEntityContainer(
+            $this->decodedString['metadata'],
+            FeatureContext::$app['authinfo']
+        );
 
-        $messageCollectionFromDecodedString = $this->decodedString['data'];
-        $uniqueIDGenerator = new PhpUniqidGenerator;
-        $uniqueIDValueObject = new UniqueId($uniqueIDGenerator);
-        $this->messages =  new MessageCollection;
+        $messageEntityContainer = FeatureContext::$app['message.entity'];
+        $this->messages = $messageEntityContainer($this->decodedString['data']);
 
-        foreach($messageCollectionFromDecodedString as $singleMessage) {
-            $author = new Author('', '', $singleMessage['author']['email']);
-            $this->messages->append(new Message(
-                    $singleMessage['type'],
-                    $singleMessage['timestamp'],
-                    $author,
-                    $uniqueIDValueObject,
-                    $singleMessage['message'])
-            );
-        }
-
-        $this->packet = new Packet($this->messages, $this->metadata);
+        $packetAggregate = FeatureContext::$app['packet.aggregate'];
+        $this->packet = $packetAggregate($this->messages, $this->metadata);
     }
 
 }
