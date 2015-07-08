@@ -18,7 +18,7 @@ Builds a well formed agent packet fixture.
 @Given /^A packet coming from an agent with the following "([^"]*)" wrong:$/
 ```
 
-Builds a wrong formed agent packet with option to specify a `parentProperty` where wrong fields will be applied. A `TableNode` object is used to apply the desired wrong fields.
+Builds a wrong formed agent packet with option to specify a `key` where wrong fields will be applied. A `TableNode` object is used to apply the desired wrong fields.
 
 ```
     Given A packet coming from an agent with the following "metadata" wrong:

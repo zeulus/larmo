@@ -5,6 +5,9 @@ use Behat\Behat\Context\BehatContext;
 class PluginContext extends BehatContext
 {
 
+    /**
+     * @var \FP\Larmo\Application\PacketValidationService
+     */
     public static $packetValidationServiceInstance;
 
     /**
@@ -12,7 +15,7 @@ class PluginContext extends BehatContext
      */
     public static function preparePluginContext()
     {
-        self::$packetValidationServiceInstance = FeatureContext::$app['packet_validation.service'];
+        self::$packetValidationServiceInstance = FeatureContext::$container['packet_validation.service'];
     }
 
     /**
@@ -25,7 +28,7 @@ class PluginContext extends BehatContext
         }
 
         $decodedPacketString = json_decode($this->getMainContext()->getSubcontext('AgentPacket')->agentPacket);
-        $schema = __DIR__ . '/FixtureProvider/agentPacketFixtureSchema.json';
+        $schema = __DIR__ . '/Fixtures/agentPacketSchema.json';
 
         if (!self::$packetValidationServiceInstance
             ->setSchemaFromFile($schema)

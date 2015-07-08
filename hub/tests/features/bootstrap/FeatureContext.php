@@ -8,14 +8,17 @@ use \Behat\Behat\Context\BehatContext;
 class FeatureContext extends BehatContext
 {
 
-    public static $app;
+    /**
+     * @var \Pimple DI Container
+     */
+    public static $container;
 
     /**
      * @beforeSuite
      */
     public static function prepareDIC()
     {
-        self::$app = require(__DIR__.'/DIC/definitions.php');
+        self::$container = require(__DIR__.'/DIC/definitions.php');
     }
 
     /**

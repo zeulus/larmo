@@ -1,15 +1,20 @@
 <?php
 
 use Behat\Behat\Context\BehatContext;
-use Behat\Behat\Context\FixtureProvider\AgentPacketFixtureProvider;
+use Behat\Behat\Context\Fixtures\Providers\AgentPacket as AgentPacketFixtureProvider;
 use Behat\Gherkin\Node\TableNode;
 
 class AgentPacketContext extends BehatContext
 {
 
+    /**
+     * @var string JSON created from AgentPacketFixtureProvider
+     */
     public $agentPacket;
-    public $agentPacketSchema;
 
+    /**
+     * @var AgentPacketFixtureProvider
+     */
     public static $agentPacketFixtureProvider;
 
     /**
@@ -43,10 +48,10 @@ class AgentPacketContext extends BehatContext
     /**
      * @Given /^A packet coming from an agent with the following "([^"]*)" wrong:$/
      */
-    public function aPacketComingFromAnAgentWithTheFollowingFieldWrong($parentProperty, TableNode $table)
+    public function aPacketComingFromAnAgentWithTheFollowingFieldWrong($key, TableNode $table)
     {
         $this->agentPacket = self::$agentPacketFixtureProvider
-            ->wrongFormedPacket($parentProperty, $table->getRows())
+            ->wrongPopulatedPacket($key, $table->getRows())
             ->build();
     }
 

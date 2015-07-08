@@ -2,7 +2,7 @@
     "metadata": {
         "timestamp": 1434973744,
         "source": "github",
-        "authinfo": {"agent" : "webhooks", "auth" : "NJS78350hi[2-0,capos0q2u5noafuig"}
+        "authinfo": {"agent" : "my_agent", "auth" : "my_super_secret_key"}
     },
     "data": [
         {

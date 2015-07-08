@@ -4,7 +4,7 @@ $container = new \Pimple;
 
 // Configuration
 $container['config.path.plugins'] = __DIR__ . '/../../../../src/Plugin';
-$container['config.path.authinfo'] = __DIR__ . '/../../../../config/authinfo.ini';
+$container['config.path.authinfo'] = __DIR__ . '/../Fixtures/authinfo.ini';
 
 // Definitions
 $container['plugins'] = $container->share(function ($container) {
@@ -36,7 +36,7 @@ $container['metadata.entity'] = $container->protect(function ($metadata, $authin
     return new FP\Larmo\Domain\Entity\Metadata($authinfo, $metadata['timestamp'], $metadata['authinfo'], $metadata['source']);
 });
 
-$container['message.entity'] = $container->protect(function ($data) {
+$container['message_collection.service'] = $container->protect(function ($data) {
     $uniqueIDGenerator = new FP\Larmo\Infrastructure\Adapter\PhpUniqidGenerator;
     $uniqueIDValueObject = new FP\Larmo\Domain\ValueObject\UniqueId($uniqueIDGenerator);
     $messages = new FP\Larmo\Domain\Service\MessageCollection;

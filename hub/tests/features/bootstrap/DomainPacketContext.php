@@ -5,9 +5,24 @@ use Behat\Behat\Context\BehatContext;
 class DomainPacketContext extends BehatContext
 {
 
+    /**
+     * @var array Associative array created from agent packet fixture JSON string
+     */
     private $decodedString;
+
+    /**
+     * @var FP\Larmo\Domain\Entity\Metadata
+     */
     private $metadata;
-    private $messages;
+
+    /**
+     * @var FP\Larmo\Domain\Service\MessageCollection
+     */
+    private $messageCollection;
+
+    /**
+     * @var FP\Larmo\Domain\Aggregate\Packet
+     */
     private $packet;
 
     /**
@@ -34,17 +49,17 @@ class DomainPacketContext extends BehatContext
             throw new Exception('There is no agent packet to build a domain packet');
         }
 
-        $metadataEntityContainer = FeatureContext::$app['metadata.entity'];
+        $metadataEntityContainer = FeatureContext::$container['metadata.entity'];
         $this->metadata = $metadataEntityContainer(
             $this->decodedString['metadata'],
-            FeatureContext::$app['authinfo']
+            FeatureContext::$container['authinfo']
         );
 
-        $messageEntityContainer = FeatureContext::$app['message.entity'];
-        $this->messages = $messageEntityContainer($this->decodedString['data']);
+        $messageCollectionContainer = FeatureContext::$container['message_collection.service'];
+        $this->messageCollection = $messageCollectionContainer($this->decodedString['data']);
 
-        $packetAggregate = FeatureContext::$app['packet.aggregate'];
-        $this->packet = $packetAggregate($this->messages, $this->metadata);
+        $packetAggregate = FeatureContext::$container['packet.aggregate'];
+        $this->packet = $packetAggregate($this->messageCollection, $this->metadata);
     }
 
 }
