@@ -2,10 +2,10 @@
 namespace Behat\Behat\Context\Fixtures\Providers;
 
 /**
- * Class AgentPacketFixtureProvider
- * @package Behat\Behat\Context\FixtureProvider
+ * Class AgentPacket
+ * @package Behat\Behat\Context\Fixtures\Providers
  *
- * Provider for Agent Packets
+ * Agent packet fixture provider
  */
 class AgentPacket
 {
