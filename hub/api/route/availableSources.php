@@ -7,6 +7,7 @@ $app->get('/availableSources', function () use ($app) {
         ['id' => 'github', 'label' => 'GitHub'],
         ['id' => 'gitlab', 'label' => 'GitLab'],
         ['id' => 'bitbucket', 'label' => 'Bitbucket'],
+        ['id' => 'travis', 'label' => 'Travis CI']
     ];
 
     return $app->json($sources);
