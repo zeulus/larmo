@@ -7,7 +7,7 @@ class MetadataWebHookTest extends PHPUnit_Framework_TestCase
     private $timestamp;
     private $metadata;
 
-    public function setup()
+    protected function setUp()
     {
         $this->timestamp = time();
         $this->metadata = new Metadata("SOURCE","AUTHSTRING",$this->timestamp);

@@ -10,16 +10,16 @@ class PullRequest extends EventAbstract
 
         $message = array(
             'type' => 'github.pull_request_' . $dataObject->action,
-            'timestamp' => strtotime($pullRequest->updated_at),
+            'timestamp' => $pullRequest->updated_at,
             'author' => array(
                 'login' => $pullRequest->user->login
             ),
-            'message' => $pullRequest->user->login . ' ' . $dataObject->action . ' pull request',
+            'body' => $dataObject->action . ' pull request',
             'extras' => array(
                 'id' => $pullRequest->id,
                 'number' => $pullRequest->number,
                 'title' => $pullRequest->title,
-                'message' => $pullRequest->body,
+                'body' => $pullRequest->body,
                 'url' => $pullRequest->html_url
             )
         );
