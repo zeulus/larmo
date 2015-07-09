@@ -49,15 +49,18 @@ class DomainPacketContext extends BehatContext
             throw new Exception('There is no agent packet to build a domain packet');
         }
 
+        /** @var callable $metadataEntityContainer */
         $metadataEntityContainer = FeatureContext::$container['metadata.entity'];
         $this->metadata = $metadataEntityContainer(
             $this->decodedString['metadata'],
             FeatureContext::$container['authinfo']
         );
 
+        /** @var callable $messageCollectionContainer */
         $messageCollectionContainer = FeatureContext::$container['message_collection.service'];
         $this->messageCollection = $messageCollectionContainer($this->decodedString['data']);
 
+        /** @var callable $packetAggregate */
         $packetAggregate = FeatureContext::$container['packet.aggregate'];
         $this->packet = $packetAggregate($this->messageCollection, $this->metadata);
     }
