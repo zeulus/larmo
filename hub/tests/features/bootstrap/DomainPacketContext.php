@@ -26,9 +26,9 @@ class DomainPacketContext extends BehatContext
     private $packet;
 
     /**
-     * @When /^I decode a packet coming from an agent into an array$/
+     * @Then /^The Agent Packet is decoded into an array$/
      */
-    public function iDecodeAPacketComingFromAnAgentIntoAnArray()
+    public function theAgentPacketIsDecodedIntoAnArray()
     {
         if (is_null($this->getMainContext()->getSubcontext('AgentPacket')->agentPacket)) {
             throw new Exception('There is no agent packet to decode');
@@ -41,9 +41,9 @@ class DomainPacketContext extends BehatContext
     }
 
     /**
-     * @Then /^The system can create a packet in the domain$/
+     * @Then /^The Domain Packet Aggregate is created$/
      */
-    public function theSystemCanCreateAPacketInTheDomain()
+    public function theDomainPacketAggregateIsCreated()
     {
         if (is_null($this->decodedString)) {
             throw new Exception('There is no agent packet to build a domain packet');

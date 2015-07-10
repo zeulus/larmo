@@ -26,19 +26,19 @@ class AgentPacketContext extends BehatContext
     }
 
     /**
-     * @Given /^A packet coming from an agent with invalid structure$/
+     * @Given /^A malformed Agent Packet$/
      */
-    public function aPacketComingFromAnAgentWithInvalidStructure()
+    public function aMalformedAgentPacket()
     {
         $this->agentPacket = self::$agentPacketFixtureProvider
-            ->wrongStructuredPacket()
+            ->malformedPacket()
             ->build();
     }
 
     /**
-     * @Given /^A well formed packet coming from an agent$/
+     * @Given /^A valid Agent Packet$/
      */
-    public function aWellFormedPacketComingFromAnAgent()
+    public function aValidAgentPacket()
     {
         $this->agentPacket = self::$agentPacketFixtureProvider
             ->wellFormedPacket()
@@ -46,12 +46,12 @@ class AgentPacketContext extends BehatContext
     }
 
     /**
-     * @Given /^A packet coming from an agent with the following "([^"]*)" wrong:$/
+     * @Given /^An Agent Packet with the following wrong "([^"]*)" fields:$/
      */
-    public function aPacketComingFromAnAgentWithTheFollowingFieldWrong($key, TableNode $table)
+    public function anAgentPacketWithTheFollowingWrongFields($key, TableNode $table)
     {
         $this->agentPacket = self::$agentPacketFixtureProvider
-            ->wrongPopulatedPacket($key, $table->getRows())
+            ->packetWithWrongData($key, $table->getRows())
             ->build();
     }
 

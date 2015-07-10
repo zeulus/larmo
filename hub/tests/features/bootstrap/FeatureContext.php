@@ -31,7 +31,7 @@ class FeatureContext extends BehatContext
     {
         $this->useContext('AgentPacket', new AgentPacketContext);
         $this->useContext('DomainPacket', new DomainPacketContext);
-        $this->useContext('Plugin', new PluginContext);
+        $this->useContext('PacketValidationService', new PacketValidationServiceContext);
     }
 
 }

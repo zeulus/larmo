@@ -6,94 +6,102 @@
 
 A new *Agent Packet Fixture Provider* instance is created.
 
-#### Well formed packet
+#### A valid Agent Packet
+
 ```
-@Given /^A well formed packet coming from an agent$/
+@Given /^A valid Agent Packet$/
 ```
 
-Builds a well formed agent packet fixture.
+Builds a valid Agent Packet.
 
-#### Wrong formed packet
+#### A malformed Agent Packet
+
 ```
-@Given /^A packet coming from an agent with the following "([^"]*)" wrong:$/
+@Given /^A malformed Agent Packet$/
+```
+
+Builds a malformed Agent Packet.
+
+#### An Agent Packet with specific wrong fields
+```
+@Given /^An Agent Packet with the following wrong "([^"]*)" fields:$/
 ```
 
 Builds a wrong formed agent packet with option to specify a `key` where wrong fields will be applied. A `TableNode` object is used to apply the desired wrong fields.
 
 ```
-    Given A packet coming from an agent with the following "metadata" wrong:
-      | auth | invalidAuthKey |
+    Given An Agent Packet with the following wrong "metadata" fields:
+      | key | value |
 ```
 
 If you want to apply multiple wrong fields:
 
 ```
-    Given A packet coming from an agent with the following "metadata" wrong:
+    Given An Agent Packet with the following wrong "metadata" fields:
       | auth | invalidAuthKey |
-      | source | nonValidSource |
-      | anotherField | anotherWrongField |
+      | source | invalidSource |
 ```
 
-If the desired field we want to modify does not exist, this will not modify anything.
+If the desired `key` we want to modify does not exist, this will not modify anything.
 
 ## Domain Packet Context
 
-#### Decoding a packet coming from an agent
+#### Decode an Agent Packet into an array 
 
 ```
-@When /^I decode a packet coming from an agent into an array$/
+@Then /^The Agent Packet is decoded into an array$/
 ```
 
-Note that this step **requires** a previously well formed packet. Otherwise the step will be marked as failed.
+Note that this step **requires** a valid Agent Packet. Otherwise the step will be marked as failed.
 
-#### Create a domain packet
+#### Create a domain packet aggregate
 
 ```
-@Then /^The system can create a packet in the domain$/
+@Then /^The Domain Packet Aggregate is created$/
 ```
 
-It creates a Domain Packet with using data provided from an Agent Fixture Provider
+It creates a Domain Packet Aggregate with using data provided from an Agent Fixture Provider
 
-Note that this step **requires** a previously well formed packet. Otherwise the step will be marked as failed.
+Note that this step **requires** a valid Agent Packet. Otherwise the step will be marked as failed.
 
-## Plugin Service Context
+## Packet Validation Service Context
 
 ###### @beforeScenario
 
 A new *Packet Validation Service* instance is created.
 
-#### Prepare a packet to be verified against a schema
+#### Validate an Agent Packet
 
 ```
-@When /^The packet is prepared to be verified against a schema$/
+@When /^The Agent Packet is validated$/
 ```
 
-It prepares the agent packet and the validation schema.
+It validates the Agent Packet
 
-Note that this step **requires** a previously well||wrong formed packet. Otherwise the step will be marked as failed.
+Note that this step **requires** an Agent Packet. Otherwise the step will be marked as failed.
 
-#### Plugin service validation successes
-
-```
-@Then /^The plugin service success to validate$/
-```
-
-Checks if the plugin service validation has been completed successfully
-
-#### Plugin service validation fails
+#### Agent Packet has been accepted by the Packet Validation Service
 
 ```
-@Then /^The plugin service fails to validate$/
+@Then /^It should have been accepted by the Packet Validation Service$/
 ```
 
-Checks if the plugin service validation has been failed
+Checks if the Agent Packet is valid.
 
-#### Packet is rejected with a particular reason
+#### Agent Packet has been rejected by the Packet Validation Service
 
 ```
-@Given /^The packet is rejected with reason "([^"]*)"$/
+@Then /^It should have been rejected by the Packet Validation Service$/
 ```
 
-Checks the failed validation reasons from Plugin Validation Services.
+Checks if the Agent Packet is invalid.
+
+#### Check the reason why the packet was rejected by Packet Validation Service
+
+```
+@Then /^The rejection reason must be "([^"]*)"$/
+```
+
+Checks the failed validation reason given by the Packet Validation Service.
 
 If an expected reason is not found, this step will be marked as failed.

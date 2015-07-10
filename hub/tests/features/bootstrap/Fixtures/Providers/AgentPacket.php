@@ -48,7 +48,7 @@ class AgentPacket
      *
      * @return $this
      */
-    public function wrongStructuredPacket()
+    public function malformedPacket()
     {
         $this->agentPacket = array();
         $this->isValidPacket = false;
@@ -56,35 +56,52 @@ class AgentPacket
     }
 
     /**
-     * Force specific wrong fields in desired key
+     * Override a list of fields in the Agent Packet array
      *
-     * @param $key
+     * The first dimension in Agent Packet array contains the following keys
+     *  [
+     *   'metadata' => Array (timestamp, source info, authinfo),
+     *   'data' => Array (collection of messages)
+     *  ]
+     *
+     * On every iteration in the desired dimension:
+     *  - We loop through the array containing the fields to override:
+     *    - If there is a match between the current Agent Packet key and the current key we want to override,
+     *      the actual value for Agent Packet is overridden.
+     *
+     * To achieve this goal, array_walk_recursive() function is used
+     * @link http://php.net/manual/en/function.array-walk-recursive.php
+     *
+     * @param string $key First dimension of Agent Packet array
      */
-    private function forceWrongFields($key)
+    private function overrideFields($key)
     {
-        array_walk_recursive($this->agentPacket[$key], function(&$element, $key) {
+        // Important: in the callback, because we need to work with the actual values of the Agent Packet array
+        // we must specify the first parameter as a reference.
+        array_walk_recursive($this->agentPacket[$key], function(&$agentPacketValue, $agentPacketKey) {
             foreach ($this->wrongFields as $singleWrongField) {
-                if ($key === $singleWrongField[0]) {
-                    $element = $singleWrongField[1];
+                if ($agentPacketKey === $singleWrongField[0]) {
+                    // Note that what we modify here is the actual value of Agent Packet array.
+                    $agentPacketValue = $singleWrongField[1];
                 }
             }
         });
     }
 
     /**
-     * Force specific wrong fields and sets it as a wrong populated packet
+     * Override fields and sets it as an invalid agent packet
      *
-     * @param string $key Packet key where modifications will be performed: 'metadata' || 'data'
+     * @param string $key First dimension of Agent Packet array
      * @param array $wrongFields Associative array containing the fields to modify
      *
      * @return $this
      */
-    public function wrongPopulatedPacket($key, $wrongFields)
+    public function packetWithWrongData($key, $wrongFields)
     {
         $this->wrongFields = $wrongFields;
 
         if (isset($this->agentPacket[$key]) && is_array($this->agentPacket[$key])) {
-            $this->forceWrongFields($key);
+            $this->overrideFields($key);
         }
 
         $this->isValidPacket = false;

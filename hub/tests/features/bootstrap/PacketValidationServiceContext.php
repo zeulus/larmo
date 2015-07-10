@@ -2,8 +2,10 @@
 
 use Behat\Behat\Context\BehatContext;
 
-class PluginContext extends BehatContext
+class PacketValidationServiceContext extends BehatContext
 {
+
+    private $isValidAgentPacket;
 
     /**
      * @var \FP\Larmo\Application\PacketValidationService
@@ -19,9 +21,9 @@ class PluginContext extends BehatContext
     }
 
     /**
-     * @When /^The packet is prepared to be verified against a schema$/
+     * @When /^The Agent Packet is validated$/
      */
-    public function thePacketIsPreparedToBeVerifiedAgainstASchema()
+    public function theAgentPacketIsValidated()
     {
         if (is_null($this->getMainContext()->getSubcontext('AgentPacket')->agentPacket)) {
             throw new Exception('There is no agent packet to be verified');
@@ -30,42 +32,46 @@ class PluginContext extends BehatContext
         $decodedPacketString = json_decode($this->getMainContext()->getSubcontext('AgentPacket')->agentPacket);
         $schema = __DIR__ . '/Fixtures/agentPacketSchema.json';
 
-        if (!self::$packetValidationServiceInstance
+        $this->isValidAgentPacket = self::$packetValidationServiceInstance
             ->setSchemaFromFile($schema)
             ->setPacket($decodedPacketString)
-        );
+            ->isValid();
     }
 
     /**
-     * @Then /^The plugin service successes to validate$/
+     * @Then /^It should have been accepted by the Packet Validation Service$/
      */
-    public function thePluginServiceSuccessesToValidate()
+    public function itShouldHaveBeenAcceptedByThePacketValidationService()
     {
-        if (!self::$packetValidationServiceInstance->isValid()) {
-            throw new Exception('Plugin service should SUCCESS the validation at this step.');
+        if (!$this->isValidAgentPacket) {
+            throw new Exception('Packet Validation Service should ACCEPT the Agent Packet at this step.');
         }
     }
 
     /**
-     * @Then /^The plugin service fails to validate$/
+     * @Then /^It should have been rejected by the Packet Validation Service$/
      */
-    public function thePluginServiceFailsToValidate()
+    public function itShouldHaveBeenRejectedByThePacketValidationService()
     {
-        if (self::$packetValidationServiceInstance->isValid()) {
-            throw new Exception('Plugin service should FAIL the validation at this step.');
+        if ($this->isValidAgentPacket) {
+            throw new Exception('Packet Validation Service should REJECT the Agent Packet at this step.');
         }
     }
 
     /**
-     * @Given /^The packet is rejected with reason "([^"]*)"$/
+     * @Then /^The rejection reason must be "([^"]*)"$/
      */
-    public function thePacketIsRejectedWithReason($rejectionReason)
+    public function theRejectionReasonMustBe($rejectionReason)
     {
+        $foundReason = false;
+
         foreach (self::$packetValidationServiceInstance->getErrors() as $singleError) {
             if ($singleError['message'] === $rejectionReason) {
-                break;
+                $foundReason = true;
             }
+        }
 
+        if (!$foundReason) {
             throw new Exception('Expected rejection reason not found: '.$rejectionReason);
         }
     }
