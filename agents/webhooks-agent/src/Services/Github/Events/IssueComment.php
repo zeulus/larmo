@@ -19,6 +19,7 @@ class IssueComment extends EventAbstract
             'extras' => array(
                 'id' => $comment->id,
                 'issue_id' => $issue->id,
+                'issue_number' => $issue->number,
                 'issue_title' => $issue->title,
                 'body' => $comment->body,
                 'url' => $comment->html_url

@@ -22,7 +22,12 @@ $response['status'] = 'error';
 $response['message'] = '';
 
 try {
-    $input = file_get_contents('php://input');
+    if(isset($_SERVER['CONTENT_TYPE']) && $_SERVER['CONTENT_TYPE'] === 'application/x-www-form-urlencoded') {
+        $input = $_POST['payload'];
+    } else {
+        $input = file_get_contents('php://input');
+    }
+
     $request = new Request($_SERVER, $input);
 
     if (!$request->isPostMethod()) {
@@ -66,8 +71,9 @@ try {
     http_response_code(500);
 } catch (Exception $e) {
     /* Unpredicted error */
-    $response['message'] = 'Something wrong';
+    $response['message'] = 'Something wrong: ' . $e->getMessage();
     trigger_error($e->getMessage(), E_USER_WARNING);
 } finally {
+    file_put_contents('php://stdout', $response['message']);
     echo json_encode($response);
 }
