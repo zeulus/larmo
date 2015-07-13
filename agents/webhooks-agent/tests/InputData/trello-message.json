@@ -1,0 +1,80 @@
+{
+  "model": {
+    "id": "557ac040afe52a5b292a6d3c",
+    "name": "Larmo",
+    "desc": "",
+    "descData": null,
+    "closed": false,
+    "idOrganization": null,
+    "pinned": false,
+    "url": "https://trello.com/b/6gYTQQXi/larmo",
+    "shortUrl": "https://trello.com/b/6gYTQQXi",
+    "prefs": {
+      "permissionLevel": "private",
+      "voting": "disabled",
+      "comments": "members",
+      "invitations": "members",
+      "selfJoin": false,
+      "cardCovers": true,
+      "cardAging": "regular",
+      "calendarFeedEnabled": false,
+      "background": "blue",
+      "backgroundColor": "#0079BF",
+      "backgroundImage": null,
+      "backgroundImageScaled": null,
+      "backgroundTile": false,
+      "backgroundBrightness": "unknown",
+      "canBePublic": true,
+      "canBeOrg": true,
+      "canBePrivate": true,
+      "canInvite": true
+    },
+    "labelNames": {
+      "green": "",
+      "yellow": "",
+      "orange": "",
+      "red": "",
+      "purple": "",
+      "blue": "",
+      "sky": "",
+      "lime": "",
+      "pink": "",
+      "black": ""
+    }
+  },
+  "action": {
+    "id": "559fb7134cb5d044cb9fb9cd",
+    "idMemberCreator": "557ac0745fef24b660cd12f9",
+    "data": {
+      "checkItem": {
+        "state": "incomplete",
+        "name": "Research",
+        "id": "559fb7134cb5d044cb9fb9cc"
+      },
+      "card": {
+        "shortLink": "quOAXCLp",
+        "idShort": 7,
+        "name": "Trello integration",
+        "id": "5583ec9bf1d3038cc96b6531"
+      },
+      "checklist": {
+        "name": "Checklist",
+        "id": "559a4b556cfbc95f089b9321"
+      },
+      "board": {
+        "shortLink": "6gYTQQXi",
+        "name": "Larmo",
+        "id": "557ac040afe52a5b292a6d3c"
+      }
+    },
+    "type": "createCheckItem",
+    "date": "2015-07-10T12:14:11.649Z",
+    "memberCreator": {
+      "id": "557ac0745fef24b660cd12f9",
+      "avatarHash": null,
+      "fullName": "Test User",
+      "initials": "T",
+      "username": "test-user"
+    }
+  }
+}
