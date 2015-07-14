@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "bower": "*",
+    "ejs": "^2.3.3",
     "express": "^4.13.0"
   },
   "devDependencies": {
