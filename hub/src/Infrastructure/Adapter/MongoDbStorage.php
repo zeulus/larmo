@@ -19,8 +19,8 @@ class MongoDbStorage
         return $this->connection->{$collection}->batchInsert($data);
     }
 
-    public function find($collection)
+    public function find($collection, $find = array())
     {
-        return $this->connection->{$collection}->find();
+        return $this->connection->{$collection}->find($find);
     }
 }

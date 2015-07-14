@@ -12,7 +12,7 @@ class Push extends EventAbstract
 
         foreach ($dataObject->commits as $commit) {
             $commitArray = $this->getArrayFromCommit($commit);
-            array_push($commitArray['extras'], $extras);
+            $commitArray['extras'] = $commitArray['extras'] + $extras;
             array_push($messages, $commitArray);
         }
 

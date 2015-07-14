@@ -77,8 +77,8 @@ class Packet
         if ($results) {
             foreach ($results as $uri => $result) {
                 $response = json_decode($result);
-                if ($response) {
-                    trigger_error('Response from ' . $uri . ': ' . $response->message, E_USER_NOTICE);
+                if ($response->message!=='OK') {
+                    trigger_error('Response from ' . $uri . ': ' . json_encode($response->message), E_USER_NOTICE);
                 }
             }
         }

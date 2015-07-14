@@ -2,26 +2,25 @@
 
 namespace FP\Larmo\Agents\WebHookAgent\Services\Github\Events;
 
-class IssueComment extends EventAbstract
+class PullRequestReviewComment extends EventAbstract
 {
     protected function prepareMessages($dataObject)
     {
-        $issue = $dataObject->issue;
         $comment = $dataObject->comment;
+        $pullRequest = $dataObject->pull_request;
 
         $message = array(
-            'type' => 'github.issue_comment_' . $dataObject->action,
+            'type' => 'github.pull_request_review_comment_' . $dataObject->action,
             'timestamp' => $comment->updated_at,
             'author' => array(
                 'login' => $comment->user->login
             ),
-            'body' => $dataObject->action . ' issue comment',
+            'body' => $dataObject->action . ' pull request review comment',
             'extras' => array(
                 'id' => $comment->id,
-                'issue_id' => $issue->id,
-                'issue_number' => $issue->number,
-                'issue_title' => $issue->title,
                 'body' => $comment->body,
+                'pull_request_number' => $pullRequest->number,
+                'pull_request_url' => $pullRequest->html_url,
                 'url' => $comment->html_url
             )
         );

@@ -51,15 +51,6 @@ class PacketTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function sendPacketWithoutErrors()
-    {
-        $this->packet->send('localhost');
-        $this->assertEquals(false, $this->errorCatched);
-    }
-
-    /**
-     * @test
-     */
     public function packetHasCorrectStructure()
     {
         $result = $this->packet->getPacket();
