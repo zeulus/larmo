@@ -1,5 +1,11 @@
-<div ng-include="'templates/common/filters.html'"></div>
+<div class="container">
+    <div ng-include="'templates/common/filters.html'"></div>
+</div>
 
-<div ng-repeat="message in messages" class="{{'row message source-' + message.source}}">
-    <div ng-include=" 'templates/sources/' + message.source + '.html' "></div>
+<hr>
+
+<div class="container">
+    <div ng-repeat="message in messages" class="{{'message source-' + message.source}}">
+        <div ng-include=" 'templates/sources/' + message.source + '.html' "></div>
+    </div>
 </div>

@@ -1,15 +1,57 @@
-.message {
-  .content > .metadata {
-    margin-bottom: 5px;
+.message .content {
+  padding: $small-offset;
+  margin-bottom: $small-offset;
 
-    .metadata-date {
-      font-size: 12px;
-      color: #aaa;
+  border: $base-border-width solid $lighter-grey;
+  border-radius: $base-border-radius;
+
+  .source {
+    position: relative;
+    top: -$smaller-offset;
+    left: -$tiny-offset;
+
+    @media screen and (max-width: $break-small) {
+      display: block;
+      left: 0;
+      text-align: center;
     }
   }
 
-  .well.well-sm.body {
-    font-size: 12px;
-    color: #474747;
+  .metadata {
+    display: inline-block;
+    margin-bottom: $smaller-offset;
+
+    .metadata-date {
+      display: block;
+      clear: left;
+
+      font-size: $smaller-font;
+      color: $light-grey;
+    }
+
+    @media screen and (max-width: $break-small) {
+      display: block;
+      text-align: center;
+    }
+  }
+
+  .body {
+    padding-left: $base-offset;
+    margin-left: $smaller-offset;
+
+    border-left: $huge-border-width solid $lighter-grey;
+
+    color: $medium-grey;
+    font-size: $small-font;
+
+    word-wrap: normal;
+    word-break: break-word;
+
+    @media screen and (max-width: $break-small) {
+      margin-top: $base-offset;
+
+      border-left-width: 4px;
+      padding-left: $small-offset;
+    }
   }
 }

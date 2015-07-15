@@ -1,9 +1,28 @@
 body {
-  padding-top: 70px;
+  padding-top: $content-offset;
+  font-size: $base-font;
 }
 
-.navbar-brand {
-  font-size: 28px;
+.header {
+  padding: $smaller-offset 0;
+
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+
+  height: $header-height;
+  overflow: hidden;
+
+  background-color: $blue;
+  text-align: center;
+
+  z-index: 10;
+}
+
+hr {
+  margin-top: $base-offset;
+  margin-bottom: $base-offset;
 }
 
 /* AngularJS */
@@ -13,13 +32,3 @@ body {
 
 /* Icons of source */
 .fa-irc:before { content: "\f120"; }
-
-/* Filters form */
-#filters-form {
-  padding: 5px 10px;
-  margin-bottom: 20px;
-
-  label {
-    font-size: 13px;
-  }
-}
