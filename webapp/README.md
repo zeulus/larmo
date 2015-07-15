@@ -32,6 +32,9 @@ Easy way to run application with environment variables:
 
 ```PORT=8000 API_URL=http://your-hub-site.com node index.js```
 
+#### Development
+If you want to do something then you have to run grunt watcher for auto-compiling all files. Run command ```grunt watch```
+
 ## Authors
 
 * [Adrian Piętka](mailto:apietka@future-processing.com)

@@ -20,7 +20,8 @@ module.exports = function(grunt) {
         'sass': {
             dist: {
                 options: {
-                    'sourcemap': 'none'
+                    'sourcemap': 'none',
+                    'style': 'expanded'
                 },
                 files: {
                     'public/style.css': sassFiles

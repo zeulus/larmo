@@ -12,7 +12,6 @@
     <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.4/yeti/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato:100,400,700,900">
-	<link rel="stylesheet" type="text/css" href="public/style<% if(typeof mode_env !='undefined' && mode_env === 'production') { %>.min<%}%>.css">
 </head>
 <body>
     <div ng-controller="AppController">
@@ -30,17 +29,6 @@
     <script src="vendor/angular-sanitize/angular-sanitize.min.js"></script>
     <script src="src/app.js"></script>
     <script src="src/config.js"></script>
-    <% if(typeof mode_env !='undefined' && mode_env === 'production') { %>
-    <script src="public/application.min.js"></script>
-    <% } else { %>
-    <script src="src/lang/en.js"></script>
-    <script src="src/filters/author.js"></script>
-    <script src="src/filters/github.js"></script>
-    <script src="src/filters/travis.js"></script>
-    <script src="src/controllers/appController.js"></script>
-    <script src="src/controllers/mainController.js"></script>
-    <script src="src/services/ajaxService.js"></script>
-    <script src="src/services/apiService.js"></script>
-    <% } %>
+    <%- include('scripts_include/' + mode_env + '.html') %>
 </body>
 </html>
