@@ -6,6 +6,10 @@ module.exports = function(grunt) {
         'src/services/*.js'
     ];
 
+    var sassFiles = [
+        'styles/layout.scss'
+    ];
+
     grunt.initConfig({
         'uglify': {
             'js': {
@@ -13,14 +17,30 @@ module.exports = function(grunt) {
                 'dest': 'public/application.min.js'
             }
         },
+        'sass': {
+            dist: {
+                files: {
+                    'public/style.css': sassFiles
+                }
+            }
+
+        },
+        'cssmin': {
+            'css': {
+                'src': 'public/style.css',
+                'dest': 'public/style.min.css'
+            }
+        },
         'watch': {
             'js': {
-                'files': jsFiles,
-                'tasks': ['uglify']
+                'files': jsFiles.concat(sassFiles),
+                'tasks': ['uglify', 'sass', 'cssmin']
             }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
 };

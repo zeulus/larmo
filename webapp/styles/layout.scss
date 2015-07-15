@@ -1,0 +1,25 @@
+body {
+  padding-top: 70px;
+}
+
+.navbar-brand {
+  font-size: 28px;
+}
+
+/* AngularJS */
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+/* Icons of source */
+.fa-irc:before { content: "\f120"; }
+
+/* Filters form */
+#filters-form {
+  padding: 5px 10px;
+  margin-bottom: 20px;
+
+  label {
+    font-size: 13px;
+  }
+}
