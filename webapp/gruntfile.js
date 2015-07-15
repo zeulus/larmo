@@ -7,7 +7,7 @@ module.exports = function(grunt) {
     ];
 
     var sassFiles = [
-        'styles/layout.scss'
+        'styles/main.scss'
     ];
 
     grunt.initConfig({
@@ -19,6 +19,9 @@ module.exports = function(grunt) {
         },
         'sass': {
             dist: {
+                options: {
+                    'sourcemap': 'none'
+                },
                 files: {
                     'public/style.css': sassFiles
                 }
