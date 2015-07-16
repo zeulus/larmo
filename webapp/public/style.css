@@ -4,26 +4,28 @@
 /* Element border properties */
 /* Media query breakpoints */
 body {
-  padding-top: 85px;
-  font-size: 14px;
+  padding-top: 85pt;
+  font-size: 12pt;
 }
 
 .header {
-  padding: 5px 0;
+  padding: 5pt 0;
   position: fixed;
   width: 100%;
+  display: flex;
+  align-items: center;
+  text-align: center;
   left: 0;
   top: 0;
-  height: 70px;
+  height: 70pt;
   overflow: hidden;
   background-color: #008cba;
-  text-align: center;
   z-index: 10;
 }
 
 hr {
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin-top: 15pt;
+  margin-bottom: 15pt;
 }
 
 /* AngularJS */
@@ -44,21 +46,21 @@ hr {
   vertical-align: baseline;
 }
 #filters-form label {
-  font-size: 1.1em;
+  font-size: 1.2em;
 }
 
 .message .content {
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #d3d3d3;
-  border-radius: 5px;
+  padding: 10pt;
+  margin-bottom: 10pt;
+  border: 1pt solid #d3d3d3;
+  border-radius: 5pt;
 }
 .message .content .source {
   position: relative;
-  top: -5px;
-  left: -2px;
+  top: -5pt;
+  left: -2pt;
 }
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 360pt) {
   .message .content .source {
     display: block;
     left: 0;
@@ -67,39 +69,39 @@ hr {
 }
 .message .content .metadata {
   display: inline-block;
-  margin-bottom: 5px;
+  margin-bottom: 5pt;
 }
 .message .content .metadata .metadata-date {
   display: block;
   clear: left;
-  font-size: 0.8em;
+  font-size: 0.7em;
   color: #bbbbbb;
 }
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 360pt) {
   .message .content .metadata {
     display: block;
     text-align: center;
   }
 }
 .message .content .body {
-  padding-left: 15px;
-  margin-left: 5px;
-  border-left: 8px solid #d3d3d3;
+  padding-left: 15pt;
+  margin-left: 5pt;
+  border-left: 8pt solid #d3d3d3;
   color: #888888;
-  font-size: 0.9em;
+  font-size: 0.8em;
   word-wrap: normal;
   word-break: break-word;
 }
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 360pt) {
   .message .content .body {
-    margin-top: 15px;
+    margin-top: 15pt;
     border-left-width: 4px;
-    padding-left: 10px;
+    padding-left: 10pt;
   }
 }
 
 .source-travis .content {
-  border-top-width: 3px;
+  border-top-width: 3pt;
 }
 .source-travis .content.passed, .source-travis .content.fixed {
   border-top-color: #2ca02c;

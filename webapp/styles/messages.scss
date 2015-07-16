@@ -10,7 +10,7 @@
     top: -$smaller-offset;
     left: -$tiny-offset;
 
-    @media screen and (max-width: $break-small) {
+    @include on-small-screen() {
       display: block;
       left: 0;
       text-align: center;
@@ -25,11 +25,11 @@
       display: block;
       clear: left;
 
-      font-size: $smaller-font;
+      font-size: $smaller-font-size;
       color: $light-grey;
     }
 
-    @media screen and (max-width: $break-small) {
+    @include on-small-screen() {
       display: block;
       text-align: center;
     }
@@ -39,15 +39,15 @@
     padding-left: $base-offset;
     margin-left: $smaller-offset;
 
-    border-left: $huge-border-width solid $lighter-grey;
+    border-left: $bigger-border-width solid $lighter-grey;
 
     color: $medium-grey;
-    font-size: $small-font;
+    font-size: $small-font-size;
 
     word-wrap: normal;
     word-break: break-word;
 
-    @media screen and (max-width: $break-small) {
+    @include on-small-screen() {
       margin-top: $base-offset;
 
       border-left-width: 4px;

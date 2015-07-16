@@ -13,27 +13,27 @@ $dark-grey    : #666666;
 $darker-grey  : #222222;
 
 /* Base font properties */
-$big-font     : 1.1em;
-$base-font    : 14px;
-$small-font   : 0.9em;
-$smaller-font : 0.8em;
+$base-font-size    : 12pt;
+
+$big-font-size     : 1.2em;
+$small-font-size   : 0.8em;
+$smaller-font-size : 0.7em;
 
 /* Offset properties used for margin and padding */
-$base-offset    : 15px;
-$small-offset   : 10px;
-$smaller-offset : 5px;
-$tiny-offset    : 2px;
+$base-offset    : 15pt;
+$small-offset   : 10pt;
+$smaller-offset : 5pt;
+$tiny-offset    : 2pt;
 
-$header-height  : 70px;
+$header-height  : 70pt;
 $content-offset : $header-height + $base-offset;
 
 /* Element border properties */
-$huge-border-width  : 8px;
-$bigger-border-width  : 5px;
-$big-border-width  : 3px;
-$base-border-width  : 1px;
+$bigger-border-width  : 8pt;
+$big-border-width     : 3pt;
+$base-border-width    : 1pt;
 
-$base-border-radius : 5px;
+$base-border-radius : 5pt;
 
 /* Media query breakpoints */
-$break-small : 360px;
+$break-small : 360pt;
