@@ -26,7 +26,7 @@ $smaller-offset : 5pt;
 $tiny-offset    : 2pt;
 
 $header-height  : 70pt;
-$content-offset : $header-height + $base-offset;
+$content-offset : $header-height + ($base-offset * 5);
 
 /* Element border properties */
 $bigger-border-width  : 8pt;

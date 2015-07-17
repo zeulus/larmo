@@ -3,7 +3,7 @@ body {
   font-size: $base-font-size;
 }
 
-.header {
+#header {
   padding: $smaller-offset 0;
 
   position: fixed;
@@ -20,6 +20,11 @@ body {
   background-color: $blue;
 
   z-index: 10;
+
+  @include headroom-apply-transition();
+  @include headroom-on-scroll-up(translateY(-100%));
+  @include headroom-on-scroll-down(translateY(-100%));
+  @include headroom-on-top(translateY(0));
 }
 
 hr {

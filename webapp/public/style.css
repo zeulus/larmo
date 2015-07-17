@@ -4,11 +4,11 @@
 /* Element border properties */
 /* Media query breakpoints */
 body {
-  padding-top: 85pt;
+  padding-top: 145pt;
   font-size: 12pt;
 }
 
-.header {
+#header {
   padding: 5pt 0;
   position: fixed;
   width: 100%;
@@ -21,6 +21,30 @@ body {
   overflow: hidden;
   background-color: #008cba;
   z-index: 10;
+}
+#header.headroom {
+  -webkit-transition: transform 400ms ease;
+  -moz-transition: transform 400ms ease;
+  -o-transition: transform 400ms ease;
+  transition: transform 400ms ease;
+}
+#header.headroom--pinned {
+  -webkit-transform: translateY(-100%);
+  -moz-transform: translateY(-100%);
+  -o-transform: translateY(-100%);
+  transform: translateY(-100%);
+}
+#header.headroom--unpinned {
+  -webkit-transform: translateY(-100%);
+  -moz-transform: translateY(-100%);
+  -o-transform: translateY(-100%);
+  transform: translateY(-100%);
+}
+#header.headroom--top {
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
 }
 
 hr {
@@ -38,15 +62,49 @@ hr {
   content: "\f120";
 }
 
-#filters-form {
+#filters {
+  position: fixed;
+  width: 100%;
+  top: 70pt;
+  background: #ffffff;
+  z-index: 10;
+  padding: 15pt inherit;
+  border-bottom: 1pt solid #d3d3d3;
+}
+#filters #filters-form {
   padding: 0;
   margin: 0;
+  height: 30pt;
 }
-#filters-form .form-control {
+#filters #filters-form .form-control {
   vertical-align: baseline;
 }
-#filters-form label {
+#filters #filters-form label {
   font-size: 1.2em;
+}
+#filters.headroom {
+  -webkit-transition: transform 400ms ease;
+  -moz-transition: transform 400ms ease;
+  -o-transition: transform 400ms ease;
+  transition: transform 400ms ease;
+}
+#filters.headroom--unpinned {
+  -webkit-transform: translateY(-140pt);
+  -moz-transform: translateY(-140pt);
+  -o-transform: translateY(-140pt);
+  transform: translateY(-140pt);
+}
+#filters.headroom--pinned {
+  -webkit-transform: translateY(-70pt);
+  -moz-transform: translateY(-70pt);
+  -o-transform: translateY(-70pt);
+  transform: translateY(-70pt);
+}
+#filters.headroom--top {
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
 }
 
 .message .content {
