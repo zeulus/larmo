@@ -9,7 +9,7 @@ class PacketTest extends PHPUnit_Framework_TestCase
     private $packet;
     private $errorCatched;
 
-    public function setup()
+    protected function setUp()
     {
         $this->errorCatched = false;
         set_error_handler(array($this, 'errorHandler'));
@@ -46,15 +46,6 @@ class PacketTest extends PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('FP\Larmo\Agents\WebHookAgent\Exceptions\InvalidConfigurationException');
         $this->packet->send('');
-    }
-
-    /**
-     * @test
-     */
-    public function sendPacketWithoutErrors()
-    {
-        $this->packet->send('localhost');
-        $this->assertEquals(false, $this->errorCatched);
     }
 
     /**

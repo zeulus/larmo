@@ -1,16 +1,16 @@
 [
   {
     "type": "github.issue_opened",
-    "timestamp": 1434969845,
+    "timestamp": "2015-06-22T10:44:05Z",
     "author": {
       "login": "test"
     },
-    "message": "test opened issue",
+    "body": "opened issue",
     "extras": {
       "id": 90066421,
       "number": 2,
       "title": "sasa",
-      "message": "dddd",
+      "body": "dddd",
       "url": "https://github.com/test/test-hooks-repo/issues/2"
     }
   }

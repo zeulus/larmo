@@ -11,16 +11,17 @@ class IssueComment extends EventAbstract
 
         $message = array(
             'type' => 'github.issue_comment_' . $dataObject->action,
-            'timestamp' => strtotime($comment->updated_at),
+            'timestamp' => $comment->updated_at,
             'author' => array(
                 'login' => $comment->user->login
             ),
-            'message' => $comment->user->login . ' ' . $dataObject->action . ' issue comment',
+            'body' => $dataObject->action . ' issue comment',
             'extras' => array(
                 'id' => $comment->id,
                 'issue_id' => $issue->id,
+                'issue_number' => $issue->number,
                 'issue_title' => $issue->title,
-                'message' => $comment->body,
+                'body' => $comment->body,
                 'url' => $comment->html_url
             )
         );

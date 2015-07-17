@@ -2,7 +2,7 @@
 
 app.constant("config", {
     "api" : {
-        "useMock": true,
-        "url": "http://larmo.local/api"
+        "useMock": SITE_CONFIG.useMock,
+        "url": SITE_CONFIG.apiUrl
     }
 });

@@ -11,14 +11,14 @@ class CommitComment extends EventAbstract
 
         $message = array(
             'type' => 'github.created_commit_comment',
-            'timestamp' => strtotime($comment->created_at),
+            'timestamp' => $comment->created_at,
             'author' => array(
                 'login' => $comment->user->login
             ),
-            'message' => $comment->user->login . ' created commit comment',
+            'body' => 'created commit comment',
             'extras' => array(
                 'id' => $comment->id,
-                'message' => $comment->body,
+                'body' => $comment->body,
                 'url' => $comment->html_url,
                 'commit_id' => $comment->commit_id
             )

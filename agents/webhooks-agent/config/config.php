@@ -1,6 +1,6 @@
 <?php
 
 $config = [
-    'authentication' => '',
-    'hubURI' => [],
+    'authentication' => getenv('authinfo'),
+    'hubURI' => getenv('hub_uri'),
 ];

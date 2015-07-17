@@ -1,0 +1,16 @@
+[
+  {
+    "type": "trello.message",
+    "timestamp": 1436530451,
+    "author": {
+      "name": "Test User",
+      "login": "test-user"
+    },
+    "body": "Test User performed createCheckItem",
+    "extras": {
+      "id": "559fb7134cb5d044cb9fb9cd",
+      "url": "https:\/\/trello.com\/b\/6gYTQQXi\/larmo",
+      "action": "createCheckItem"
+    }
+  }
+]

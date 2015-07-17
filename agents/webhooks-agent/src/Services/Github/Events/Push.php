@@ -8,12 +8,27 @@ class Push extends EventAbstract
     protected function prepareMessages($dataObject)
     {
         $messages = array();
+        $extras = $this->getExtrasData($dataObject);
 
         foreach ($dataObject->commits as $commit) {
-            array_push($messages, $this->getArrayFromCommit($commit));
+            $commitArray = $this->getArrayFromCommit($commit);
+            $commitArray['extras'] = $commitArray['extras'] + $extras;
+            array_push($messages, $commitArray);
         }
 
         return $messages;
+    }
+
+    private function getExtrasData($push)
+    {
+        return array(
+            'branch' => str_replace('refs/heads/', '', $push->ref),
+            'repository' => array(
+                'id' => $push->repository->id,
+                'name' => $push->repository->name,
+                'full_name' => $push->repository->full_name,
+            ),
+        );
     }
 
     protected function getArrayFromCommit($commit)
@@ -26,7 +41,7 @@ class Push extends EventAbstract
                 'email' => $commit->author->email,
                 'login' => $commit->author->username
             ),
-            'message' => $commit->author->name . ' added commit: "' . $commit->message . '"',
+            'body' => 'added commit',
             'extras' => array(
                 'id' => $commit->id,
                 'files' => array(
@@ -34,7 +49,7 @@ class Push extends EventAbstract
                     'removed' => $commit->removed,
                     'modified' => $commit->modified
                 ),
-                'message' => $commit->message,
+                'body' => $commit->message,
                 'url' => $commit->url
             )
         );
