@@ -23,7 +23,8 @@ class PacketValidationServiceTest extends PHPUnit_Framework_TestCase
         $jsonValidator = new VendorJsonSchemaValidation();
         $authinfo = new IniFileAuthInfoProvider($path . 'config/authinfo.ini');
 
-        $pluginRepository = new FilesystemPluginsRepository($path . 'src/Plugin');
+        $directoryIterator = new \DirectoryIterator($path . 'src/Plugin');
+        $pluginRepository = new FilesystemPluginsRepository($directoryIterator);
         $pluginCollection = new PluginsCollection;
         $pluginRepository->retrieve($pluginCollection);
         $pluginsService = new PluginService($pluginCollection);
