@@ -35,10 +35,17 @@ module.exports = function(grunt) {
                 'dest': 'public/style.min.css'
             }
         },
+        'includeSource': {
+            myTarget: {
+                files: {
+                    'views/scripts_include/dev.html': 'views/dev_scripts_include.tpl.html'
+                }
+            }
+        },
         'watch': {
             'js': {
                 'files': jsFiles.concat(sassFiles),
-                'tasks': ['uglify', 'sass', 'cssmin']
+                'tasks': ['uglify', 'sass', 'cssmin', 'includeSource']
             }
         }
     });
@@ -47,4 +54,5 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-include-source');
 };
