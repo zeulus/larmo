@@ -28,11 +28,11 @@ class ScrutinizerData extends ServiceAbstract
                 'extras' => array(
                     'id' => $data->uuid,
                     'repository' => array(
-                        'user' => $data->metadata->source->login,
-                        'branch' => $data->metadata->source->branch,
-                        'name' => $data->metadata->source->repository
+                        'user' => isset($data->metadata->source) ? $data->metadata->source->login : $data->_embedded->repository->login,
+                        'branch' => isset($data->metadata->source) ? $data->metadata->source->branch : $data->metadata->branch,
+                        'name' => isset($data->metadata->source) ? $data->metadata->source->repository : $data->_embedded->repository->name
                     ),
-                    'pull_request_number' => $data->pull_request_number,
+                    'pull_request_number' => isset($data->pull_request_number) ? $data->pull_request_number : '',
                     'status' => $data->build->status,
                     'results' => array(
                         'new_issues' => $diff->nb_new_issues,

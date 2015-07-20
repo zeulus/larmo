@@ -1,0 +1,206 @@
+{
+    "uuid": "9cd40073-6cdf-4cb5-a859-176e6e2799d1",
+    "state": "completed",
+    "created_at": "2015-07-20T12:02:49+0000",
+    "started_at": "2015-07-20T12:02:51+0000",
+    "finished_at": "2015-07-20T12:05:09+0000",
+    "metadata": {
+        "title": "Merge pull request #68 from test/moment",
+        "branch": "master",
+        "source_reference": "17c208f22016824e6a362f8f5c5259ef9bb16961"
+    },
+    "nb_artifacts": 0,
+    "build": {
+        "status": "passed"
+    },
+    "_links": {
+        "self": {
+            "href": "/api/repositories/g/test/test-repo/inspections/9cd40073-6cdf-4cb5-a859-176e6e2799d1"
+        },
+        "repository": {
+            "href": "/api/repositories/g/test/test-repo"
+        },
+        "artifacts": {
+            "href": "/api/repositories/g/test/test-repo/inspections/9cd40073-6cdf-4cb5-a859-176e6e2799d1/artifacts"
+        }
+    },
+    "_embedded": {
+        "repository": {
+            "type": "g",
+            "config": "filter:\r\n    excluded_paths:\r\n        - 'hub/vendor/*'\r\nchecks:\r\n    php: true\r\n\r\ncoding_style:\r\n    php:\r\n        spaces:\r\n            general:\r\n                linefeed_character: newline\r\n            around_operators:\r\n                relational: false\r\n                additive: false\r\n            within:\r\n                brackets: true\r\n        braces:\r\n            classes_functions:\r\n                class: undefined\r\n                function: undefined\r\n                closure: undefined\r\n            if:\r\n                opening: undefined\r\n            for:\r\n                opening: undefined\r\n            while:\r\n                opening: undefined\r\n            do_while:\r\n                opening: undefined\r\n            switch:\r\n                opening: undefined\r\n            try:\r\n                opening: undefined\r\n        upper_lower_casing:\r\n            keywords:\r\n                general: undefined\r\n            constants:\r\n                true_false_null: undefined",
+            "created_at": "2015-06-19T11:59:49+0000",
+            "private": false,
+            "default_branch": "master",
+            "applications": {
+                "master": {
+                    "index": {
+                        "source_reference": "17c208f22016824e6a362f8f5c5259ef9bb16961",
+                        "id": 1025476,
+                        "branch_reference": "master",
+                        "created_at": "2015-07-20T12:05:21+0000",
+                        "outdated": false,
+                        "_links": {
+                            "issues": {
+                                "href": "/api/repositories/g/test/test-repo/indices/1025476/issues"
+                            }
+                        },
+                        "_embedded": {
+                            "project": {
+                                "type": "system",
+                                "identifier": "",
+                                "metric_values": {
+                                    "sc.sec.php.rqd": 11,
+                                    "scrutinizer.quality": 9.7023121387283,
+                                    "scrutinizer.nb_elements": 331,
+                                    "scrutinizer.nb_classes": 79,
+                                    "scrutinizer.nb_classes.very_good": 79,
+                                    "scrutinizer.nb_classes.good": 0,
+                                    "scrutinizer.nb_classes.satisfactory": 0,
+                                    "scrutinizer.nb_classes.pass": 0,
+                                    "scrutinizer.nb_classes.critical": 0,
+                                    "scrutinizer.nb_operations": 252,
+                                    "scrutinizer.nb_operations.very_good": 234,
+                                    "scrutinizer.nb_operations.good": 9,
+                                    "scrutinizer.nb_operations.satisfactory": 9,
+                                    "scrutinizer.nb_operations.pass": 0,
+                                    "scrutinizer.nb_operations.critical": 0,
+                                    "scrutinizer.weight.very_good": 627,
+                                    "scrutinizer.weight.good": 27,
+                                    "scrutinizer.weight.satisfactory": 38,
+                                    "scrutinizer.weight.pass": 0,
+                                    "scrutinizer.weight.critical": 0,
+                                    "scrutinizer.nb_issues": 80,
+                                    "scrutinizer.nb_ignored_issues": 28
+                                }
+                            }
+                        }
+                    },
+                    "build_status": {
+                        "status": "passed"
+                    }
+                },
+                "scrutinizer-configuration": {
+                    "build_status": {
+                        "status": "errored",
+                        "details": {
+                            "analysis": {
+                                "status": "errored"
+                            }
+                        }
+                    }
+                }
+            },
+            "development_report_settings": {
+                "enabled": true,
+                "weekday": 1,
+                "hour": 8,
+                "timezone": "UTC"
+            },
+            "branch_settings": {
+                "tracked_branches": [
+                    "master"
+                ]
+            },
+            "login": "test",
+            "name": "test-repo",
+            "_links": {
+                "self": {
+                    "href": "/api/repositories/g/test/test-repo"
+                }
+            }
+        },
+        "head_index": {
+            "source_reference": "17c208f22016824e6a362f8f5c5259ef9bb16961",
+            "id": 1025476,
+            "branch_reference": "master",
+            "created_at": "2015-07-20T12:05:21+0000",
+            "outdated": false,
+            "_links": {
+                "issues": {
+                    "href": "/api/repositories/g/test/test-repo/indices/1025476/issues"
+                }
+            },
+            "_embedded": {
+                "project": {
+                    "type": "system",
+                    "identifier": "",
+                    "metric_values": {
+                        "sc.sec.php.rqd": 11,
+                        "scrutinizer.quality": 9.7023121387283,
+                        "scrutinizer.nb_elements": 331,
+                        "scrutinizer.nb_classes": 79,
+                        "scrutinizer.nb_classes.very_good": 79,
+                        "scrutinizer.nb_classes.good": 0,
+                        "scrutinizer.nb_classes.satisfactory": 0,
+                        "scrutinizer.nb_classes.pass": 0,
+                        "scrutinizer.nb_classes.critical": 0,
+                        "scrutinizer.nb_operations": 252,
+                        "scrutinizer.nb_operations.very_good": 234,
+                        "scrutinizer.nb_operations.good": 9,
+                        "scrutinizer.nb_operations.satisfactory": 9,
+                        "scrutinizer.nb_operations.pass": 0,
+                        "scrutinizer.nb_operations.critical": 0,
+                        "scrutinizer.weight.very_good": 627,
+                        "scrutinizer.weight.good": 27,
+                        "scrutinizer.weight.satisfactory": 38,
+                        "scrutinizer.weight.pass": 0,
+                        "scrutinizer.weight.critical": 0,
+                        "scrutinizer.nb_issues": 80,
+                        "scrutinizer.nb_ignored_issues": 28
+                    }
+                }
+            }
+        },
+        "base_index": {
+            "source_reference": "978b9f670877ac128956eba604f8da97ee951acf",
+            "id": 1021855,
+            "branch_reference": "master",
+            "created_at": "2015-07-18T09:35:42+0000",
+            "outdated": false,
+            "_links": {
+                "issues": {
+                    "href": "/api/repositories/g/test/test-repo/indices/1021855/issues"
+                }
+            },
+            "_embedded": {
+                "project": {
+                    "type": "system",
+                    "identifier": "",
+                    "metric_values": {
+                        "sc.sec.php.rqd": 11,
+                        "scrutinizer.quality": 9.7023121387283,
+                        "scrutinizer.nb_elements": 331,
+                        "scrutinizer.nb_classes": 79,
+                        "scrutinizer.nb_classes.very_good": 79,
+                        "scrutinizer.nb_classes.good": 0,
+                        "scrutinizer.nb_classes.satisfactory": 0,
+                        "scrutinizer.nb_classes.pass": 0,
+                        "scrutinizer.nb_classes.critical": 0,
+                        "scrutinizer.nb_operations": 252,
+                        "scrutinizer.nb_operations.very_good": 234,
+                        "scrutinizer.nb_operations.good": 9,
+                        "scrutinizer.nb_operations.satisfactory": 9,
+                        "scrutinizer.nb_operations.pass": 0,
+                        "scrutinizer.nb_operations.critical": 0,
+                        "scrutinizer.weight.very_good": 627,
+                        "scrutinizer.weight.good": 27,
+                        "scrutinizer.weight.satisfactory": 38,
+                        "scrutinizer.weight.pass": 0,
+                        "scrutinizer.weight.critical": 0,
+                        "scrutinizer.nb_issues": 80,
+                        "scrutinizer.nb_ignored_issues": 28
+                    }
+                }
+            }
+        },
+        "index_diff": {
+            "nb_new_issues": 0,
+            "nb_common_issues": 80,
+            "nb_fixed_issues": 0,
+            "nb_added_code_elements": 0,
+            "nb_common_code_elements": 0,
+            "nb_changed_code_elements": 25,
+            "nb_removed_code_elements": 0
+        }
+    }
+}
