@@ -1,9 +1,35 @@
 body {
-  padding-top: 70px;
+  padding-top: $content-offset;
+  font-size: $base-font-size;
 }
 
-.navbar-brand {
-  font-size: 28px;
+#header {
+  padding: $smaller-offset 0;
+
+  position: fixed;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  left: 0;
+  top: 0;
+
+  height: $header-height;
+  overflow: hidden;
+
+  background-color: $blue;
+
+  z-index: 10;
+
+  @include headroom-apply-transition();
+  @include headroom-on-scroll-up(translateY(-100%));
+  @include headroom-on-scroll-down(translateY(-100%));
+  @include headroom-on-top(translateY(0));
+}
+
+hr {
+  margin-top: $base-offset;
+  margin-bottom: $base-offset;
 }
 
 /* AngularJS */
@@ -13,13 +39,3 @@ body {
 
 /* Icons of source */
 .fa-irc:before { content: "\f120"; }
-
-/* Filters form */
-#filters-form {
-  padding: 5px 10px;
-  margin-bottom: 20px;
-
-  label {
-    font-size: 13px;
-  }
-}

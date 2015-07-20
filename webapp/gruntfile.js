@@ -44,7 +44,7 @@ module.exports = function(grunt) {
         },
         'watch': {
             'js': {
-                'files': jsFiles.concat(sassFiles),
+                'files': jsFiles.concat(['styles/*.scss', 'styles/*/*.scss']),
                 'tasks': ['uglify', 'sass', 'cssmin', 'includeSource']
             }
         }

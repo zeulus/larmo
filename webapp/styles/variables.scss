@@ -1,0 +1,39 @@
+/* Base colors */
+$red   : #d4081a;
+$green : #2ca02c;
+$blue  : #008cba;
+
+$white : #ffffff;
+$black : #000000;
+
+$lighter-grey : #d3d3d3;
+$light-grey   : #bbbbbb;
+$medium-grey  : #888888;
+$dark-grey    : #666666;
+$darker-grey  : #222222;
+
+/* Base font properties */
+$base-font-size    : 12pt;
+
+$big-font-size     : 1.2em;
+$small-font-size   : 0.8em;
+$smaller-font-size : 0.7em;
+
+/* Offset properties used for margin and padding */
+$base-offset    : 15pt;
+$small-offset   : 10pt;
+$smaller-offset : 5pt;
+$tiny-offset    : 2pt;
+
+$header-height  : 70pt;
+$content-offset : $header-height + ($base-offset * 5);
+
+/* Element border properties */
+$bigger-border-width  : 8pt;
+$big-border-width     : 3pt;
+$base-border-width    : 1pt;
+
+$base-border-radius : 5pt;
+
+/* Media query breakpoints */
+$break-small : 360pt;

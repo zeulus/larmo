@@ -58,3 +58,8 @@ Add webhook (https://bitbucket.org/USER-NAME/REPO-NAME/admin/addon/admin/bitbuck
    webhooks: http://your-deployed-site.herokuapp.com/travis
 ```
 3. Save file, commit and push changes to your repository.
+
+#### Scrutinizer CI
+1. Copy your deployed agent URL.
+2. Go to settings your repository on Scrutinizer and find 'Service Hooks' (example url: https://scrutinizer-ci.com/g/USER/REPO-NAME/settings/service-hooks).
+3. Click 'Add web-hook' button and paste agent URL. Save settings.

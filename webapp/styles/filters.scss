@@ -1,0 +1,28 @@
+#filters {
+  position: fixed;
+  width: 100%;
+  top: $header-height;
+  background: $white;
+  z-index: 10;
+  padding: $base-offset inherit;
+  border-bottom: $base-border-width solid $lighter-grey;
+
+  #filters-form {
+    padding: 0;
+    margin: 0;
+    height: 30pt;
+
+    .form-control {
+      vertical-align: baseline;
+    }
+
+    label {
+      font-size: $big-font-size;
+    }
+  }
+
+  @include headroom-apply-transition();
+  @include headroom-on-scroll-down(translateY(-($header-height*2)));
+  @include headroom-on-scroll-up(translateY(-$header-height));
+  @include headroom-on-top(translateY(0));
+}

@@ -1,9 +1,19 @@
-.travis {
+.source-travis .content {
+  border-top-width: $big-border-width;
+
+  &.passed, &.fixed {
+    border-top-color: $green;
+  }
+
+  &.broken, &.failed {
+    border-top-color: $red;
+  }
+
   .fa-check {
-    color: #2ca02c;
+    color: $green;
   }
 
   .fa-remove {
-    color: #d4081a;
+    color: $red;
   }
 }

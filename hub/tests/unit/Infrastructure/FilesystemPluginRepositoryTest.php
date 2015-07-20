@@ -26,7 +26,11 @@ class FilesystemPluginRepositoryTest extends PHPUnit_Framework_TestCase
      */
     public function filesystemPluginsRepositoryWillLoadPlugins($path)
     {
-        $adapter = new FilesystemPluginsRepository($path);
+        $path = __DIR__ . '/../../../src/Plugin';
+        $path = realpath($path);
+
+        $directoryIterator = new \DirectoryIterator($path);
+        $adapter = new FilesystemPluginsRepository($directoryIterator);
         $collection = new PluginsCollection();
 
         $this->assertEquals(0, count($collection));
