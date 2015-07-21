@@ -127,7 +127,6 @@ hr {
 }
 .message .content .metadata {
   display: inline-block;
-  margin-bottom: 5pt;
 }
 .message .content .metadata .metadata-date {
   display: block;
@@ -144,6 +143,7 @@ hr {
 .message .content .body {
   padding-left: 15pt;
   margin-left: 5pt;
+  margin-top: 5pt;
   border-left: 8pt solid #d3d3d3;
   color: #888888;
   font-size: 0.8em;
@@ -156,6 +156,9 @@ hr {
     border-left-width: 4px;
     padding-left: 10pt;
   }
+}
+.message .content .body.formatted {
+  white-space: pre-wrap;
 }
 
 .source-travis .content {
