@@ -9,6 +9,8 @@ function setStatusIcon() {
             return 'fa-check';
         } else if(state === 'broken' || state === 'failed') {
             return 'fa-remove';
+        } else if(state === 'errored') {
+            return 'fa-exclamation';
         } else {
             return 'fa-gears';
         }
