@@ -6,22 +6,8 @@ use FP\Larmo\Agents\WebHookAgent\Services\Github\Events\PullRequest;
 use FP\Larmo\Agents\WebHookAgent\Services\Github\Events\Issues;
 use FP\Larmo\Agents\WebHookAgent\Services\Github\Events\IssueComment;
 
-class GithubEventsTest extends PHPUnit_Framework_TestCase
+class GithubEventsTest extends BaseEventsTest
 {
-    private function loadFile($fileName)
-    {
-        return file_get_contents($fileName);
-    }
-
-    private function getDataObjectFromJson($fileName)
-    {
-        if($json = $this->loadFile($fileName)) {
-            return json_decode($json);
-        }
-
-        return null;
-    }
-
     /**
      * @test
      */
