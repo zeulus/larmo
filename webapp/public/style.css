@@ -223,12 +223,30 @@ hr {
 .source-travis .content.passed, .source-travis .content.fixed {
   border-top-color: #2ca02c;
 }
-.source-travis .content.broken, .source-travis .content.failed {
+.source-travis .content.broken, .source-travis .content.failed, .source-travis .content.errored {
   border-top-color: #d4081a;
 }
 .source-travis .content .fa-check {
   color: #2ca02c;
 }
-.source-travis .content .fa-remove {
+.source-travis .content .fa-remove, .source-travis .content .fa-exclamation, .source-travis .content .fa-exclamation-circle, .source-travis .content .fa-warning {
   color: #d4081a;
 }
+
+.source-scrutinizer .content {
+  border-top-width: 3pt;
+}
+.source-scrutinizer .content.passed {
+  border-top-color: #2ca02c;
+}
+.source-scrutinizer .content.passed .fa-cogs {
+  color: #2ca02c;
+}
+.source-scrutinizer .content.failed, .source-scrutinizer .content.error {
+  border-top-color: #d4081a;
+}
+.source-scrutinizer .content.failed .fa-cogs, .source-scrutinizer .content.error .fa-cogs {
+  color: #d4081a;
+}
+
+/*# sourceMappingURL=style.css.map */
