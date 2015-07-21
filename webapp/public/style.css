@@ -1,0 +1,194 @@
+/* Base colors */
+/* Base font properties */
+/* Offset properties used for margin and padding */
+/* Element border properties */
+/* Media query breakpoints */
+body {
+  padding-top: 145pt;
+  font-size: 12pt;
+}
+
+#header {
+  padding: 5pt 0;
+  position: fixed;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  left: 0;
+  top: 0;
+  height: 70pt;
+  overflow: hidden;
+  background-color: #008cba;
+  z-index: 10;
+}
+#header.headroom {
+  -webkit-transition: transform 400ms ease;
+  -moz-transition: transform 400ms ease;
+  -o-transition: transform 400ms ease;
+  transition: transform 400ms ease;
+}
+#header.headroom--pinned {
+  -webkit-transform: translateY(-100%);
+  -moz-transform: translateY(-100%);
+  -o-transform: translateY(-100%);
+  transform: translateY(-100%);
+}
+#header.headroom--unpinned {
+  -webkit-transform: translateY(-100%);
+  -moz-transform: translateY(-100%);
+  -o-transform: translateY(-100%);
+  transform: translateY(-100%);
+}
+#header.headroom--top {
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+}
+
+hr {
+  margin-top: 15pt;
+  margin-bottom: 15pt;
+}
+
+/* AngularJS */
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+/* Icons of source */
+.fa-irc:before {
+  content: "\f120";
+}
+
+#filters {
+  position: fixed;
+  width: 100%;
+  top: 70pt;
+  background: white;
+  z-index: 10;
+  padding: 15pt inherit;
+  border-bottom: 1pt solid lightgrey;
+}
+#filters #filters-form {
+  padding: 0;
+  margin: 0;
+  height: 30pt;
+}
+#filters #filters-form .form-control {
+  vertical-align: baseline;
+}
+#filters #filters-form label {
+  font-size: 1.2em;
+}
+#filters.headroom {
+  -webkit-transition: transform 400ms ease;
+  -moz-transition: transform 400ms ease;
+  -o-transition: transform 400ms ease;
+  transition: transform 400ms ease;
+}
+#filters.headroom--unpinned {
+  -webkit-transform: translateY(-140pt);
+  -moz-transform: translateY(-140pt);
+  -o-transform: translateY(-140pt);
+  transform: translateY(-140pt);
+}
+#filters.headroom--pinned {
+  -webkit-transform: translateY(-70pt);
+  -moz-transform: translateY(-70pt);
+  -o-transform: translateY(-70pt);
+  transform: translateY(-70pt);
+}
+#filters.headroom--top {
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+}
+
+.message .content {
+  padding: 10pt;
+  margin-bottom: 10pt;
+  border: 1pt solid lightgrey;
+  border-radius: 5pt;
+}
+.message .content .source {
+  position: relative;
+  top: -5pt;
+  left: -2pt;
+}
+@media screen and (max-width: 360pt) {
+  .message .content .source {
+    display: block;
+    left: 0;
+    text-align: center;
+  }
+}
+.message .content .metadata {
+  display: inline-block;
+}
+.message .content .metadata .metadata-date {
+  display: block;
+  clear: left;
+  font-size: 0.7em;
+  color: #bbbbbb;
+}
+@media screen and (max-width: 360pt) {
+  .message .content .metadata {
+    display: block;
+    text-align: center;
+  }
+}
+.message .content .body {
+  padding-left: 15pt;
+  margin-left: 5pt;
+  margin-top: 5pt;
+  border-left: 8pt solid lightgrey;
+  color: #888888;
+  font-size: 0.8em;
+  word-wrap: normal;
+  word-break: break-word;
+}
+@media screen and (max-width: 360pt) {
+  .message .content .body {
+    margin-top: 15pt;
+    border-left-width: 4px;
+    padding-left: 10pt;
+  }
+}
+.message .content .body.formatted {
+  white-space: pre-wrap;
+}
+
+.source-travis .content {
+  border-top-width: 3pt;
+}
+.source-travis .content.passed, .source-travis .content.fixed {
+  border-top-color: #2ca02c;
+}
+.source-travis .content.broken, .source-travis .content.failed, .source-travis .content.errored {
+  border-top-color: #d4081a;
+}
+.source-travis .content .fa-check {
+  color: #2ca02c;
+}
+.source-travis .content .fa-remove, .source-travis .content .fa-exclamation, .source-travis .content .fa-exclamation-circle, .source-travis .content .fa-warning {
+  color: #d4081a;
+}
+
+.source-scrutinizer .content {
+  border-top-width: 3pt;
+}
+.source-scrutinizer .content.passed {
+  border-top-color: #2ca02c;
+}
+.source-scrutinizer .content.passed .fa-cogs {
+  color: #2ca02c;
+}
+.source-scrutinizer .content.failed, .source-scrutinizer .content.error {
+  border-top-color: #d4081a;
+}
+.source-scrutinizer .content.failed .fa-cogs, .source-scrutinizer .content.error .fa-cogs {
+  color: #d4081a;
+}
