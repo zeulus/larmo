@@ -5,22 +5,8 @@ use FP\Larmo\Agents\WebHookAgent\Services\Bitbucket\Events\IssueCreated;
 use FP\Larmo\Agents\WebHookAgent\Services\Bitbucket\Events\IssueUpdated;
 use FP\Larmo\Agents\WebHookAgent\Services\Bitbucket\Events\IssueCommentCreated;
 
-class BitbucketEventsTest extends PHPUnit_Framework_TestCase
+class BitbucketEventsTest extends BaseEventsTest
 {
-    private function loadFile($fileName)
-    {
-        return file_get_contents($fileName);
-    }
-
-    private function getDataObjectFromJson($fileName)
-    {
-        if($json = $this->loadFile($fileName)) {
-            return json_decode($json);
-        }
-
-        return null;
-    }
-
     /**
      * @test
      */

@@ -2,22 +2,8 @@
 
 use FP\Larmo\Agents\WebHookAgent\Services\Gitlab\Events\Push;
 
-class GitlabEventsTest extends PHPUnit_Framework_TestCase
+class GitlabEventsTest extends BaseEventsTest
 {
-    private function loadFile($fileName)
-    {
-        return file_get_contents($fileName);
-    }
-
-    private function getDataObjectFromJson($fileName)
-    {
-        if($json = $this->loadFile($fileName)) {
-            return json_decode($json);
-        }
-
-        return null;
-    }
-
     /**
      * @test
      */

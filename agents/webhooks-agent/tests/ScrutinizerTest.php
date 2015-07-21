@@ -2,26 +2,12 @@
 
 use FP\Larmo\Agents\WebHookAgent\Services\Scrutinizer\ScrutinizerData;
 
-class ScrutinizerTest extends PHPUnit_Framework_TestCase
+class ScrutinizerTest extends BaseEventsTest
 {
-    private function loadFile($fileName)
-    {
-        return file_get_contents($fileName);
-    }
-
-    private function getDataObjectFromJson($fileName)
-    {
-        if($json = $this->loadFile($fileName)) {
-            return json_decode($json);
-        }
-
-        return null;
-    }
-
     /**
      * @test
      */
-    public function pushEventReturnsCorrectData()
+    public function scrutinizerReturnsCorrectData()
     {
         $scrutinizer = new ScrutinizerData(
             $this->getDataObjectFromJson(dirname(__FILE__).'/InputData/scrutinizer.json'),
