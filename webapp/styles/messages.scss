@@ -19,7 +19,6 @@
 
   .metadata {
     display: inline-block;
-    margin-bottom: $smaller-offset;
 
     .metadata-date {
       display: block;
@@ -38,6 +37,7 @@
   .body {
     padding-left: $base-offset;
     margin-left: $smaller-offset;
+    margin-top: $smaller-offset;
 
     border-left: $bigger-border-width solid $lighter-grey;
 
@@ -52,6 +52,10 @@
 
       border-left-width: 4px;
       padding-left: $small-offset;
+    }
+
+    &.formatted {
+      white-space: pre-wrap;
     }
   }
 }
