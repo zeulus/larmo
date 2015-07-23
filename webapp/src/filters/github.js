@@ -25,7 +25,9 @@
 
             if(input.type == 'github.commit') {
                 action = '<a href="' + input.extras.url + '" target="new">' + input.extras.id.substr(0, 10) + '</a>';
-            } else if(input.type.contains('github.pull_request') || input.type.contains('github.issue')) {
+            } else if(input.type == 'github.issue_comment_created') {
+                action = '<a href="' + input.extras.url + '" target="new">#' + input.extras.issue_number + '</a>';
+            } else if(input.type.indexOf('github.pull_request') || input.type.indexOf('github.issue')) {
                 action = '<a href="' + input.extras.url + '" target="new">#' + input.extras.number + '</a>';
             }
 
