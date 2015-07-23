@@ -5,71 +5,69 @@ use FP\Larmo\Domain\Service\MessageCollection;
 
 class FiltersCollectionTest extends PHPUnit_Framework_TestCase
 {
-    private $filters;
     private $messages;
 
     public function setup()
     {
-        $this->filters = array();
-
-        for ($i = 1; $i <= 2; $i++) {
-            $filterMock = $this->getMockBuilder('FP\Larmo\Domain\Service\MessageFilter')
-                ->getMock();
-
-            $this->filters[] = $filterMock;
-        }
-
         $this->messages = new MessageCollection();
     }
 
-    /**
-     * @test
-     */
-    public function canCreateCollectionWithFilters()
+    public function offsetAndLimitAreSpecialFilters()
     {
-        $filters = new FiltersCollection($this->filters);
-        $returnedFilters = $filters->asArray();
-        $this->assertEquals($returnedFilters, $this->filters);
+        $limit = 12;
+        $offset = 3;
+
+        $filters = compact('limit', 'offset');
+
+        $collection = new FiltersCollection($filters);
+        $this->assertTrue($collection->hasFilter('limit'));
+        $this->assertEquals($limit, $collection->getFilter('limit'));
+        $this->assertTrue($collection->hasFilter('offset'));
+        $this->assertEquals($offset, $collection->getFilter('offset'));
     }
 
     /**
      * @test
      */
-    public function invalidFiltersWillBeRejected()
+    public function filtersOtherThanLimitAndOffsetAreStoredInDataFilter()
     {
-        $most_stupid_filters = array(
-            'Dumb filter',
-            new stdClass()
-        );
+        $limit = 12;
+        $offset = 3;
+        $name = 'aaaa';
 
-        $this->setExpectedException('PHPUnit_Framework_Error');
-        $filters = new FiltersCollection($most_stupid_filters);
+        $filters = compact('limit', 'offset', 'name');
+
+        $collection = new FiltersCollection($filters);
+        $this->assertTrue($collection->hasFilter('data'));
+        $this->assertEquals(array('name' => $name), $collection->getFilter('data'));
     }
 
     /**
      * @test
      */
-    public function canAttachProperFilterToCollection()
+    public function invalidFilterNameWillBeRejected()
+    {
+        $filters = array('\FP\Larmo' => 'asdasd');
+
+        $this->setExpectedException('InvalidArgumentException', 'field names can only contain English letters and underscore character');
+        $collection = new FiltersCollection($filters);
+    }
+
+    /**
+     * @test
+     */
+    public function singleFilterCanBeAttachedToExistingFilters()
     {
         $filters = new FiltersCollection();
-        $single_filter = $this->filters[0];
-        $filters->addFilter($single_filter);
+        $filters->addFilters(array(
+           'limit' => 12,
+            'offset' => 4
+        ));
 
-        $this->setExpectedException('PHPUnit_Framework_Error');
-        $filters->addFilter($this->messages);
-    }
+        $filters->addFilter('username', 'someone');
 
-    /**
-     * @test
-     */
-    public function filtersCollectionCanRunFiltersOnMessages()
-    {
-        $testFilter = $this->prophesize('FP\Larmo\Domain\Service\MessageFilter');
-        $this->filters[] = $testFilter->reveal();
-
-        $filters = new FiltersCollection($this->filters);
-        $filters->execute($this->messages);
-
-        $testFilter->execute($this->messages)->shouldHaveBeenCalled();
+        $this->assertEquals(array('username' => 'someone'), $filters->getFilter('data'));
+        $this->assertEquals(12, $filters->getFilter('limit'));
+        $this->assertEquals(4, $filters->getFilter('offset'));
     }
 }
