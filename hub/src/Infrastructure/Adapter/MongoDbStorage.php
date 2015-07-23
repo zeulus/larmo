@@ -8,7 +8,11 @@ class MongoDbStorage
 
     public function __construct($url, $port, $user, $password, $db, array $options = [])
     {
-        $server = "mongodb://$user:$password@$url:$port/$db";
+        if ($user) {
+            $server = "mongodb://$user:$password@$url:$port/$db";
+        } else {
+            $server = "mongodb://$url:$port/$db";
+        }
         $mongoClient = new \MongoClient($server, $options);
 
         $this->connection = $mongoClient->selectDB($db);
