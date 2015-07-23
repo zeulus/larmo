@@ -5,7 +5,7 @@ namespace FP\Larmo\Infrastructure\Factory;
 use FP\Larmo\Domain\Entity;
 use FP\Larmo\Domain\ValueObject\Author;
 use FP\Larmo\Domain\ValueObject\UniqueId;
-use FP\Larmo\Domain\Service\UniqueIdGenerator;
+use FP\Larmo\Infrastructure\Adapter\PhpUniqidGenerator;
 
 class Message
 {
@@ -26,7 +26,7 @@ class Message
             $author = new Author();
         }
 
-        $uniqueId = new UniqueId(isset($message['id']) ? $message['id'] : '');
+        $uniqueId = new UniqueId(isset($message['id']) ? $message['id'] : new PhpUniqidGenerator());
 
         return new Entity\Message($type, $timestamp, $author, $uniqueId, $body, $extras);
     }
