@@ -33,7 +33,17 @@ Easy way to run application with environment variables:
 ```PORT=8000 API_URL=http://your-hub-site.com node index.js```
 
 #### Development
-If you want to do something then you have to run grunt watcher for auto-compiling all files. Run command ```grunt watch```
+If you want to do something then you have to run grunt watcher for auto-compiling all files. Run command ```grunt```
+
+## Deployment
+Application is ready to deploy to Heroku. 
+
+- First step is add heroku build pack for support multiple platforms.
+```heroku config:add BUILDPACK_URL=https://github.com/ddollar/heroku-buildpack-multi.git```
+- Init git repository in this directory if isn't exists ```git init```
+- Add all files to and commit it
+- Create heroku app ```heroku create``` or add exists app ```heroku git:remote -a APP_NAME```
+- Push all changes do heroku ```git push heroku master --force```
 
 ## Authors
 
