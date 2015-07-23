@@ -1,13 +1,10 @@
-<form class="form-inline" id="filters-form">
-    <div class="form-group">
-        <label for="filters-source-element">{{_.filters.sourceLabel}}</label>
-        <select class="form-control"
-            id="filters-source-element"
-            name="filters[source]"
-            ng-options="source.id as source.label for source in sources"
-            ng-model="filters.source"
-            ng-change="setupLatestMessages()">
-            <option value="">{{_.filters.allSources}}</option>
-        </select>
-    </div>
+<form class="form-inline flex-container" id="filters-form">
+    <label for="filter-{{source.id}}" class="filter" ng-repeat="source in sources">
+        <input type="checkbox"
+               id="filter-{{source.id}}"
+               name="{{source.id}}"
+               ng-change="setupLatestMessages()"
+               ng-model="filters.sources[source.id]">
+        <i class="fa fa-{{source.id}}"></i>
+    </label>
 </form>

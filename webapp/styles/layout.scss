@@ -1,6 +1,10 @@
 body {
   padding-top: $content-offset;
   font-size: $base-font-size;
+
+  @include on-small-screen() {
+    padding-top: $content-offset-on-small-screen;
+  }
 }
 
 #header {
@@ -39,3 +43,5 @@ hr {
 
 /* Icons of source */
 .fa-irc:before { content: "\f120"; }
+.fa-gitlab:before { content: "\f113"; }
+.fa-travis:before { content: "\f00c"; }

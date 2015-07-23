@@ -14,6 +14,7 @@ class MongoDbMessages implements MessagesRepository
 {
     private $storage;
     private $collectionName = 'messages';
+    private $defaultSortBy = 'timestamp';
 
     public function __construct(MongoDbStorage $storage)
     {
@@ -32,10 +33,20 @@ class MongoDbMessages implements MessagesRepository
      */
     public function retrieve(MessageCollection $messages, FiltersCollection $filters = null)
     {
-        // @todo: use message collection factory
-        // @todo: set filters: ...->setFilters($filters);
 
-        $retrieved = $this->storage->find($this->collectionName);
+        $findQuery = $this->prepareQuery($filters->getFilter('data'));
+
+        $retrieved = $this->storage->find($this->collectionName, $findQuery);
+
+        if ($filters->hasFilter('limit')) {
+            $retrieved->limit($filters->getFilter('limit'));
+        }
+
+        if ($filters->hasFilter('offset')) {
+            $retrieved->skip($filters->getFilter('offset'));
+        }
+
+        $retrieved->sort(array($this->defaultSortBy => -1));
 
         foreach ($retrieved as $message) {
             $uniqueId = new UniqueId($message['id']);
@@ -44,6 +55,19 @@ class MongoDbMessages implements MessagesRepository
         }
 
         return $messages;
+    }
+
+    private function prepareQuery($data)
+    {
+        $query = array();
+        foreach ($data as $field => $value) {
+            if (is_array($value)) {
+                $query[$field] = array('$in' => $value);
+            } else {
+                $query[$value] = $value;
+            }
+        }
+        return $query;
     }
 
     private function convertMessageCollectionToArray(MessageCollection $messages)

@@ -11,28 +11,29 @@ module.exports = function(grunt) {
     ];
 
     grunt.initConfig({
+        'pkg': grunt.file.readJSON('package.json'),
         'uglify': {
             'js': {
                 'src': jsFiles,
-                'dest': 'public/application.min.js'
+                'dest': 'public/js/application.min.js'
             }
         },
         'sass': {
             dist: {
                 options: {
-                    'sourcemap': 'none',
+                    'style': 'compressed'
+                },
+                files: {
+                    'public/css/style.min.css': sassFiles
+                }
+            },
+            dev: {
+                options: {
                     'style': 'expanded'
                 },
                 files: {
-                    'public/style.css': sassFiles
+                    'public/css/style.css': sassFiles
                 }
-            }
-
-        },
-        'cssmin': {
-            'css': {
-                'src': 'public/style.css',
-                'dest': 'public/style.min.css'
             }
         },
         'includeSource': {
@@ -44,15 +45,21 @@ module.exports = function(grunt) {
         },
         'watch': {
             'js': {
-                'files': jsFiles.concat(['styles/*.scss', 'styles/*/*.scss']),
-                'tasks': ['uglify', 'sass', 'cssmin', 'includeSource']
+                'files': jsFiles,
+                'tasks': ['includeSource']
+            },
+            'css': {
+                'files': ['styles/*.scss', 'styles/*/*.scss'],
+                'tasks': ['sass:dev']
             }
         }
     });
 
+    grunt.registerTask('default', ['build', 'watch']);
+    grunt.registerTask('build', ['sass:dist', 'uglify', 'sass:dev', 'includeSource']);
+
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-sass');
-    grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-include-source');
 };

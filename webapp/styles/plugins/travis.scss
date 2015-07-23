@@ -5,7 +5,7 @@
     border-top-color: $green;
   }
 
-  &.broken, &.failed {
+  &.broken, &.failed, &.errored {
     border-top-color: $red;
   }
 
@@ -13,7 +13,7 @@
     color: $green;
   }
 
-  .fa-remove {
+  .fa-remove, .fa-exclamation, .fa-exclamation-circle, .fa-warning {
     color: $red;
   }
 }
