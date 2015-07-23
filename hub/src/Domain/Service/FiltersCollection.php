@@ -40,6 +40,8 @@ class FiltersCollection
                     if (!empty($cleanValue)) {
                         $this->filters['data'][$filter] = $cleanValue;
                     }
+                } else {
+                    throw new \InvalidArgumentException("field names can only contain English letters and underscore character");
                 }
         }
     }
