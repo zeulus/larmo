@@ -1,8 +1,8 @@
 <?php
 
-namespace FP\Larmo\Infrastructure\Adapter;
+namespace FP\Larmo\Plugin\MongoStorage;
 
-class MongoDbStorage
+final class MongoDbStorage
 {
     private $connection;
 

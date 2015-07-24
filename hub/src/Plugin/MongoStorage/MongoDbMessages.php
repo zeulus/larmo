@@ -1,16 +1,15 @@
 <?php
 
-namespace FP\Larmo\Infrastructure\Repository;
+namespace FP\Larmo\Plugin\MongoStorage;;
 
 use FP\Larmo\Domain\ValueObject\UniqueId;
 use FP\Larmo\Domain\Service\FiltersCollection;
 use FP\Larmo\Domain\Service\MessageCollection;
 use FP\Larmo\Domain\Repository\Messages as MessagesRepository;
 
-use FP\Larmo\Infrastructure\Adapter\MongoDbStorage;
 use FP\Larmo\Infrastructure\Factory\Message as MessageFactory;
 
-class MongoDbMessages implements MessagesRepository
+final class MongoDbMessages implements MessagesRepository
 {
     private $storage;
     private $collectionName = 'messages';

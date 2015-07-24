@@ -15,14 +15,12 @@ use FP\Larmo\Domain\Service\PluginsCollection;
  */
 final class PluginService
 {
-    const IS_INPUT = 1;
-    const IS_OUTPUT = 2;
-
     /**
      * @var \FP\Larmo\Domain\Service\PluginsCollection
      */
     private $plugins;
     private $pluginNames = array();
+    private $subscribers = array();
 
     public function __construct(PluginsCollection $collection)
     {
@@ -34,7 +32,10 @@ final class PluginService
                 throw new PluginException(sprintf('Plugin "%s" is already registered!', $ident));
             }
             $this->pluginNames[$ident] = $plugin->getDisplayName();
+            $this->subscribers[] = $plugin->getEventSubscriber();
         }
+
+        $this->subscribers = array_filter($this->subscribers);
     }
 
     /**
@@ -68,5 +69,15 @@ final class PluginService
     {
         return $this->checkPluginIsRegistered($id)
             ? $this->pluginNames[$id] : null;
+    }
+
+    /**
+     * Returns all event listeners from plugins.
+     *
+     * @return array
+     */
+    public function getPluginSubscribers()
+    {
+        return $this->subscribers;
     }
 }

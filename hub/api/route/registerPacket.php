@@ -1,7 +1,9 @@
 <?php
 
-use Symfony\Component\HttpFoundation\Response;
+use FP\Larmo\Domain\Service\LarmoEvents;
+use FP\Larmo\Application\Event\MessagesStoreEvent;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 $app->post('/registerPacket', function (Request $request) use ($app) {
     $packetDataAsObject = json_decode($request->getContent());
@@ -14,8 +16,10 @@ $app->post('/registerPacket', function (Request $request) use ($app) {
         // transform messages from packet to domain collection
         $messages = $app['messages.factory']->fromArray($packetDataAsArray['data']);
 
-        // store messages
-        $app['messages.repository']->store($messages);
+        $event = new MessagesStoreEvent();
+        $event->setMessages($messages);
+
+        $app['dispatcher']->dispatch(LarmoEvents::STORE_MESSAGES, $event);
 
         return $app->json(['message' => 'OK'], Response::HTTP_OK);
     } else {

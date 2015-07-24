@@ -15,14 +15,9 @@ class PluginManifest implements PluginManifestInterface
         return $this->ident;
     }
 
-    public function getCapabilities()
+    public function getEventSubscriber()
     {
-        return PluginService::IS_INPUT;
-    }
-
-    public function registerValidators()
-    {
-        // TODO: Implement registerValidators() method.
+        return array();
     }
 
     public function getDisplayName()
