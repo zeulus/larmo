@@ -8,7 +8,7 @@ Follow steps below to access applications locally:
 
 Navigate from command line to this directory and run
 ```bash
-docker-compose up
+docker-compose up -d
 ```
 
 ## Windows
