@@ -4,10 +4,7 @@ GEM
     sass (3.4.16)
 
 PLATFORMS
-  x64-mingw32
+  ruby
 
 DEPENDENCIES
   sass
-
-BUNDLED WITH
-   1.10.5
