@@ -3,6 +3,7 @@
 namespace FP\Larmo\Plugin\MongoStorage;
 
 use FP\Larmo\Application\Event\IncomingMessageEvent;
+use FP\Larmo\Application\Event\RetrieveMessagesEvent;
 use FP\Larmo\Domain\Service\LarmoEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -19,19 +20,24 @@ class EventSubscriber implements EventSubscriberInterface
         $this->storage = $storage;
     }
 
+    /**
+     * @param IncomingMessageEvent $event
+     */
     public function onStoreMessages(IncomingMessageEvent $event)
     {
-        $result = $this->storage->store($event->getMessages());
-        if (false === $result) {
-            $event->setError('MongoDB Write failed');
-        } elseif (is_array($result) && !empty($result['err'])) {
-            $event->setError('MongoDB Write failed: '. $result['err']);
+        if (false === $this->storage->store($event->getMessages())) {
+            $event->setError('MongoDB Write failed: '. $this->storage->getLastErrorMsg());
         }
     }
 
-    public function onRetrieveMessages()
+    /**
+     * @param RetrieveMessagesEvent $event
+     */
+    public function onRetrieveMessages(RetrieveMessagesEvent $event)
     {
-        // @todo
+        if (false === $this->storage->retrieve($event->getMessages(), $event->getFilters())) {
+            $event->setError('MongoDB Error occurred while trying to retrieve data: '. $this->storage->getLastErrorMsg());
+        }
     }
 
     /**
