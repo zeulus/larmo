@@ -26,12 +26,4 @@ class GithubPluginManifestTest extends PHPUnit_Framework_TestCase
     {
         $this->assertEquals('GitHub', $this->github->getDisplayName());
     }
-
-    /**
-     * @test
-     */
-    public function pluginHasCorrectCapabilities()
-    {
-        $this->assertEquals(1, $this->github->getCapabilities());
-    }
 }

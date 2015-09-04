@@ -15,7 +15,7 @@ final class PluginManifest implements PluginManifestInterface
     private $config;
 
     /**
-     * @var MongoDbStorage
+     * @var MongoDbStorage|false
      */
     private $storage;
 
@@ -39,32 +39,48 @@ final class PluginManifest implements PluginManifestInterface
             'db_options' => []
         ];
 
-        $this->storage = new MongoDbStorage(
-            $this->config['db_url'],
-            $this->config['db_port'],
-            $this->config['db_user'],
-            $this->config['db_password'],
-            $this->config['db_name'],
-            $this->config['db_options']
-        );
+        try {
+            $this->storage = new MongoDbStorage(
+                $this->config['db_url'],
+                $this->config['db_port'],
+                $this->config['db_user'],
+                $this->config['db_password'],
+                $this->config['db_name'],
+                $this->config['db_options']
+            );
 
-        $this->repository = new MongoDbMessages($this->storage);
+            $this->repository = new MongoDbMessages($this->storage);
+        } catch (\RuntimeException $e) {
+            $this->repository = false;
+        }
     }
 
-
+    /**
+     * @return string
+     */
     public function getIdentifier()
     {
         return $this->ident;
     }
 
     /**
+     * If system cannot connect to MongoDB, don't register
+     * it's capability to handle messages.
+     *
      * @return EventSubscriber
      */
     public function getEventSubscriber()
     {
-        return new EventSubscriber($this->repository);
+        if ($this->repository) {
+            return new EventSubscriber($this->repository);
+        } else {
+            return null;
+        }
     }
 
+    /**
+     * @return string
+     */
     public function getDisplayName()
     {
         return $this->name;

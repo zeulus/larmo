@@ -17,7 +17,7 @@ class PluginManifest implements PluginManifestInterface
 
     public function getEventSubscriber()
     {
-        return array();
+        return null;
     }
 
     public function getDisplayName()

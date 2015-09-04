@@ -2,7 +2,6 @@
 
 namespace FP\Larmo\Plugin\Travis;
 
-use FP\Larmo\Application\PluginService;
 use FP\Larmo\Domain\Service\PluginManifestInterface;
 
 class PluginManifest implements PluginManifestInterface
@@ -17,7 +16,7 @@ class PluginManifest implements PluginManifestInterface
 
     public function getEventSubscriber()
     {
-        return array();
+        return null;
     }
 
     public function getDisplayName()
