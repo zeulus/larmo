@@ -1,7 +1,7 @@
 <?php
 
 use FP\Larmo\Domain\Service\LarmoEvents;
-use FP\Larmo\Application\Event\MessagesStoreEvent;
+use FP\Larmo\Application\Event\IncomingMessageEvent;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -16,12 +16,16 @@ $app->post('/registerPacket', function (Request $request) use ($app) {
         // transform messages from packet to domain collection
         $messages = $app['messages.factory']->fromArray($packetDataAsArray['data']);
 
-        $event = new MessagesStoreEvent();
+        $event = new IncomingMessageEvent();
         $event->setMessages($messages);
 
-        $app['dispatcher']->dispatch(LarmoEvents::STORE_MESSAGES, $event);
+        $app['dispatcher']->dispatch(LarmoEvents::INCOMING_MESSAGE, $event);
 
-        return $app->json(['message' => 'OK'], Response::HTTP_OK);
+        if ($event->hasErrors()) {
+            return $app->json(['message' => $event->getErrors()], Response::HTTP_BAD_REQUEST);
+        } else {
+            return $app->json(['message' => 'OK'], Response::HTTP_OK);
+        }
     } else {
         return $app->json(['message' => $packetValidation->getErrors()], Response::HTTP_BAD_REQUEST);
     }

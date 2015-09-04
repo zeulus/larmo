@@ -4,6 +4,7 @@ namespace FP\Larmo\Application;
 
 use FP\Larmo\Domain\Exception\PluginException;
 use FP\Larmo\Domain\Service\PluginsCollection;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
  * Class PluginService
@@ -32,10 +33,12 @@ final class PluginService
                 throw new PluginException(sprintf('Plugin "%s" is already registered!', $ident));
             }
             $this->pluginNames[$ident] = $plugin->getDisplayName();
-            $this->subscribers[] = $plugin->getEventSubscriber();
-        }
+            $subscriber = $plugin->getEventSubscriber();
 
-        $this->subscribers = array_filter($this->subscribers);
+            if ($subscriber instanceof EventSubscriberInterface) {
+                $this->subscribers[] = $subscriber;
+            }
+        }
     }
 
     /**

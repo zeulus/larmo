@@ -5,6 +5,6 @@ namespace FP\Larmo\Domain\Service;
 
 final class LarmoEvents {
 
-    const STORE_MESSAGES = 'messages.store';
+    const INCOMING_MESSAGE = 'messages.new';
     const RETRIEVE_MESSAGES = 'messages.retrieve';
 }

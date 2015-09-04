@@ -2,7 +2,8 @@
 
 namespace FP\Larmo\Plugin\MongoStorage;
 
-use FP\Larmo\Application\Event\MessagesStoreEvent;
+use FP\Larmo\Application\Event\IncomingMessageEvent;
+use FP\Larmo\Domain\Service\LarmoEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class EventSubscriber implements EventSubscriberInterface
@@ -18,9 +19,14 @@ class EventSubscriber implements EventSubscriberInterface
         $this->storage = $storage;
     }
 
-    public function onStoreMessages(MessagesStoreEvent $event)
+    public function onStoreMessages(IncomingMessageEvent $event)
     {
-        $this->storage->store($event->getMessages());
+        $result = $this->storage->store($event->getMessages());
+        if (false === $result) {
+            $event->setError('MongoDB Write failed');
+        } elseif (is_array($result) && !empty($result['err'])) {
+            $event->setError('MongoDB Write failed: '. $result['err']);
+        }
     }
 
     public function onRetrieveMessages()
@@ -36,7 +42,7 @@ class EventSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            LarmoEvents::STORE_MESSAGES => array('onStoreMessages', 0),
+            LarmoEvents::INCOMING_MESSAGE => array('onStoreMessages', 0),
             LarmoEvents::RETRIEVE_MESSAGES => array('onRetrieveMessages', 0),
         );
     }
