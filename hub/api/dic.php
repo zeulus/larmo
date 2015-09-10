@@ -1,21 +1,19 @@
 <?php
 
+// register plugins service and event subscribers from events
 $app['plugins'] = $app->share(function ($app) {
     $pluginsCollection = new \FP\Larmo\Domain\Service\PluginsCollection;
     $directoryIterator = new \DirectoryIterator($app['config.path.plugins']);
     $pluginsRepository = new \FP\Larmo\Infrastructure\Repository\FilesystemPlugins($directoryIterator);
     $pluginsRepository->retrieve($pluginsCollection);
 
-    return new \FP\Larmo\Application\PluginService($pluginsCollection);
-});
+    $pluginService = new \FP\Larmo\Application\PluginService($pluginsCollection);
 
-$app['mongo_db.storage'] = $app->share(function ($app) {
-    $config = $app['config.mongo_db'];
-    return new \FP\Larmo\Infrastructure\Adapter\MongoDbStorage($config['db_url'], $config['db_port'], $config['db_user'], $config['db_password'], $config['db_name'], $config['db_options']);
-});
+    foreach ($pluginService->getPluginSubscribers() as $subscriber) {
+        $app['dispatcher']->addSubscriber($subscriber);
+    }
 
-$app['messages.repository'] = $app->share(function ($app) {
-    return new \FP\Larmo\Infrastructure\Repository\MongoDbMessages($app['mongo_db.storage']);
+    return $pluginService;
 });
 
 $app['messages.factory'] = $app->share(function () {

@@ -2,7 +2,6 @@
 
 namespace FP\Larmo\Plugin\Travis;
 
-use FP\Larmo\Application\PluginService;
 use FP\Larmo\Domain\Service\PluginManifestInterface;
 
 class PluginManifest implements PluginManifestInterface
@@ -15,14 +14,9 @@ class PluginManifest implements PluginManifestInterface
         return $this->ident;
     }
 
-    public function getCapabilities()
+    public function getEventSubscriber()
     {
-        return PluginService::IS_INPUT;
-    }
-
-    public function registerValidators()
-    {
-        // TODO: Implement registerValidators() method.
+        return null;
     }
 
     public function getDisplayName()
