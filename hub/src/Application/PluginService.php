@@ -4,6 +4,7 @@ namespace FP\Larmo\Application;
 
 use FP\Larmo\Domain\Exception\PluginException;
 use FP\Larmo\Domain\Service\PluginsCollection;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
  * Class PluginService
@@ -15,14 +16,12 @@ use FP\Larmo\Domain\Service\PluginsCollection;
  */
 final class PluginService
 {
-    const IS_INPUT = 1;
-    const IS_OUTPUT = 2;
-
     /**
      * @var \FP\Larmo\Domain\Service\PluginsCollection
      */
     private $plugins;
     private $pluginNames = array();
+    private $subscribers = array();
 
     public function __construct(PluginsCollection $collection)
     {
@@ -34,6 +33,11 @@ final class PluginService
                 throw new PluginException(sprintf('Plugin "%s" is already registered!', $ident));
             }
             $this->pluginNames[$ident] = $plugin->getDisplayName();
+            $subscriber = $plugin->getEventSubscriber();
+
+            if ($subscriber instanceof EventSubscriberInterface) {
+                $this->subscribers[] = $subscriber;
+            }
         }
     }
 
@@ -68,5 +72,15 @@ final class PluginService
     {
         return $this->checkPluginIsRegistered($id)
             ? $this->pluginNames[$id] : null;
+    }
+
+    /**
+     * Returns all event listeners from plugins.
+     *
+     * @return array
+     */
+    public function getPluginSubscribers()
+    {
+        return $this->subscribers;
     }
 }

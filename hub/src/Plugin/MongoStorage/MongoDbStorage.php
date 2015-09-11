@@ -1,8 +1,8 @@
 <?php
 
-namespace FP\Larmo\Infrastructure\Adapter;
+namespace FP\Larmo\Plugin\MongoStorage;
 
-class MongoDbStorage
+final class MongoDbStorage
 {
     private $connection;
 
@@ -13,9 +13,13 @@ class MongoDbStorage
         } else {
             $server = "mongodb://$url:$port/$db";
         }
-        $mongoClient = new \MongoClient($server, $options);
 
-        $this->connection = $mongoClient->selectDB($db);
+        try {
+            $mongoClient = new \MongoClient($server, $options);
+            $this->connection = $mongoClient->selectDB($db);
+        } catch (\MongoConnectionException $e) {
+            throw new \RuntimeException('Could not connect to MongoDB: '. $e->getMessage());
+        }
     }
 
     public function batchInsert($collection, array $data)
@@ -26,5 +30,10 @@ class MongoDbStorage
     public function find($collection, $find = array())
     {
         return $this->connection->{$collection}->find($find);
+    }
+
+    public function __destruct()
+    {
+
     }
 }
